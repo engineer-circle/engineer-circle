@@ -65,7 +65,7 @@ android {
             applicationIdSuffix ".${dartEnvironmentVariables.FLAVOR}"
         }
         // アプリケーション名の設定
-        resValue "string", "app_name", "EngineerCircle" +
+        resValue "string", "app_name", "eCircle" +
             (dartEnvironmentVariables.FLAVOR == 'prod' ? '' : ".${dartEnvironmentVariables.FLAVOR}")
     }
 

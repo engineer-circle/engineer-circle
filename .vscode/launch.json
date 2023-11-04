@@ -7,34 +7,27 @@
       "name": "開発環境デバッグビルド",
       "request": "launch",
       "type": "dart",
+      "flutterMode": "debug",
       "args": [
-        "--dart-define=FLAVOR=dev"
+          "--dart-define-from-file=dart_defines/dev.json"
+      ]
+    },
+    {
+      "name": "ステージング環境デバッグビルド",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "args": [
+          "--dart-define-from-file=dart_defines/stg.json"
       ]
     },
     {
       "name": "本番環境デバッグビルド",
       "request": "launch",
       "type": "dart",
+      "flutterMode": "debug",
       "args": [
-        "--dart-define=FLAVOR=prod"
-      ]
-    },
-    {
-      "name": "開発環境リリースビルド",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release",
-      "args": [
-        "--dart-define=FLAVOR=dev"
-      ]
-    },
-    {
-      "name": "本番環境リリースビルド",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release",
-      "args": [
-        "--dart-define=FLAVOR=prod"
+        "--dart-define-from-file=dart_defines/prod.json"
       ]
     },
   ]
