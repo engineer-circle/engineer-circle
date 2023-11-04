@@ -60,13 +60,9 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        // prod 以外の場合はアプリケーションIDにフレーバー名を追加
-        if (dartEnvironmentVariables.FLAVOR != 'prod') {
-            applicationIdSuffix ".${dartEnvironmentVariables.FLAVOR}"
-        }
-        // アプリケーション名の設定
-        resValue "string", "app_name", "eCircle" +
-            (dartEnvironmentVariables.FLAVOR == 'prod' ? '' : ".${dartEnvironmentVariables.FLAVOR}")
+        // dart_defines/{環境}.jsonで定義したappIdSuffix,appNameを指定する
+        applicationIdSuffix appIdSuffix
+        resValue "string", "app_name", appName
     }
 
     buildTypes {
