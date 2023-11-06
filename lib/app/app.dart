@@ -1,3 +1,4 @@
+import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +9,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text('Hello World!'),
+          child: SeatingChartPage(),
         ),
       ),
     );
