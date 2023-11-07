@@ -65,7 +65,7 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       color: Colors.grey[300],
       child: Center(
-        child: Text('No.$tableId'),
+        child: Text('$tableId'),
       ),
     );
   }
