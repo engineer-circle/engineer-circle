@@ -1,4 +1,5 @@
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
+import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/vertical_admin_seating_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +23,7 @@ class _CreateSeatingChartPageState
     double screenWidth = MediaQuery.of(context).size.width;
     double usableScreenWidth = screenWidth - horizontalScreenPadding * 2;
 
-    int horizontalTableCount = 1; // TODO: 行ごとに動的にする
+    int horizontalTableCount = 4; // TODO: 行ごとに動的にする
 
     return Scaffold(
       appBar: AppBar(),
@@ -37,6 +38,21 @@ class _CreateSeatingChartPageState
                   HorizontalAdminSeatingLayout(
                     tableId: 1,
                     sideSeatCounts: 4,
+                    usableLayoutWidth: usableScreenWidth / horizontalTableCount,
+                  ),
+                  HorizontalAdminSeatingLayout(
+                    tableId: 1,
+                    sideSeatCounts: 3,
+                    usableLayoutWidth: usableScreenWidth / horizontalTableCount,
+                  ),
+                  VerticalAdminSeatingLayout(
+                    tableId: 1,
+                    sideSeatCounts: 4,
+                    usableLayoutWidth: usableScreenWidth / horizontalTableCount,
+                  ),
+                  VerticalAdminSeatingLayout(
+                    tableId: 1,
+                    sideSeatCounts: 3,
                     usableLayoutWidth: usableScreenWidth / horizontalTableCount,
                   ),
                 ],
