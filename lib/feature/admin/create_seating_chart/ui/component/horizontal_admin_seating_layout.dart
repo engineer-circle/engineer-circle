@@ -22,7 +22,7 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
     final double tableMaxWidth =
         Math.min(usableLayoutWidth - horizontalPadding * 2, 160);
     final double seatMaxWidth =
-        (tableMaxWidth / rowSeatsLimitCount) - seatPadding * 2;
+        Math.min((tableMaxWidth / rowSeatsLimitCount) - seatPadding * 2, 28);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
