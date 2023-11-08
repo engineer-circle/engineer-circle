@@ -13,18 +13,21 @@ class VerticalAdminSeatingLayout extends StatelessWidget {
   final int sideSeatCounts;
   final double usableLayoutWidth;
 
+  static const double seatMaxWidth = 28;
   static const double tableWidth = 40;
   static const double horizontalPadding = 4;
   static const double seatPadding = 1;
 
   @override
   Widget build(BuildContext context) {
-    final double seatMaxWidth = (usableLayoutWidth -
-            horizontalPadding * 2 -
-            tableWidth -
-            (seatPadding * 4)) /
-        2;
-    final double seatWidth = Math.min(seatMaxWidth, 28);
+    final double seatWidth = Math.min(
+      seatMaxWidth,
+      (usableLayoutWidth -
+              horizontalPadding * 2 -
+              tableWidth -
+              (seatPadding * 4)) /
+          2,
+    );
     final double tableHeight =
         seatWidth * sideSeatCounts + (seatPadding * 2 * sideSeatCounts);
 

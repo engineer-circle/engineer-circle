@@ -13,16 +13,18 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
   final int sideSeatCounts;
   final double usableLayoutWidth;
 
+  static const double tableMaxWidth = 120;
+  static const double seatMaxWidth = 28;
   static const double horizontalPadding = 4;
   static const double seatPadding = 1;
   static const int rowSeatsLimitCount = 4; // 1行に最大表示できる座席
 
   @override
   Widget build(BuildContext context) {
-    final double tableMaxWidth =
-        Math.min(usableLayoutWidth - horizontalPadding * 2, 160);
-    final double seatMaxWidth =
-        Math.min((tableMaxWidth / rowSeatsLimitCount) - seatPadding * 2, 28);
+    final double tableWidth =
+        Math.min(tableMaxWidth, usableLayoutWidth - horizontalPadding * 2);
+    final double seatWidth = Math.min(
+        seatMaxWidth, (tableWidth / rowSeatsLimitCount) - seatPadding * 2);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -31,9 +33,9 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildSeatRow(seatMaxWidth, sideSeatCounts),
-          _buildTable(tableMaxWidth),
-          _buildSeatRow(seatMaxWidth, sideSeatCounts),
+          _buildSeatRow(seatWidth, sideSeatCounts),
+          _buildTable(tableWidth),
+          _buildSeatRow(seatWidth, sideSeatCounts),
         ],
       ),
     );
