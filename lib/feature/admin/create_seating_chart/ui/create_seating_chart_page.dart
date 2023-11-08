@@ -22,43 +22,36 @@ class _CreateSeatingChartPageState
 
   List<CreateSeat> seats = [
     CreateSeat(
-        id: 1,
         row: 1,
         column: 1,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
-        id: 2,
         row: 1,
         column: 2,
         seatCount: 3,
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
-        id: 3,
         row: 1,
         column: 3,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
-        id: 4,
         row: 1,
         column: 4,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
-        id: 5,
         row: 2,
         column: 1,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
-        id: 6,
         row: 2,
         column: 2,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.vertical),
     CreateSeat(
-        id: 7,
         row: 3,
         column: 1,
         seatCount: 4,

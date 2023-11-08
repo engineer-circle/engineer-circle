@@ -5,7 +5,6 @@ part 'create_seat.freezed.dart';
 @freezed
 class CreateSeat with _$CreateSeat {
   const factory CreateSeat({
-    required int id,
     required int row,
     required int column,
     required int seatCount,

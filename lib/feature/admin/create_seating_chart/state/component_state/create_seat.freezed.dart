@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateSeat {
-  int get id => throw _privateConstructorUsedError;
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
   int get seatCount => throw _privateConstructorUsedError;
@@ -35,8 +34,7 @@ abstract class $CreateSeatCopyWith<$Res> {
       _$CreateSeatCopyWithImpl<$Res, CreateSeat>;
   @useResult
   $Res call(
-      {int id,
-      int row,
+      {int row,
       int column,
       int seatCount,
       SeatingOrientation seatingOrientation});
@@ -55,17 +53,12 @@ class _$CreateSeatCopyWithImpl<$Res, $Val extends CreateSeat>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
     Object? seatingOrientation = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       row: null == row
           ? _value.row
           : row // ignore: cast_nullable_to_non_nullable
@@ -95,8 +88,7 @@ abstract class _$$CreateSeatImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int row,
+      {int row,
       int column,
       int seatCount,
       SeatingOrientation seatingOrientation});
@@ -113,17 +105,12 @@ class __$$CreateSeatImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
     Object? seatingOrientation = null,
   }) {
     return _then(_$CreateSeatImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       row: null == row
           ? _value.row
           : row // ignore: cast_nullable_to_non_nullable
@@ -148,15 +135,12 @@ class __$$CreateSeatImplCopyWithImpl<$Res>
 
 class _$CreateSeatImpl extends _CreateSeat {
   const _$CreateSeatImpl(
-      {required this.id,
-      required this.row,
+      {required this.row,
       required this.column,
       required this.seatCount,
       required this.seatingOrientation})
       : super._();
 
-  @override
-  final int id;
   @override
   final int row;
   @override
@@ -168,7 +152,7 @@ class _$CreateSeatImpl extends _CreateSeat {
 
   @override
   String toString() {
-    return 'CreateSeat(id: $id, row: $row, column: $column, seatCount: $seatCount, seatingOrientation: $seatingOrientation)';
+    return 'CreateSeat(row: $row, column: $column, seatCount: $seatCount, seatingOrientation: $seatingOrientation)';
   }
 
   @override
@@ -176,7 +160,6 @@ class _$CreateSeatImpl extends _CreateSeat {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateSeatImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.row, row) || other.row == row) &&
             (identical(other.column, column) || other.column == column) &&
             (identical(other.seatCount, seatCount) ||
@@ -187,7 +170,7 @@ class _$CreateSeatImpl extends _CreateSeat {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, row, column, seatCount, seatingOrientation);
+      Object.hash(runtimeType, row, column, seatCount, seatingOrientation);
 
   @JsonKey(ignore: true)
   @override
@@ -198,15 +181,12 @@ class _$CreateSeatImpl extends _CreateSeat {
 
 abstract class _CreateSeat extends CreateSeat {
   const factory _CreateSeat(
-      {required final int id,
-      required final int row,
+      {required final int row,
       required final int column,
       required final int seatCount,
       required final SeatingOrientation seatingOrientation}) = _$CreateSeatImpl;
   const _CreateSeat._() : super._();
 
-  @override
-  int get id;
   @override
   int get row;
   @override
