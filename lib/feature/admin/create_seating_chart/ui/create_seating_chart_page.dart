@@ -18,6 +18,7 @@ class CreateSeatingChartPage extends ConsumerStatefulWidget {
 class _CreateSeatingChartPageState
     extends ConsumerState<CreateSeatingChartPage> {
   final horizontalScreenPadding = 8.0;
+  final plusIconSize = 24.0;
 
   List<CreateSeat> seats = [
     CreateSeat(
@@ -40,23 +41,36 @@ class _CreateSeatingChartPageState
         seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
         id: 4,
-        row: 2,
-        column: 1,
+        row: 1,
+        column: 4,
         seatCount: 4,
-        seatingOrientation: SeatingOrientation.vertical),
+        seatingOrientation: SeatingOrientation.horizontal),
     CreateSeat(
         id: 5,
         row: 2,
-        column: 2,
+        column: 1,
         seatCount: 4,
         seatingOrientation: SeatingOrientation.horizontal),
+    CreateSeat(
+        id: 6,
+        row: 2,
+        column: 2,
+        seatCount: 4,
+        seatingOrientation: SeatingOrientation.vertical),
+    CreateSeat(
+        id: 6,
+        row: 3,
+        column: 1,
+        seatCount: 4,
+        seatingOrientation: SeatingOrientation.vertical),
   ];
 
   @override
   Widget build(BuildContext context) {
     // 画面の幅を取得
     final screenWidth = MediaQuery.of(context).size.width;
-    final usableScreenWidth = screenWidth - horizontalScreenPadding * 2;
+    final usableScreenWidth =
+        screenWidth - horizontalScreenPadding * 2 - plusIconSize;
 
     final seatsGroupedByRow = groupBy(seats, (CreateSeat seat) => seat.row);
 
@@ -66,7 +80,23 @@ class _CreateSeatingChartPageState
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalScreenPadding),
           child: Column(
-              children: buildSeatRows(seatsGroupedByRow, usableScreenWidth)),
+            children: [
+              ...buildSeatRows(
+                seatsGroupedByRow,
+                usableScreenWidth,
+                (row) {
+                  // TODO: 右側に座席追加
+                },
+              ),
+              const SizedBox(height: 16),
+              InkWell(
+                onTap: () {
+                  // TODO: 下に座席追加
+                },
+                child: Icon(Icons.control_point, size: plusIconSize),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -75,12 +105,21 @@ class _CreateSeatingChartPageState
   List<Widget> buildSeatRows(
     Map<int, List<CreateSeat>> seatsGroupedByRow,
     double usableScreenWidth,
+    final Function(int) onCreateSeat,
   ) {
     return seatsGroupedByRow.entries.map((group) {
+      final row = group.key;
       final seatsForCurrentRow = group.value;
       final currentRowWidgets = seatsForCurrentRow.map((seat) {
         return _buildSeatWidget(seat, usableScreenWidth / group.value.length);
       }).toList();
+
+      final Widget plusIcon = InkWell(
+        onTap: () => onCreateSeat(row),
+        child: Icon(Icons.control_point, size: plusIconSize),
+      );
+
+      currentRowWidgets.add(plusIcon);
 
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
