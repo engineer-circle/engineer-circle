@@ -4,12 +4,12 @@ import 'dart:math' as Math;
 class VerticalAdminSeatingLayout extends StatelessWidget {
   const VerticalAdminSeatingLayout({
     super.key,
-    required this.tableId,
+    required this.tableName,
     required this.sideSeatCounts,
     required this.usableLayoutWidth,
   });
 
-  final int tableId;
+  final String tableName;
   final int sideSeatCounts;
   final double usableLayoutWidth;
 
@@ -69,7 +69,7 @@ class VerticalAdminSeatingLayout extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4),
       color: Colors.grey[300],
       child: Center(
-        child: Text('$tableId'),
+        child: Text(tableName),
       ),
     );
   }

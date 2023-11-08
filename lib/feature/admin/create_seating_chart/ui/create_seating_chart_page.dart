@@ -58,7 +58,7 @@ class _CreateSeatingChartPageState
         seatCount: 4,
         seatingOrientation: SeatingOrientation.vertical),
     CreateSeat(
-        id: 6,
+        id: 7,
         row: 3,
         column: 1,
         seatCount: 4,
@@ -132,13 +132,13 @@ class _CreateSeatingChartPageState
     switch (seat.seatingOrientation) {
       case SeatingOrientation.horizontal:
         return HorizontalAdminSeatingLayout(
-          tableId: seat.id,
+          tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
       case SeatingOrientation.vertical:
         return VerticalAdminSeatingLayout(
-          tableId: seat.id,
+          tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
