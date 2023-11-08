@@ -15,8 +15,7 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
 
   static const double horizontalPadding = 4;
   static const double seatPadding = 1;
-  static const int rowSeatsLimitCount =
-      4; // 1行に最大表示できるアイコン数  TODO: 5以上も対応できるようにしたい
+  static const int rowSeatsLimitCount = 4; // 1行に最大表示できる座席
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +39,24 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildSeatRow(double seatWidth, int count) {
-    return Row(
-      children: List.generate(count, (index) {
-        return Padding(
-          padding: const EdgeInsets.all(seatPadding),
-          child: Container(
-            width: seatWidth,
-            height: seatWidth,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              shape: BoxShape.circle,
-            ),
-          ),
-        );
-      }),
-    );
+  Widget _buildSeatRow(double seatWidth, int sideSeatCounts) {
+    return sideSeatCounts > rowSeatsLimitCount
+        ? Text('$sideSeatCounts席')
+        : Row(
+            children: List.generate(sideSeatCounts, (index) {
+              return Padding(
+                padding: const EdgeInsets.all(seatPadding),
+                child: Container(
+                  width: seatWidth,
+                  height: seatWidth,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              );
+            }),
+          );
   }
 
   Widget _buildTable(double width) {
