@@ -1,3 +1,4 @@
+import 'package:engineer_circle/feature/admin/create_seating_chart/ui/create_seating_chart_page.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: SeatingChartPage(),
+          child: CreateSeatingChartPage(),
         ),
       ),
     );
