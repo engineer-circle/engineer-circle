@@ -8,13 +8,24 @@ class CreateSeat with _$CreateSeat {
     required int row,
     required int column,
     required int seatCount,
-    required SeatingOrientation seatingOrientation,
+    required SeatOrientation seatOrientation,
   }) = _CreateSeat;
 
   const CreateSeat._();
 }
 
-enum SeatingOrientation {
-  horizontal, // 横向き
-  vertical // 縦向き
+enum SeatOrientation {
+  horizontal, // 横並び
+  vertical // 縦並び
+}
+
+extension SeatOrientationExtension on SeatOrientation {
+  String get label {
+    switch (this) {
+      case SeatOrientation.horizontal:
+        return '横並び';
+      case SeatOrientation.vertical:
+        return '縦並び';
+    }
+  }
 }

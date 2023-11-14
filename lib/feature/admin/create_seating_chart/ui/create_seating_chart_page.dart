@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
+import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/seating_arrangement_form.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/vertical_admin_seating_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,21 +54,42 @@ class _CreateSeatingChartPageState
               ...buildSeatRows(
                 seatsGroupedByRow,
                 usableScreenWidth,
-                (row) => ref
-                    .read(createSeatingChartStateProvider.notifier)
-                    .addColumn(
-                      row,
-                      4,
-                      SeatingOrientation.horizontal,
-                    ),
+                (row) => showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SeatingArrangementForm(
+                      onRegistered: (
+                          {required seatOrientation, required seatCount}) {
+                        ref
+                            .read(createSeatingChartStateProvider.notifier)
+                            .addColumn(
+                              row,
+                              seatCount,
+                              seatOrientation,
+                            );
+                      },
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 16),
               InkWell(
-                onTap: () =>
-                    ref.read(createSeatingChartStateProvider.notifier).addRow(
-                          4,
-                          SeatingOrientation.horizontal,
-                        ),
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SeatingArrangementForm(
+                      onRegistered: (
+                          {required seatOrientation, required seatCount}) {
+                        ref
+                            .read(createSeatingChartStateProvider.notifier)
+                            .addRow(
+                              seatCount,
+                              seatOrientation,
+                            );
+                      },
+                    );
+                  },
+                ),
                 child: Icon(Icons.control_point, size: plusIconSize),
               ),
             ],
@@ -104,14 +126,14 @@ class _CreateSeatingChartPageState
   }
 
   Widget _buildSeatWidget(CreateSeat seat, double layoutWidth) {
-    switch (seat.seatingOrientation) {
-      case SeatingOrientation.horizontal:
+    switch (seat.seatOrientation) {
+      case SeatOrientation.horizontal:
         return HorizontalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
-      case SeatingOrientation.vertical:
+      case SeatOrientation.vertical:
         return VerticalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
