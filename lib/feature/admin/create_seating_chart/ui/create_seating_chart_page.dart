@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
+import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/vertical_admin_seating_layout.dart';
 import 'package:flutter/material.dart';
@@ -20,72 +21,53 @@ class _CreateSeatingChartPageState
   final horizontalScreenPadding = 8.0;
   final plusIconSize = 24.0;
 
-  List<CreateSeat> seats = [
-    CreateSeat(
-        row: 1,
-        column: 1,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.horizontal),
-    CreateSeat(
-        row: 1,
-        column: 2,
-        seatCount: 3,
-        seatingOrientation: SeatingOrientation.horizontal),
-    CreateSeat(
-        row: 1,
-        column: 3,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.horizontal),
-    CreateSeat(
-        row: 1,
-        column: 4,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.horizontal),
-    CreateSeat(
-        row: 2,
-        column: 1,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.horizontal),
-    CreateSeat(
-        row: 2,
-        column: 2,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.vertical),
-    CreateSeat(
-        row: 3,
-        column: 1,
-        seatCount: 4,
-        seatingOrientation: SeatingOrientation.vertical),
-  ];
+  @override
+  void initState() {
+    /// 画面表示後に実行
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(createSeatingChartStateProvider.notifier).init();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final seatState = ref.watch(createSeatingChartStateProvider);
+
     // 画面の幅を取得
     final screenWidth = MediaQuery.of(context).size.width;
     final usableScreenWidth =
         screenWidth - horizontalScreenPadding * 2 - plusIconSize;
 
-    final seatsGroupedByRow = groupBy(seats, (CreateSeat seat) => seat.row);
+    final seatsGroupedByRow =
+        groupBy(seatState.seats, (CreateSeat seat) => seat.row);
 
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalScreenPadding),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalScreenPadding, vertical: 16),
           child: Column(
             children: [
               ...buildSeatRows(
                 seatsGroupedByRow,
                 usableScreenWidth,
-                (row) {
-                  // TODO: 右側に座席追加
-                },
+                (row) => ref
+                    .read(createSeatingChartStateProvider.notifier)
+                    .addColumn(
+                      row,
+                      4,
+                      SeatingOrientation.horizontal,
+                    ),
               ),
               const SizedBox(height: 16),
               InkWell(
-                onTap: () {
-                  // TODO: 下に座席追加
-                },
+                onTap: () =>
+                    ref.read(createSeatingChartStateProvider.notifier).addRow(
+                          4,
+                          SeatingOrientation.horizontal,
+                        ),
                 child: Icon(Icons.control_point, size: plusIconSize),
               ),
             ],
