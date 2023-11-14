@@ -17,44 +17,44 @@ class CreateSeatingChartStateNotifier
           row: 1,
           column: 1,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.horizontal),
+          seatOrientation: SeatOrientation.horizontal),
       CreateSeat(
           row: 1,
           column: 2,
           seatCount: 3,
-          seatingOrientation: SeatingOrientation.horizontal),
+          seatOrientation: SeatOrientation.horizontal),
       CreateSeat(
           row: 1,
           column: 3,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.horizontal),
+          seatOrientation: SeatOrientation.horizontal),
       CreateSeat(
           row: 1,
           column: 4,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.horizontal),
+          seatOrientation: SeatOrientation.horizontal),
       CreateSeat(
           row: 2,
           column: 1,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.horizontal),
+          seatOrientation: SeatOrientation.horizontal),
       CreateSeat(
           row: 2,
           column: 2,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.vertical),
+          seatOrientation: SeatOrientation.vertical),
       CreateSeat(
           row: 3,
           column: 1,
           seatCount: 4,
-          seatingOrientation: SeatingOrientation.vertical),
+          seatOrientation: SeatOrientation.vertical),
     ]);
   }
 
   void addColumn(
     int selectedRow,
     int seatCount,
-    SeatingOrientation seatingOrientation,
+    SeatOrientation seatOrientation,
   ) {
     final endSeat =
         state.seats.lastWhere((element) => element.row == selectedRow);
@@ -65,7 +65,7 @@ class CreateSeatingChartStateNotifier
         row: selectedRow,
         column: endSeat.column + 1,
         seatCount: seatCount,
-        seatingOrientation: seatingOrientation,
+        seatOrientation: seatOrientation,
       ),
     ];
 
@@ -74,7 +74,7 @@ class CreateSeatingChartStateNotifier
 
   void addRow(
     int seatCount,
-    SeatingOrientation seatingOrientation,
+    SeatOrientation seatOrientation,
   ) {
     final bottomSeatRow = state.seats
         .reduce((value, element) => element.row > value.row ? element : value)
@@ -85,7 +85,7 @@ class CreateSeatingChartStateNotifier
         row: bottomSeatRow + 1,
         column: 1,
         seatCount: seatCount,
-        seatingOrientation: seatingOrientation,
+        seatOrientation: seatOrientation,
       ),
     ];
 

@@ -19,8 +19,7 @@ mixin _$CreateSeat {
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
   int get seatCount => throw _privateConstructorUsedError;
-  SeatingOrientation get seatingOrientation =>
-      throw _privateConstructorUsedError;
+  SeatOrientation get seatOrientation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateSeatCopyWith<CreateSeat> get copyWith =>
@@ -34,10 +33,7 @@ abstract class $CreateSeatCopyWith<$Res> {
       _$CreateSeatCopyWithImpl<$Res, CreateSeat>;
   @useResult
   $Res call(
-      {int row,
-      int column,
-      int seatCount,
-      SeatingOrientation seatingOrientation});
+      {int row, int column, int seatCount, SeatOrientation seatOrientation});
 }
 
 /// @nodoc
@@ -56,7 +52,7 @@ class _$CreateSeatCopyWithImpl<$Res, $Val extends CreateSeat>
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
-    Object? seatingOrientation = null,
+    Object? seatOrientation = null,
   }) {
     return _then(_value.copyWith(
       row: null == row
@@ -71,10 +67,10 @@ class _$CreateSeatCopyWithImpl<$Res, $Val extends CreateSeat>
           ? _value.seatCount
           : seatCount // ignore: cast_nullable_to_non_nullable
               as int,
-      seatingOrientation: null == seatingOrientation
-          ? _value.seatingOrientation
-          : seatingOrientation // ignore: cast_nullable_to_non_nullable
-              as SeatingOrientation,
+      seatOrientation: null == seatOrientation
+          ? _value.seatOrientation
+          : seatOrientation // ignore: cast_nullable_to_non_nullable
+              as SeatOrientation,
     ) as $Val);
   }
 }
@@ -88,10 +84,7 @@ abstract class _$$CreateSeatImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int row,
-      int column,
-      int seatCount,
-      SeatingOrientation seatingOrientation});
+      {int row, int column, int seatCount, SeatOrientation seatOrientation});
 }
 
 /// @nodoc
@@ -108,7 +101,7 @@ class __$$CreateSeatImplCopyWithImpl<$Res>
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
-    Object? seatingOrientation = null,
+    Object? seatOrientation = null,
   }) {
     return _then(_$CreateSeatImpl(
       row: null == row
@@ -123,10 +116,10 @@ class __$$CreateSeatImplCopyWithImpl<$Res>
           ? _value.seatCount
           : seatCount // ignore: cast_nullable_to_non_nullable
               as int,
-      seatingOrientation: null == seatingOrientation
-          ? _value.seatingOrientation
-          : seatingOrientation // ignore: cast_nullable_to_non_nullable
-              as SeatingOrientation,
+      seatOrientation: null == seatOrientation
+          ? _value.seatOrientation
+          : seatOrientation // ignore: cast_nullable_to_non_nullable
+              as SeatOrientation,
     ));
   }
 }
@@ -138,7 +131,7 @@ class _$CreateSeatImpl extends _CreateSeat {
       {required this.row,
       required this.column,
       required this.seatCount,
-      required this.seatingOrientation})
+      required this.seatOrientation})
       : super._();
 
   @override
@@ -148,11 +141,11 @@ class _$CreateSeatImpl extends _CreateSeat {
   @override
   final int seatCount;
   @override
-  final SeatingOrientation seatingOrientation;
+  final SeatOrientation seatOrientation;
 
   @override
   String toString() {
-    return 'CreateSeat(row: $row, column: $column, seatCount: $seatCount, seatingOrientation: $seatingOrientation)';
+    return 'CreateSeat(row: $row, column: $column, seatCount: $seatCount, seatOrientation: $seatOrientation)';
   }
 
   @override
@@ -164,13 +157,13 @@ class _$CreateSeatImpl extends _CreateSeat {
             (identical(other.column, column) || other.column == column) &&
             (identical(other.seatCount, seatCount) ||
                 other.seatCount == seatCount) &&
-            (identical(other.seatingOrientation, seatingOrientation) ||
-                other.seatingOrientation == seatingOrientation));
+            (identical(other.seatOrientation, seatOrientation) ||
+                other.seatOrientation == seatOrientation));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, row, column, seatCount, seatingOrientation);
+      Object.hash(runtimeType, row, column, seatCount, seatOrientation);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +177,7 @@ abstract class _CreateSeat extends CreateSeat {
       {required final int row,
       required final int column,
       required final int seatCount,
-      required final SeatingOrientation seatingOrientation}) = _$CreateSeatImpl;
+      required final SeatOrientation seatOrientation}) = _$CreateSeatImpl;
   const _CreateSeat._() : super._();
 
   @override
@@ -194,7 +187,7 @@ abstract class _CreateSeat extends CreateSeat {
   @override
   int get seatCount;
   @override
-  SeatingOrientation get seatingOrientation;
+  SeatOrientation get seatOrientation;
   @override
   @JsonKey(ignore: true)
   _$$CreateSeatImplCopyWith<_$CreateSeatImpl> get copyWith =>

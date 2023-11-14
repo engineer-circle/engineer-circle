@@ -8,7 +8,7 @@ class SeatingArrangementForm extends StatefulWidget {
   }) : super(key: key);
 
   final Function({
-    required SeatingOrientation seatOrientation,
+    required SeatOrientation seatOrientation,
     required int seatCount,
   }) onRegistered;
 
@@ -19,7 +19,7 @@ class SeatingArrangementForm extends StatefulWidget {
 class _SeatingArrangementFormState extends State<SeatingArrangementForm> {
   static const List<int> seatCounts = [2, 4, 6, 8, 10, 12];
 
-  SeatingOrientation? _selectedSeatOrientation;
+  SeatOrientation? _selectedSeatOrientation;
   int? _selectedSeatCount;
 
   @override
@@ -35,12 +35,12 @@ class _SeatingArrangementFormState extends State<SeatingArrangementForm> {
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 4),
-          DropdownButtonFormField<SeatingOrientation>(
+          DropdownButtonFormField<SeatOrientation>(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
             ),
-            items: SeatingOrientation.values.map((SeatingOrientation value) {
-              return DropdownMenuItem<SeatingOrientation>(
+            items: SeatOrientation.values.map((SeatOrientation value) {
+              return DropdownMenuItem<SeatOrientation>(
                 value: value,
                 child: Text(value.label),
               );

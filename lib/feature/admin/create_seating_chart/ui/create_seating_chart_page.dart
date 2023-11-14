@@ -126,14 +126,14 @@ class _CreateSeatingChartPageState
   }
 
   Widget _buildSeatWidget(CreateSeat seat, double layoutWidth) {
-    switch (seat.seatingOrientation) {
-      case SeatingOrientation.horizontal:
+    switch (seat.seatOrientation) {
+      case SeatOrientation.horizontal:
         return HorizontalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
-      case SeatingOrientation.vertical:
+      case SeatOrientation.vertical:
         return VerticalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
           sideSeatCounts: seat.seatCount,
