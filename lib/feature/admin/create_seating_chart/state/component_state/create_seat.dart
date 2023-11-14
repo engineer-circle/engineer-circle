@@ -15,6 +15,17 @@ class CreateSeat with _$CreateSeat {
 }
 
 enum SeatingOrientation {
-  horizontal, // 横向き
-  vertical // 縦向き
+  horizontal, // 横並び
+  vertical // 縦並び
+}
+
+extension SeatingOrientationExtension on SeatingOrientation {
+  String get label {
+    switch (this) {
+      case SeatingOrientation.horizontal:
+        return '横並び';
+      case SeatingOrientation.vertical:
+        return '縦並び';
+    }
+  }
 }
