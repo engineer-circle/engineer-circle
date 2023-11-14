@@ -46,7 +46,8 @@ class _CreateSeatingChartPageState
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalScreenPadding),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalScreenPadding, vertical: 16),
           child: Column(
             children: [
               ...buildSeatRows(
