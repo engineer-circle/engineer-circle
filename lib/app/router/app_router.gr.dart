@@ -21,6 +21,30 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateSeatingChartPage(),
       );
     },
+    HomeTabRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeTabRouterPage(),
+      );
+    },
+    MypageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MypagePage(),
+      );
+    },
+    MypageTabRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MypageTabRouterPage(),
+      );
+    },
+    RootRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RootPage(),
+      );
+    },
     SeatingChartRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -40,6 +64,62 @@ class CreateSeatingChartRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CreateSeatingChartRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeTabRouterPage]
+class HomeTabRouterRoute extends PageRouteInfo<void> {
+  const HomeTabRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeTabRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeTabRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MypagePage]
+class MypageRoute extends PageRouteInfo<void> {
+  const MypageRoute({List<PageRouteInfo>? children})
+      : super(
+          MypageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MypageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MypageTabRouterPage]
+class MypageTabRouterRoute extends PageRouteInfo<void> {
+  const MypageTabRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          MypageTabRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MypageTabRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RootPage]
+class RootRoute extends PageRouteInfo<void> {
+  const RootRoute({List<PageRouteInfo>? children})
+      : super(
+          RootRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RootRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

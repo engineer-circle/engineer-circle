@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/create_seating_chart_page.dart';
+import 'package:engineer_circle/feature/mypage/ui/mypage_page.dart';
+import 'package:engineer_circle/feature/root/ui/root_page.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,9 +21,24 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          path: '/seatingChart',
-          page: SeatingChartRoute.page,
+          path: '/',
+          page: RootRoute.page,
+          children: [
+            // ホームタブ
+            AutoRoute(
+              path: 'home',
+              page: HomeTabRouterRoute.page,
+              children: homeTabRoutes,
+            ),
+            // マイページタブ
+            AutoRoute(
+              path: 'mypage',
+              page: MypageTabRouterRoute.page,
+              children: mypageTabRoutes,
+            ),
+          ],
         ),
+        // Admin
         AutoRoute(
           path: '/createSeating',
           page: CreateSeatingChartRoute.page,
@@ -30,6 +47,20 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    // TODO: implement onNavigation
+    resolver.next();
   }
+
+  List<AutoRoute> get homeTabRoutes => [
+        AutoRoute(
+          initial: true,
+          page: SeatingChartRoute.page,
+        ),
+      ];
+
+  List<AutoRoute> get mypageTabRoutes => [
+        AutoRoute(
+          initial: true,
+          page: MypageRoute.page,
+        ),
+      ];
 }
