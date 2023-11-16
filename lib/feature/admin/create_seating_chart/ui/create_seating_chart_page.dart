@@ -46,13 +46,36 @@ class _CreateSeatingChartPageState
         groupBy(seatState.seats, (CreateSeat seat) => seat.row);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('座席表'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: InkWell(
+              onTap: () {
+                // TODO
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(12),
+                child: Text('確定'),
+              ),
+            ),
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: horizontalScreenPadding, vertical: 16),
           child: Column(
             children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Front',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
               ...buildSeatRows(
                 seatsGroupedByRow,
                 usableScreenWidth,
