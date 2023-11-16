@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seating_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage()
 class SeatingChartPage extends ConsumerStatefulWidget {
   const SeatingChartPage({
     super.key,
@@ -23,7 +25,9 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('ホーム'),
+      ),
       body: SeatingArea(),
     );
   }

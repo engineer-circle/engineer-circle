@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state_notifier.dart';
@@ -7,6 +8,7 @@ import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage()
 class CreateSeatingChartPage extends ConsumerStatefulWidget {
   const CreateSeatingChartPage({
     super.key,
