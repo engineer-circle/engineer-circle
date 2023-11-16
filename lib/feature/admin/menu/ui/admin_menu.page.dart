@@ -35,7 +35,7 @@ class AdminMenuPage extends StatelessWidget {
               ListTile(
                 title: const Text('シートを作成する'),
                 onTap: () => context.router.push(
-                  const CreateSeatingChartRoute(),
+                  const CreateSeatRoute(),
                 ),
               ),
               const Divider(color: Colors.black),
