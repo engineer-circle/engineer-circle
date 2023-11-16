@@ -88,7 +88,7 @@ final List<DrawerItem> drawerItems = [
       onTap: (context, ref) {
         Navigator.pop(context);
         context.router.push(
-          const CreateSeatingChartRoute(),
+          const AdminRootRoute(),
         );
       }),
 ];

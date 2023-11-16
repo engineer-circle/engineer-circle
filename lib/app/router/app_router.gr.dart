@@ -15,6 +15,18 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdminMenuRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminMenuPage(),
+      );
+    },
+    AdminRootRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminRootPage(),
+      );
+    },
     CreateSeatingChartRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -52,6 +64,34 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AdminMenuPage]
+class AdminMenuRoute extends PageRouteInfo<void> {
+  const AdminMenuRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminMenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminMenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AdminRootPage]
+class AdminRootRoute extends PageRouteInfo<void> {
+  const AdminRootRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminRootRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminRootRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
