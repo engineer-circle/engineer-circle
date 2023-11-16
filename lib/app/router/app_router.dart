@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/create_seating_chart_page.dart';
+import 'package:engineer_circle/feature/admin/menu/ui/admin_menu.page.dart';
 import 'package:engineer_circle/feature/mypage/ui/mypage_page.dart';
 import 'package:engineer_circle/feature/root/ui/root_page.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
@@ -40,8 +41,18 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         ),
         // Admin
         AutoRoute(
-          path: '/createSeating',
-          page: CreateSeatingChartRoute.page,
+          path: '/admin',
+          page: AdminRootRoute.page,
+          children: [
+            AutoRoute(
+              initial: true,
+              page: AdminMenuRoute.page,
+            ),
+            AutoRoute(
+              path: 'createSeating',
+              page: CreateSeatingChartRoute.page,
+            ),
+          ],
         ),
       ];
 
