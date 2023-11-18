@@ -1,5 +1,6 @@
 import 'package:engineer_circle/feature/drawer/drawer.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
+import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -87,8 +88,10 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                           profileData.twitterLink != null ? null : Colors.grey,
                     ),
                     onPressed: profileData.twitterLink != null
-                        ? () {
-                            // TODO: twitter 開く
+                        ? () async {
+                            await ref
+                                .read(urlLauncherProvider)
+                                .launch(profileData.twitterLink!);
                           }
                         : null,
                   ),
@@ -102,8 +105,10 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                           profileData.musubiteLink != null ? null : Colors.grey,
                     ),
                     onPressed: profileData.musubiteLink != null
-                        ? () {
-                            // TODO: musubite 開く
+                        ? () async {
+                            await ref
+                                .read(urlLauncherProvider)
+                                .launch(profileData.musubiteLink!);
                           }
                         : null,
                   ),
