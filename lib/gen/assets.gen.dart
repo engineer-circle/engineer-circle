@@ -9,8 +9,24 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/musubite_logo.png
+  AssetGenImage get musubiteLogo =>
+      const AssetGenImage('assets/images/musubite_logo.png');
+
+  /// File path: assets/images/x_logo.png
+  AssetGenImage get xLogo => const AssetGenImage('assets/images/x_logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [musubiteLogo, xLogo];
+}
+
 class Assets {
   Assets._();
+
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

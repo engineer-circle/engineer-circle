@@ -1,4 +1,5 @@
 import 'package:engineer_circle/feature/drawer/drawer.dart';
+import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,10 +15,9 @@ class ProfilePage extends ConsumerStatefulWidget {
 // ダミーのプロファイルデータプロバイダ
 final profileDataProvider = Provider<ProfileData>((ref) {
   return ProfileData(
-    // APIから取得される想定のデータ
     name: 'kuwa',
-    twitterLink: null,
-    musubiteLink: 'https://musubite.com',
+    twitterLink: 'https://twitter.com/kilalabu',
+    musubiteLink: 'https://musubite-job.com',
     bio: 'エンジニア4年目です。\nよろしくお願いします！',
     career: '副業を探している',
     skills: ['Android', 'Flutter'],
@@ -79,21 +79,28 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.tab),
-                    color: profileData.twitterLink != null
-                        ? Colors.blue
-                        : Colors.grey,
+                    icon: Image.asset(
+                      Assets.images.xLogo.path,
+                      width: 24,
+                      height: 24,
+                      color:
+                          profileData.twitterLink != null ? null : Colors.grey,
+                    ),
                     onPressed: profileData.twitterLink != null
                         ? () {
                             // TODO: twitter 開く
                           }
                         : null,
                   ),
+                  const SizedBox(width: 16),
                   IconButton(
-                    icon: Icon(Icons.link),
-                    color: profileData.musubiteLink != null
-                        ? Colors.blue
-                        : Colors.grey,
+                    icon: Image.asset(
+                      Assets.images.musubiteLogo.path,
+                      width: 28,
+                      height: 28,
+                      color:
+                          profileData.musubiteLink != null ? null : Colors.grey,
+                    ),
                     onPressed: profileData.musubiteLink != null
                         ? () {
                             // TODO: musubite 開く
