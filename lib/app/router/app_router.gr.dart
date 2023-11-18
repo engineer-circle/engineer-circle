@@ -45,6 +45,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeTabRouterPage(),
       );
     },
+    ProfileFormRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileFormRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProfileFormPage(
+          key: args.key,
+          isEdit: args.isEdit,
+        ),
+      );
+    },
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -140,6 +150,44 @@ class HomeTabRouterRoute extends PageRouteInfo<void> {
   static const String name = 'HomeTabRouterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileFormPage]
+class ProfileFormRoute extends PageRouteInfo<ProfileFormRouteArgs> {
+  ProfileFormRoute({
+    Key? key,
+    required bool isEdit,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProfileFormRoute.name,
+          args: ProfileFormRouteArgs(
+            key: key,
+            isEdit: isEdit,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileFormRoute';
+
+  static const PageInfo<ProfileFormRouteArgs> page =
+      PageInfo<ProfileFormRouteArgs>(name);
+}
+
+class ProfileFormRouteArgs {
+  const ProfileFormRouteArgs({
+    this.key,
+    required this.isEdit,
+  });
+
+  final Key? key;
+
+  final bool isEdit;
+
+  @override
+  String toString() {
+    return 'ProfileFormRouteArgs{key: $key, isEdit: $isEdit}';
+  }
 }
 
 /// generated route for
