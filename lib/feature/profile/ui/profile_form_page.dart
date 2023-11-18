@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,11 +63,14 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
             ),
             const SizedBox(height: 16),
             Wrap(
-              spacing: 8.0,
+              spacing: 8,
               children: _skills
-                  .map(
-                    (skill) => Chip(
+                  .mapIndexed(
+                    (index, skill) => Chip(
                       label: Text(skill),
+                      labelPadding: const EdgeInsets.all(2),
+                      onDeleted: () => _skills.removeAt(index),
+                      deleteIcon: const Icon(Icons.cancel),
                     ),
                   )
                   .toList(),
