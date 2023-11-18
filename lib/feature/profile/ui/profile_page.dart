@@ -1,3 +1,4 @@
+import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/drawer/drawer.dart';
 import 'package:engineer_circle/feature/profile/ui/component/profile.dart';
 import 'package:engineer_circle/global/url_launcher.dart';
@@ -69,9 +70,9 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: InkWell(
-                    onTap: () {
-                      // TODO: 編集画面へ
-                    },
+                    onTap: () => context.router.push(
+                      ProfileFormRoute(isEdit: true),
+                    ),
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.edit),
@@ -84,9 +85,9 @@ class _ProfileState extends ConsumerState<ProfilePage> {
       body: profileData.name == null
           ? Center(
               child: FilledButton(
-                onPressed: () {
-                  // TODO: 登録画面へ
-                },
+                onPressed: () => context.router.push(
+                  ProfileFormRoute(isEdit: false),
+                ),
                 child: const Text(
                   'プロフィールを登録しましょう',
                   style: TextStyle(
