@@ -138,10 +138,9 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: () {
-                  print('$_musubiteLink');
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // TODO: 更新処理
+                    // TODO: 更新・保存処理
                   }
                 },
                 child: Text(
