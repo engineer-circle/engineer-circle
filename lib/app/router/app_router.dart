@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/admin/create_seat/ui/create_seat_page.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/create_seating_chart_page.dart';
 import 'package:engineer_circle/feature/admin/menu/ui/admin_menu.page.dart';
-import 'package:engineer_circle/feature/mypage/ui/mypage_page.dart';
+import 'package:engineer_circle/feature/profile/ui/profile_page.dart';
 import 'package:engineer_circle/feature/root/ui/root_page.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,11 +32,11 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
               page: HomeTabRouterRoute.page,
               children: homeTabRoutes,
             ),
-            // マイページタブ
+            // プロフィールタブ
             AutoRoute(
-              path: 'mypage',
-              page: MypageTabRouterRoute.page,
-              children: mypageTabRoutes,
+              path: 'profile',
+              page: ProfileTabRouterRoute.page,
+              children: profileTabRoutes,
             ),
           ],
         ),
@@ -73,10 +73,10 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         ),
       ];
 
-  List<AutoRoute> get mypageTabRoutes => [
+  List<AutoRoute> get profileTabRoutes => [
         AutoRoute(
           initial: true,
-          page: MypageRoute.page,
+          page: ProfileRoute.page,
         ),
       ];
 }

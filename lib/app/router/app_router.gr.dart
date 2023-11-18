@@ -45,16 +45,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeTabRouterPage(),
       );
     },
-    MypageRoute.name: (routeData) {
+    ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MypagePage(),
+        child: const ProfilePage(),
       );
     },
-    MypageTabRouterRoute.name: (routeData) {
+    ProfileTabRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MypageTabRouterPage(),
+        child: const ProfileTabRouterPage(),
       );
     },
     RootRoute.name: (routeData) {
@@ -143,29 +143,29 @@ class HomeTabRouterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MypagePage]
-class MypageRoute extends PageRouteInfo<void> {
-  const MypageRoute({List<PageRouteInfo>? children})
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
       : super(
-          MypageRoute.name,
+          ProfileRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MypageRoute';
+  static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [MypageTabRouterPage]
-class MypageTabRouterRoute extends PageRouteInfo<void> {
-  const MypageTabRouterRoute({List<PageRouteInfo>? children})
+/// [ProfileTabRouterPage]
+class ProfileTabRouterRoute extends PageRouteInfo<void> {
+  const ProfileTabRouterRoute({List<PageRouteInfo>? children})
       : super(
-          MypageTabRouterRoute.name,
+          ProfileTabRouterRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MypageTabRouterRoute';
+  static const String name = 'ProfileTabRouterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -11,7 +11,7 @@ class RootPage extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         HomeTabRouterRoute(),
-        MypageTabRouterRoute(),
+        ProfileTabRouterRoute(),
       ],
       builder: (context, child) {
         // タブが切り替わると発火
@@ -27,7 +27,7 @@ class RootPage extends StatelessWidget {
               ),
               NavigationDestination(
                 icon: Icon(Icons.account_circle),
-                label: 'マイページ',
+                label: 'プロフィール',
               ),
             ],
             onDestinationSelected: tabsRouter.setActiveIndex,
@@ -44,6 +44,6 @@ class HomeTabRouterPage extends AutoRouter {
 }
 
 @RoutePage()
-class MypageTabRouterPage extends AutoRouter {
-  const MypageTabRouterPage({super.key});
+class ProfileTabRouterPage extends AutoRouter {
+  const ProfileTabRouterPage({super.key});
 }
