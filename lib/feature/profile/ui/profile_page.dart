@@ -15,6 +15,15 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 // ダミーのプロファイルデータプロバイダ
 final profileDataProvider = Provider<ProfileData>((ref) {
+  // return ProfileData(
+  //   name: null,
+  //   twitterLink: null,
+  //   musubiteLink: null,
+  //   bio: null,
+  //   career: null,
+  //   skills: [],
+  //   avatarUrl: null,
+  // );
   return ProfileData(
     name: 'kuwa',
     twitterLink: 'https://twitter.com/kilalabu',
@@ -28,11 +37,11 @@ final profileDataProvider = Provider<ProfileData>((ref) {
 });
 
 class ProfileData {
-  final String name;
+  final String? name;
   final String? avatarUrl;
   final List<String> skills;
-  final String career;
-  final String bio;
+  final String? career;
+  final String? bio;
   final String? twitterLink;
   final String? musubiteLink;
 
@@ -54,17 +63,47 @@ class _ProfileState extends ConsumerState<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('プロフィール'),
+        actions: profileData.name == null
+            ? null
+            : [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: InkWell(
+                    onTap: () {
+                      // TODO: 編集画面へ
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.edit),
+                    ),
+                  ),
+                )
+              ],
       ),
       drawer: const AppDrawer(),
-      body: Profile(
-        profileData: profileData,
-        onTwitterPressed: (url) async {
-          await ref.read(urlLauncherProvider).launch(url);
-        },
-        onMusubitePressed: (url) async {
-          await ref.read(urlLauncherProvider).launch(url);
-        },
-      ),
+      body: profileData.name == null
+          ? Center(
+              child: FilledButton(
+                onPressed: () {
+                  // TODO: 登録画面へ
+                },
+                child: const Text(
+                  'プロフィールを登録しましょう',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            )
+          : Profile(
+              profileData: profileData,
+              onTwitterPressed: (url) async {
+                await ref.read(urlLauncherProvider).launch(url);
+              },
+              onMusubitePressed: (url) async {
+                await ref.read(urlLauncherProvider).launch(url);
+              },
+            ),
     );
   }
 }

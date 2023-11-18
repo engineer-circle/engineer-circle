@@ -29,7 +29,7 @@ class Profile extends StatelessWidget {
                 : const Icon(Icons.account_circle, size: 100),
             const SizedBox(height: 8),
             Text(
-              profileData.name,
+              profileData.name != null ? profileData.name! : "",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -83,12 +83,16 @@ class Profile extends StatelessWidget {
             const Divider(),
             ListTile(
               title: const Text('キャリア'),
-              subtitle: Text(profileData.career),
+              subtitle: Text(
+                profileData.career != null ? profileData.career! : "",
+              ),
             ),
             const Divider(),
             ListTile(
               title: const Text('自己紹介'),
-              subtitle: Text(profileData.bio),
+              subtitle: Text(
+                profileData.bio != null ? profileData.bio! : "",
+              ),
             ),
           ],
         ),
