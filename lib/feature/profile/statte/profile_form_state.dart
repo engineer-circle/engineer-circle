@@ -1,4 +1,5 @@
 import 'package:engineer_circle/feature/profile/statte/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/statte/component_state/profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_form_state.freezed.dart';
@@ -11,24 +12,9 @@ class ProfileFormStateLoading extends ProfileFormState {}
 class ProfileFormStateSuccess extends ProfileFormState
     with _$ProfileFormStateSuccess {
   const factory ProfileFormStateSuccess({
-    required InitialProfile? initialProfile,
+    required Profile? initialProfile,
     required DraftProfile draftProfile,
   }) = _ProfileFormStateSuccess;
-}
-
-@freezed
-class InitialProfile with _$InitialProfile {
-  const factory InitialProfile({
-    required String name,
-    required List<String> skills,
-    required CareerOption career,
-    required String selfIntroduction,
-    String? avatarUrl,
-    String? twitterLink,
-    String? musubiteLink,
-  }) = _InitialProfile;
-
-  const InitialProfile._();
 }
 
 @freezed

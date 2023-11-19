@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileFormStateSuccess {
-  InitialProfile? get initialProfile => throw _privateConstructorUsedError;
+  Profile? get initialProfile => throw _privateConstructorUsedError;
   DraftProfile get draftProfile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,9 +30,9 @@ abstract class $ProfileFormStateSuccessCopyWith<$Res> {
           $Res Function(ProfileFormStateSuccess) then) =
       _$ProfileFormStateSuccessCopyWithImpl<$Res, ProfileFormStateSuccess>;
   @useResult
-  $Res call({InitialProfile? initialProfile, DraftProfile draftProfile});
+  $Res call({Profile? initialProfile, DraftProfile draftProfile});
 
-  $InitialProfileCopyWith<$Res>? get initialProfile;
+  $ProfileCopyWith<$Res>? get initialProfile;
   $DraftProfileCopyWith<$Res> get draftProfile;
 }
 
@@ -57,7 +57,7 @@ class _$ProfileFormStateSuccessCopyWithImpl<$Res,
       initialProfile: freezed == initialProfile
           ? _value.initialProfile
           : initialProfile // ignore: cast_nullable_to_non_nullable
-              as InitialProfile?,
+              as Profile?,
       draftProfile: null == draftProfile
           ? _value.draftProfile
           : draftProfile // ignore: cast_nullable_to_non_nullable
@@ -67,12 +67,12 @@ class _$ProfileFormStateSuccessCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $InitialProfileCopyWith<$Res>? get initialProfile {
+  $ProfileCopyWith<$Res>? get initialProfile {
     if (_value.initialProfile == null) {
       return null;
     }
 
-    return $InitialProfileCopyWith<$Res>(_value.initialProfile!, (value) {
+    return $ProfileCopyWith<$Res>(_value.initialProfile!, (value) {
       return _then(_value.copyWith(initialProfile: value) as $Val);
     });
   }
@@ -95,10 +95,10 @@ abstract class _$$ProfileFormStateSuccessImplCopyWith<$Res>
       __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({InitialProfile? initialProfile, DraftProfile draftProfile});
+  $Res call({Profile? initialProfile, DraftProfile draftProfile});
 
   @override
-  $InitialProfileCopyWith<$Res>? get initialProfile;
+  $ProfileCopyWith<$Res>? get initialProfile;
   @override
   $DraftProfileCopyWith<$Res> get draftProfile;
 }
@@ -123,7 +123,7 @@ class __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>
       initialProfile: freezed == initialProfile
           ? _value.initialProfile
           : initialProfile // ignore: cast_nullable_to_non_nullable
-              as InitialProfile?,
+              as Profile?,
       draftProfile: null == draftProfile
           ? _value.draftProfile
           : draftProfile // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$ProfileFormStateSuccessImpl implements _ProfileFormStateSuccess {
       {required this.initialProfile, required this.draftProfile});
 
   @override
-  final InitialProfile? initialProfile;
+  final Profile? initialProfile;
   @override
   final DraftProfile draftProfile;
 
@@ -172,281 +172,18 @@ class _$ProfileFormStateSuccessImpl implements _ProfileFormStateSuccess {
 
 abstract class _ProfileFormStateSuccess implements ProfileFormStateSuccess {
   const factory _ProfileFormStateSuccess(
-          {required final InitialProfile? initialProfile,
+          {required final Profile? initialProfile,
           required final DraftProfile draftProfile}) =
       _$ProfileFormStateSuccessImpl;
 
   @override
-  InitialProfile? get initialProfile;
+  Profile? get initialProfile;
   @override
   DraftProfile get draftProfile;
   @override
   @JsonKey(ignore: true)
   _$$ProfileFormStateSuccessImplCopyWith<_$ProfileFormStateSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$InitialProfile {
-  String get name => throw _privateConstructorUsedError;
-  List<String> get skills => throw _privateConstructorUsedError;
-  CareerOption get career => throw _privateConstructorUsedError;
-  String get selfIntroduction => throw _privateConstructorUsedError;
-  String? get avatarUrl => throw _privateConstructorUsedError;
-  String? get twitterLink => throw _privateConstructorUsedError;
-  String? get musubiteLink => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $InitialProfileCopyWith<InitialProfile> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InitialProfileCopyWith<$Res> {
-  factory $InitialProfileCopyWith(
-          InitialProfile value, $Res Function(InitialProfile) then) =
-      _$InitialProfileCopyWithImpl<$Res, InitialProfile>;
-  @useResult
-  $Res call(
-      {String name,
-      List<String> skills,
-      CareerOption career,
-      String selfIntroduction,
-      String? avatarUrl,
-      String? twitterLink,
-      String? musubiteLink});
-}
-
-/// @nodoc
-class _$InitialProfileCopyWithImpl<$Res, $Val extends InitialProfile>
-    implements $InitialProfileCopyWith<$Res> {
-  _$InitialProfileCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? skills = null,
-    Object? career = null,
-    Object? selfIntroduction = null,
-    Object? avatarUrl = freezed,
-    Object? twitterLink = freezed,
-    Object? musubiteLink = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      skills: null == skills
-          ? _value.skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      career: null == career
-          ? _value.career
-          : career // ignore: cast_nullable_to_non_nullable
-              as CareerOption,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twitterLink: freezed == twitterLink
-          ? _value.twitterLink
-          : twitterLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      musubiteLink: freezed == musubiteLink
-          ? _value.musubiteLink
-          : musubiteLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$InitialProfileImplCopyWith<$Res>
-    implements $InitialProfileCopyWith<$Res> {
-  factory _$$InitialProfileImplCopyWith(_$InitialProfileImpl value,
-          $Res Function(_$InitialProfileImpl) then) =
-      __$$InitialProfileImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      List<String> skills,
-      CareerOption career,
-      String selfIntroduction,
-      String? avatarUrl,
-      String? twitterLink,
-      String? musubiteLink});
-}
-
-/// @nodoc
-class __$$InitialProfileImplCopyWithImpl<$Res>
-    extends _$InitialProfileCopyWithImpl<$Res, _$InitialProfileImpl>
-    implements _$$InitialProfileImplCopyWith<$Res> {
-  __$$InitialProfileImplCopyWithImpl(
-      _$InitialProfileImpl _value, $Res Function(_$InitialProfileImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? skills = null,
-    Object? career = null,
-    Object? selfIntroduction = null,
-    Object? avatarUrl = freezed,
-    Object? twitterLink = freezed,
-    Object? musubiteLink = freezed,
-  }) {
-    return _then(_$InitialProfileImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      skills: null == skills
-          ? _value._skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      career: null == career
-          ? _value.career
-          : career // ignore: cast_nullable_to_non_nullable
-              as CareerOption,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twitterLink: freezed == twitterLink
-          ? _value.twitterLink
-          : twitterLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      musubiteLink: freezed == musubiteLink
-          ? _value.musubiteLink
-          : musubiteLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$InitialProfileImpl extends _InitialProfile {
-  const _$InitialProfileImpl(
-      {required this.name,
-      required final List<String> skills,
-      required this.career,
-      required this.selfIntroduction,
-      this.avatarUrl,
-      this.twitterLink,
-      this.musubiteLink})
-      : _skills = skills,
-        super._();
-
-  @override
-  final String name;
-  final List<String> _skills;
-  @override
-  List<String> get skills {
-    if (_skills is EqualUnmodifiableListView) return _skills;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_skills);
-  }
-
-  @override
-  final CareerOption career;
-  @override
-  final String selfIntroduction;
-  @override
-  final String? avatarUrl;
-  @override
-  final String? twitterLink;
-  @override
-  final String? musubiteLink;
-
-  @override
-  String toString() {
-    return 'InitialProfile(name: $name, skills: $skills, career: $career, selfIntroduction: $selfIntroduction, avatarUrl: $avatarUrl, twitterLink: $twitterLink, musubiteLink: $musubiteLink)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitialProfileImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._skills, _skills) &&
-            (identical(other.career, career) || other.career == career) &&
-            (identical(other.selfIntroduction, selfIntroduction) ||
-                other.selfIntroduction == selfIntroduction) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.twitterLink, twitterLink) ||
-                other.twitterLink == twitterLink) &&
-            (identical(other.musubiteLink, musubiteLink) ||
-                other.musubiteLink == musubiteLink));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      const DeepCollectionEquality().hash(_skills),
-      career,
-      selfIntroduction,
-      avatarUrl,
-      twitterLink,
-      musubiteLink);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitialProfileImplCopyWith<_$InitialProfileImpl> get copyWith =>
-      __$$InitialProfileImplCopyWithImpl<_$InitialProfileImpl>(
-          this, _$identity);
-}
-
-abstract class _InitialProfile extends InitialProfile {
-  const factory _InitialProfile(
-      {required final String name,
-      required final List<String> skills,
-      required final CareerOption career,
-      required final String selfIntroduction,
-      final String? avatarUrl,
-      final String? twitterLink,
-      final String? musubiteLink}) = _$InitialProfileImpl;
-  const _InitialProfile._() : super._();
-
-  @override
-  String get name;
-  @override
-  List<String> get skills;
-  @override
-  CareerOption get career;
-  @override
-  String get selfIntroduction;
-  @override
-  String? get avatarUrl;
-  @override
-  String? get twitterLink;
-  @override
-  String? get musubiteLink;
-  @override
-  @JsonKey(ignore: true)
-  _$$InitialProfileImplCopyWith<_$InitialProfileImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
