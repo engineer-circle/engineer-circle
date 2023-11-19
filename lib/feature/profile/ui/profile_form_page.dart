@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
@@ -172,6 +173,9 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     // TODO: 更新・保存処理
+                    context.router.replaceAll(
+                      [const ProfileRoute()],
+                    );
                   }
                 },
                 child: Text(
