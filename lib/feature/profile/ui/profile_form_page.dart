@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
+import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
+import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,13 +23,15 @@ class ProfileFormPage extends ConsumerStatefulWidget {
 class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _skillController = TextEditingController();
-  String? avatarUrl;
-  String? _career;
-  List<String> _skills = [];
-  String? _twitterLink;
-  String? _musubiteLink;
-  String? _name;
-  String? _bio;
+
+  @override
+  void initState() {
+    /// 画面表示後に実行
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(profileFormProvider).initProfileForm(widget.isEdit);
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -34,15 +39,9 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
     super.dispose();
   }
 
-  final _careerOptions = [
-    '副業を探している',
-    '転職活動中・転職を考えている',
-    '良い人がいれば自社を紹介したい',
-    'どちらでもない',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(profileFormStateProvider);
     return GestureDetector(
       onTap: () {
         // キーボードが表示されている場合、フォーカスを外してキーボードを閉じる
@@ -50,31 +49,52 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('プロフィール')),
-        body: Form(
+        body: _body(state),
+      ),
+    );
+  }
+
+  Widget _body(ProfileFormState profileFormState) {
+    switch (profileFormState) {
+      case ProfileFormStateLoading _:
+        return Center(
+          child: CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        );
+
+      case ProfileFormStateSuccess state:
+        return Form(
           key: _formKey,
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              avatarUrl != null
+              state.draftProfile.avatarUrl != null
                   ? CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(avatarUrl!),
+                      backgroundImage:
+                          NetworkImage(state.draftProfile.avatarUrl!),
                     )
                   : const Icon(Icons.account_circle, size: 100),
               TextFormField(
+                initialValue: state.initialProfile?.name,
                 decoration: const InputDecoration(labelText: '名前'),
                 validator: (value) => value!.isEmpty ? '名前は必須です' : null,
-                onSaved: (value) => _name = value,
+                onChanged: (value) => ref
+                    .read(profileFormStateProvider.notifier)
+                    .updateProfile(name: value),
               ),
               const SizedBox(height: 16),
               Wrap(
                 spacing: 8,
-                children: _skills
+                children: state.draftProfile.skills
                     .mapIndexed(
                       (index, skill) => Chip(
                         label: Text(skill),
                         labelPadding: const EdgeInsets.all(2),
-                        onDeleted: () => _skills.removeAt(index),
+                        onDeleted: () => ref
+                            .read(profileFormStateProvider.notifier)
+                            .deleteSkill(index),
                         deleteIcon: const Icon(Icons.cancel),
                       ),
                     )
@@ -88,52 +108,59 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                     icon: const Icon(Icons.add),
                     onPressed: () {
                       if (_skillController.text.isNotEmpty) {
-                        setState(() {
-                          // skillsリストに入力文字を追加
-                          _skills.add(_skillController.text);
-                          // 入力文字をクリア
-                          _skillController.clear();
-                        });
+                        ref
+                            .read(profileFormStateProvider.notifier)
+                            .addSkill(_skillController.text);
+                        // 入力文字をクリア
+                        _skillController.clear();
                       }
                     },
                   ),
                 ),
-                validator: (_) => _skills.isEmpty ? 'スキルは必須です' : null,
+                validator: (_) =>
+                    state.draftProfile.skills.isEmpty ? 'スキルは必須です' : null,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField(
                 decoration: const InputDecoration(labelText: 'キャリア'),
-                items: _careerOptions.map((String value) {
+                items: CareerOption.values.map((CareerOption value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text(value),
+                    child: Text(value.displayName),
                   );
                 }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _career = newValue;
-                  });
-                },
-                value: _career,
+                onChanged: (CareerOption? newValue) => ref
+                    .read(profileFormStateProvider.notifier)
+                    .updateProfile(career: newValue),
+                value: state.draftProfile.career,
                 validator: (value) => value == null ? 'キャリアを選択してください' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.twitterLink,
                 decoration: const InputDecoration(labelText: 'X (Twitter)'),
-                onSaved: (value) => _twitterLink = value,
+                onChanged: (value) => ref
+                    .read(profileFormStateProvider.notifier)
+                    .updateProfile(twitterLink: value),
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.musubiteLink,
                 decoration: const InputDecoration(labelText: 'Musubite'),
-                onSaved: (value) => _musubiteLink = value,
+                onChanged: (value) => ref
+                    .read(profileFormStateProvider.notifier)
+                    .updateProfile(muskieLink: value),
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.selfIntroduction,
                 maxLines: 10,
                 minLines: 1,
                 decoration: const InputDecoration(labelText: '自己紹介'),
                 validator: (value) => value!.isEmpty ? '自己紹介は必須です' : null,
-                onSaved: (value) => _bio = value,
+                onChanged: (value) => ref
+                    .read(profileFormStateProvider.notifier)
+                    .updateProfile(selfIntroduction: value),
               ),
               const SizedBox(height: 24),
               FilledButton(
@@ -152,8 +179,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        );
+    }
   }
 }
