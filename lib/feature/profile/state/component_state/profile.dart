@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/statte/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile.freezed.dart';

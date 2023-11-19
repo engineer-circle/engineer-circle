@@ -1,6 +1,6 @@
-import 'package:engineer_circle/feature/profile/statte/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/statte/component_state/profile.dart';
-import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/profile_form_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileFormStateProvider = StateNotifierProvider.autoDispose<
