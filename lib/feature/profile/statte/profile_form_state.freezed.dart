@@ -189,7 +189,7 @@ abstract class _ProfileFormState extends ProfileFormState {
 mixin _$InitialProfile {
   String get name => throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
-  String get career => throw _privateConstructorUsedError;
+  CareerOption get career => throw _privateConstructorUsedError;
   String get selfIntroduction => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get twitterLink => throw _privateConstructorUsedError;
@@ -209,7 +209,7 @@ abstract class $InitialProfileCopyWith<$Res> {
   $Res call(
       {String name,
       List<String> skills,
-      String career,
+      CareerOption career,
       String selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
@@ -249,7 +249,7 @@ class _$InitialProfileCopyWithImpl<$Res, $Val extends InitialProfile>
       career: null == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CareerOption,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -281,7 +281,7 @@ abstract class _$$InitialProfileImplCopyWith<$Res>
   $Res call(
       {String name,
       List<String> skills,
-      String career,
+      CareerOption career,
       String selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
@@ -319,7 +319,7 @@ class __$$InitialProfileImplCopyWithImpl<$Res>
       career: null == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CareerOption,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -365,7 +365,7 @@ class _$InitialProfileImpl extends _InitialProfile {
   }
 
   @override
-  final String career;
+  final CareerOption career;
   @override
   final String selfIntroduction;
   @override
@@ -421,7 +421,7 @@ abstract class _InitialProfile extends InitialProfile {
   const factory _InitialProfile(
       {required final String name,
       required final List<String> skills,
-      required final String career,
+      required final CareerOption career,
       required final String selfIntroduction,
       final String? avatarUrl,
       final String? twitterLink,
@@ -433,7 +433,7 @@ abstract class _InitialProfile extends InitialProfile {
   @override
   List<String> get skills;
   @override
-  String get career;
+  CareerOption get career;
   @override
   String get selfIntroduction;
   @override
@@ -452,7 +452,7 @@ abstract class _InitialProfile extends InitialProfile {
 mixin _$DraftProfile {
   String? get name => throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
-  String? get career => throw _privateConstructorUsedError;
+  CareerOption? get career => throw _privateConstructorUsedError;
   String? get selfIntroduction => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get twitterLink => throw _privateConstructorUsedError;
@@ -472,7 +472,7 @@ abstract class $DraftProfileCopyWith<$Res> {
   $Res call(
       {String? name,
       List<String> skills,
-      String? career,
+      CareerOption? career,
       String? selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
@@ -512,7 +512,7 @@ class _$DraftProfileCopyWithImpl<$Res, $Val extends DraftProfile>
       career: freezed == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CareerOption?,
       selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -544,7 +544,7 @@ abstract class _$$DraftProfileImplCopyWith<$Res>
   $Res call(
       {String? name,
       List<String> skills,
-      String? career,
+      CareerOption? career,
       String? selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
@@ -582,7 +582,7 @@ class __$$DraftProfileImplCopyWithImpl<$Res>
       career: freezed == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CareerOption?,
       selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -629,7 +629,7 @@ class _$DraftProfileImpl extends _DraftProfile {
   }
 
   @override
-  final String? career;
+  final CareerOption? career;
   @override
   final String? selfIntroduction;
   @override
@@ -684,7 +684,7 @@ abstract class _DraftProfile extends DraftProfile {
   const factory _DraftProfile(
       {final String? name,
       final List<String> skills,
-      final String? career,
+      final CareerOption? career,
       final String? selfIntroduction,
       final String? avatarUrl,
       final String? twitterLink,
@@ -696,7 +696,7 @@ abstract class _DraftProfile extends DraftProfile {
   @override
   List<String> get skills;
   @override
-  String? get career;
+  CareerOption? get career;
   @override
   String? get selfIntroduction;
   @override

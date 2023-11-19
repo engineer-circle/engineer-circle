@@ -1,4 +1,5 @@
 import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
+import 'package:engineer_circle/global/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileFormStateProvider = StateNotifierProvider.autoDispose<
@@ -27,7 +28,7 @@ class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
 
   void updateProfile({
     String? name,
-    String? career,
+    CareerOption? career,
     String? selfIntroduction,
     String? avatarUrl,
     String? twitterLink,
@@ -46,6 +47,7 @@ class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
     state = state.copyWith(
       draftProfile: updateProfile,
     );
+    logger.i(state.draftProfile);
   }
 
   void addSkill(String skill) {

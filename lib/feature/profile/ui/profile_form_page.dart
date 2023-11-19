@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,13 +28,6 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
     _skillController.dispose();
     super.dispose();
   }
-
-  final _careerOptions = [
-    '副業を探している',
-    '転職活動中・転職を考えている',
-    '良い人がいれば自社を紹介したい',
-    'どちらでもない',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -103,13 +97,13 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               const SizedBox(height: 16),
               DropdownButtonFormField(
                 decoration: const InputDecoration(labelText: 'キャリア'),
-                items: _careerOptions.map((String value) {
+                items: CareerOption.values.map((CareerOption value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text(value),
+                    child: Text(value.displayName),
                   );
                 }).toList(),
-                onChanged: (String? newValue) => ref
+                onChanged: (CareerOption? newValue) => ref
                     .read(profileFormStateProvider.notifier)
                     .updateProfile(career: newValue),
                 value: state.draftProfile.career,
