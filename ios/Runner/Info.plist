@@ -49,5 +49,7 @@
 	<array>
 		<string>https</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>アプリに表示・使用するための写真や動画をライブラリから選択する目的でリクエストします。</string>
 </dict>
 </plist>

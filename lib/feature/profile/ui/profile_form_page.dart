@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
+import 'package:engineer_circle/feature/profile/ui/component/edit_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,13 +71,16 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              state.draftProfile.avatarUrl != null
-                  ? CircleAvatar(
-                      radius: 50,
-                      backgroundImage:
-                          NetworkImage(state.draftProfile.avatarUrl!),
-                    )
-                  : const Icon(Icons.account_circle, size: 100),
+              Center(
+                child: EditAvatar(
+                  draftAvatarUrl: state.draftProfile.avatarUrl,
+                  isLocalFilePath: state.draftProfile.avatarUrl !=
+                      state.initialProfile?.avatarUrl,
+                  onImageSelected: (filePath) => ref
+                      .read(profileFormStateProvider.notifier)
+                      .updateProfile(avatarUrl: filePath),
+                ),
+              ),
               TextFormField(
                 initialValue: state.initialProfile?.name,
                 decoration: const InputDecoration(labelText: '名前'),
@@ -168,6 +173,9 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     // TODO: 更新・保存処理
+                    context.router.replaceAll(
+                      [const ProfileRoute()],
+                    );
                   }
                 },
                 child: Text(
