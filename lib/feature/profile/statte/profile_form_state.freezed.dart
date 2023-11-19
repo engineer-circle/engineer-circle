@@ -15,20 +15,20 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProfileFormState {
+mixin _$ProfileFormStateSuccess {
   InitialProfile? get initialProfile => throw _privateConstructorUsedError;
   DraftProfile get draftProfile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProfileFormStateCopyWith<ProfileFormState> get copyWith =>
+  $ProfileFormStateSuccessCopyWith<ProfileFormStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileFormStateCopyWith<$Res> {
-  factory $ProfileFormStateCopyWith(
-          ProfileFormState value, $Res Function(ProfileFormState) then) =
-      _$ProfileFormStateCopyWithImpl<$Res, ProfileFormState>;
+abstract class $ProfileFormStateSuccessCopyWith<$Res> {
+  factory $ProfileFormStateSuccessCopyWith(ProfileFormStateSuccess value,
+          $Res Function(ProfileFormStateSuccess) then) =
+      _$ProfileFormStateSuccessCopyWithImpl<$Res, ProfileFormStateSuccess>;
   @useResult
   $Res call({InitialProfile? initialProfile, DraftProfile draftProfile});
 
@@ -37,9 +37,10 @@ abstract class $ProfileFormStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileFormStateCopyWithImpl<$Res, $Val extends ProfileFormState>
-    implements $ProfileFormStateCopyWith<$Res> {
-  _$ProfileFormStateCopyWithImpl(this._value, this._then);
+class _$ProfileFormStateSuccessCopyWithImpl<$Res,
+        $Val extends ProfileFormStateSuccess>
+    implements $ProfileFormStateSuccessCopyWith<$Res> {
+  _$ProfileFormStateSuccessCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,11 +87,12 @@ class _$ProfileFormStateCopyWithImpl<$Res, $Val extends ProfileFormState>
 }
 
 /// @nodoc
-abstract class _$$ProfileFormStateImplCopyWith<$Res>
-    implements $ProfileFormStateCopyWith<$Res> {
-  factory _$$ProfileFormStateImplCopyWith(_$ProfileFormStateImpl value,
-          $Res Function(_$ProfileFormStateImpl) then) =
-      __$$ProfileFormStateImplCopyWithImpl<$Res>;
+abstract class _$$ProfileFormStateSuccessImplCopyWith<$Res>
+    implements $ProfileFormStateSuccessCopyWith<$Res> {
+  factory _$$ProfileFormStateSuccessImplCopyWith(
+          _$ProfileFormStateSuccessImpl value,
+          $Res Function(_$ProfileFormStateSuccessImpl) then) =
+      __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({InitialProfile? initialProfile, DraftProfile draftProfile});
@@ -102,11 +104,13 @@ abstract class _$$ProfileFormStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProfileFormStateImplCopyWithImpl<$Res>
-    extends _$ProfileFormStateCopyWithImpl<$Res, _$ProfileFormStateImpl>
-    implements _$$ProfileFormStateImplCopyWith<$Res> {
-  __$$ProfileFormStateImplCopyWithImpl(_$ProfileFormStateImpl _value,
-      $Res Function(_$ProfileFormStateImpl) _then)
+class __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>
+    extends _$ProfileFormStateSuccessCopyWithImpl<$Res,
+        _$ProfileFormStateSuccessImpl>
+    implements _$$ProfileFormStateSuccessImplCopyWith<$Res> {
+  __$$ProfileFormStateSuccessImplCopyWithImpl(
+      _$ProfileFormStateSuccessImpl _value,
+      $Res Function(_$ProfileFormStateSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -115,7 +119,7 @@ class __$$ProfileFormStateImplCopyWithImpl<$Res>
     Object? initialProfile = freezed,
     Object? draftProfile = null,
   }) {
-    return _then(_$ProfileFormStateImpl(
+    return _then(_$ProfileFormStateSuccessImpl(
       initialProfile: freezed == initialProfile
           ? _value.initialProfile
           : initialProfile // ignore: cast_nullable_to_non_nullable
@@ -130,28 +134,25 @@ class __$$ProfileFormStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProfileFormStateImpl extends _ProfileFormState {
-  const _$ProfileFormStateImpl(
-      {this.initialProfile = null, this.draftProfile = const DraftProfile()})
-      : super._();
+class _$ProfileFormStateSuccessImpl implements _ProfileFormStateSuccess {
+  const _$ProfileFormStateSuccessImpl(
+      {required this.initialProfile, required this.draftProfile});
 
   @override
-  @JsonKey()
   final InitialProfile? initialProfile;
   @override
-  @JsonKey()
   final DraftProfile draftProfile;
 
   @override
   String toString() {
-    return 'ProfileFormState(initialProfile: $initialProfile, draftProfile: $draftProfile)';
+    return 'ProfileFormStateSuccess(initialProfile: $initialProfile, draftProfile: $draftProfile)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileFormStateImpl &&
+            other is _$ProfileFormStateSuccessImpl &&
             (identical(other.initialProfile, initialProfile) ||
                 other.initialProfile == initialProfile) &&
             (identical(other.draftProfile, draftProfile) ||
@@ -164,16 +165,16 @@ class _$ProfileFormStateImpl extends _ProfileFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileFormStateImplCopyWith<_$ProfileFormStateImpl> get copyWith =>
-      __$$ProfileFormStateImplCopyWithImpl<_$ProfileFormStateImpl>(
-          this, _$identity);
+  _$$ProfileFormStateSuccessImplCopyWith<_$ProfileFormStateSuccessImpl>
+      get copyWith => __$$ProfileFormStateSuccessImplCopyWithImpl<
+          _$ProfileFormStateSuccessImpl>(this, _$identity);
 }
 
-abstract class _ProfileFormState extends ProfileFormState {
-  const factory _ProfileFormState(
-      {final InitialProfile? initialProfile,
-      final DraftProfile draftProfile}) = _$ProfileFormStateImpl;
-  const _ProfileFormState._() : super._();
+abstract class _ProfileFormStateSuccess implements ProfileFormStateSuccess {
+  const factory _ProfileFormStateSuccess(
+          {required final InitialProfile? initialProfile,
+          required final DraftProfile draftProfile}) =
+      _$ProfileFormStateSuccessImpl;
 
   @override
   InitialProfile? get initialProfile;
@@ -181,8 +182,8 @@ abstract class _ProfileFormState extends ProfileFormState {
   DraftProfile get draftProfile;
   @override
   @JsonKey(ignore: true)
-  _$$ProfileFormStateImplCopyWith<_$ProfileFormStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ProfileFormStateSuccessImplCopyWith<_$ProfileFormStateSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

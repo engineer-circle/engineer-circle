@@ -2,14 +2,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_form_state.freezed.dart';
 
-@freezed
-class ProfileFormState with _$ProfileFormState {
-  const factory ProfileFormState({
-    @Default(null) InitialProfile? initialProfile,
-    @Default(DraftProfile()) DraftProfile draftProfile,
-  }) = _ProfileFormState;
+sealed class ProfileFormState {}
 
-  const ProfileFormState._();
+class ProfileFormStateLoading extends ProfileFormState {}
+
+@freezed
+class ProfileFormStateSuccess extends ProfileFormState
+    with _$ProfileFormStateSuccess {
+  const factory ProfileFormStateSuccess({
+    required InitialProfile? initialProfile,
+    required DraftProfile draftProfile,
+  }) = _ProfileFormStateSuccess;
 }
 
 @freezed

@@ -49,7 +49,22 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('プロフィール')),
-        body: Form(
+        body: _body(state),
+      ),
+    );
+  }
+
+  Widget _body(ProfileFormState profileFormState) {
+    switch (profileFormState) {
+      case ProfileFormStateLoading _:
+        return Center(
+          child: CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        );
+
+      case ProfileFormStateSuccess state:
+        return Form(
           key: _formKey,
           child: ListView(
             padding: const EdgeInsets.all(16),
@@ -164,8 +179,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        );
+    }
   }
 }
