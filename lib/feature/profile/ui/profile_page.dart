@@ -1,6 +1,6 @@
 import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/drawer/drawer.dart';
-import 'package:engineer_circle/feature/profile/ui/component/profile.dart';
+import 'package:engineer_circle/feature/profile/ui/component/profile_content.dart';
 import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -96,7 +96,7 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                 ),
               ),
             )
-          : Profile(
+          : ProfileContent(
               profileData: profileData,
               onTwitterPressed: (url) async {
                 await ref.read(urlLauncherProvider).launch(url);

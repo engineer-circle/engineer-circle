@@ -1,5 +1,6 @@
-import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
-import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/profile_form_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileFormProvider = Provider(
@@ -16,7 +17,7 @@ class ProfileFormController {
   Future<void> initProfileForm(bool isEdit) async {
     final profile = isEdit
         // TODO: Remoteから取得する
-        ? const InitialProfile(
+        ? const Profile(
             name: 'kuwa',
             skills: ['Android', 'Flutter'],
             career: CareerOption.jobHuntingOrConsideringChange,

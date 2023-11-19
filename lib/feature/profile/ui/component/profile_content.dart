@@ -2,8 +2,8 @@ import 'package:engineer_circle/feature/profile/ui/profile_page.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({
+class ProfileContent extends StatelessWidget {
+  const ProfileContent({
     Key? key,
     required this.profileData,
     required this.onTwitterPressed,
