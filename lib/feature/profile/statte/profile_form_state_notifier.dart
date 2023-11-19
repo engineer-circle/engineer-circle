@@ -16,6 +16,7 @@ class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
       initialProfile: profile,
       draftProfile: DraftProfile(
         name: profile?.name,
+        skills: profile?.skills ?? [],
         career: profile?.career,
         selfIntroduction: profile?.selfIntroduction,
         avatarUrl: profile?.avatarUrl,
