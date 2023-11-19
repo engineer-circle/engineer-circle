@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state.dart';
 import 'package:engineer_circle/feature/profile/statte/profile_form_state_notifier.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,15 @@ class ProfileFormPage extends ConsumerStatefulWidget {
 class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _skillController = TextEditingController();
+
+  @override
+  void initState() {
+    /// 画面表示後に実行
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(profileFormProvider).initProfileForm(widget.isEdit);
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -52,6 +62,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                     )
                   : const Icon(Icons.account_circle, size: 100),
               TextFormField(
+                initialValue: state.initialProfile?.name,
                 decoration: const InputDecoration(labelText: '名前'),
                 validator: (value) => value!.isEmpty ? '名前は必須です' : null,
                 onChanged: (value) => ref
@@ -111,6 +122,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.twitterLink,
                 decoration: const InputDecoration(labelText: 'X (Twitter)'),
                 onChanged: (value) => ref
                     .read(profileFormStateProvider.notifier)
@@ -118,6 +130,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.musubiteLink,
                 decoration: const InputDecoration(labelText: 'Musubite'),
                 onChanged: (value) => ref
                     .read(profileFormStateProvider.notifier)
@@ -125,6 +138,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                initialValue: state.initialProfile?.selfIntroduction,
                 maxLines: 10,
                 minLines: 1,
                 decoration: const InputDecoration(labelText: '自己紹介'),

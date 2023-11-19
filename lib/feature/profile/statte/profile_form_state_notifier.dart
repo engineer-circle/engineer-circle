@@ -10,18 +10,18 @@ final profileFormStateProvider = StateNotifierProvider.autoDispose<
 class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
   ProfileFormStateNotifier() : super(const ProfileFormState());
 
-  void initProfile(
-    InitialProfile profile,
+  void initProfileForm(
+    InitialProfile? profile,
   ) {
     state = state.copyWith(
       initialProfile: profile,
       draftProfile: DraftProfile(
-        name: profile.name,
-        career: profile.career,
-        selfIntroduction: profile.selfIntroduction,
-        avatarUrl: profile.avatarUrl,
-        twitterLink: profile.twitterLink,
-        musubiteLink: profile.musubiteLink,
+        name: profile?.name,
+        career: profile?.career,
+        selfIntroduction: profile?.selfIntroduction,
+        avatarUrl: profile?.avatarUrl,
+        twitterLink: profile?.twitterLink,
+        musubiteLink: profile?.musubiteLink,
       ),
     );
   }
