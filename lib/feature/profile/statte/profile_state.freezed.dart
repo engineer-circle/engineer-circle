@@ -30,6 +30,8 @@ abstract class $ProfileStateSuccessCopyWith<$Res> {
       _$ProfileStateSuccessCopyWithImpl<$Res, ProfileStateSuccess>;
   @useResult
   $Res call({Profile profile});
+
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -54,6 +56,14 @@ class _$ProfileStateSuccessCopyWithImpl<$Res, $Val extends ProfileStateSuccess>
               as Profile,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileCopyWith<$Res> get profile {
+    return $ProfileCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -65,6 +75,9 @@ abstract class _$$ProfileStateSuccessImplCopyWith<$Res>
   @override
   @useResult
   $Res call({Profile profile});
+
+  @override
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
