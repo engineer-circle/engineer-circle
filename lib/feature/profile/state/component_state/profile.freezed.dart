@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Profile {
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
-  CareerOption get career => throw _privateConstructorUsedError;
-  String get selfIntroduction => throw _privateConstructorUsedError;
+  CareerOption? get career => throw _privateConstructorUsedError;
+  String? get selfIntroduction => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
   String? get twitterLink => throw _privateConstructorUsedError;
   String? get musubiteLink => throw _privateConstructorUsedError;
@@ -34,10 +34,10 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {String name,
+      {String? name,
       List<String> skills,
-      CareerOption career,
-      String selfIntroduction,
+      CareerOption? career,
+      String? selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
       String? musubiteLink});
@@ -56,31 +56,31 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? name = freezed,
     Object? skills = null,
-    Object? career = null,
-    Object? selfIntroduction = null,
+    Object? career = freezed,
+    Object? selfIntroduction = freezed,
     Object? avatarUrl = freezed,
     Object? twitterLink = freezed,
     Object? musubiteLink = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       skills: null == skills
           ? _value.skills
           : skills // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      career: null == career
+      career: freezed == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as CareerOption,
-      selfIntroduction: null == selfIntroduction
+              as CareerOption?,
+      selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -105,10 +105,10 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {String? name,
       List<String> skills,
-      CareerOption career,
-      String selfIntroduction,
+      CareerOption? career,
+      String? selfIntroduction,
       String? avatarUrl,
       String? twitterLink,
       String? musubiteLink});
@@ -125,31 +125,31 @@ class __$$ProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? name = freezed,
     Object? skills = null,
-    Object? career = null,
-    Object? selfIntroduction = null,
+    Object? career = freezed,
+    Object? selfIntroduction = freezed,
     Object? avatarUrl = freezed,
     Object? twitterLink = freezed,
     Object? musubiteLink = freezed,
   }) {
     return _then(_$ProfileImpl(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       skills: null == skills
           ? _value._skills
           : skills // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      career: null == career
+      career: freezed == career
           ? _value.career
           : career // ignore: cast_nullable_to_non_nullable
-              as CareerOption,
-      selfIntroduction: null == selfIntroduction
+              as CareerOption?,
+      selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -170,10 +170,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
 
 class _$ProfileImpl extends _Profile {
   const _$ProfileImpl(
-      {required this.name,
-      required final List<String> skills,
-      required this.career,
-      required this.selfIntroduction,
+      {this.name,
+      final List<String> skills = const [],
+      this.career,
+      this.selfIntroduction,
       this.avatarUrl,
       this.twitterLink,
       this.musubiteLink})
@@ -181,9 +181,10 @@ class _$ProfileImpl extends _Profile {
         super._();
 
   @override
-  final String name;
+  final String? name;
   final List<String> _skills;
   @override
+  @JsonKey()
   List<String> get skills {
     if (_skills is EqualUnmodifiableListView) return _skills;
     // ignore: implicit_dynamic_type
@@ -191,9 +192,9 @@ class _$ProfileImpl extends _Profile {
   }
 
   @override
-  final CareerOption career;
+  final CareerOption? career;
   @override
-  final String selfIntroduction;
+  final String? selfIntroduction;
   @override
   final String? avatarUrl;
   @override
@@ -244,23 +245,23 @@ class _$ProfileImpl extends _Profile {
 
 abstract class _Profile extends Profile {
   const factory _Profile(
-      {required final String name,
-      required final List<String> skills,
-      required final CareerOption career,
-      required final String selfIntroduction,
+      {final String? name,
+      final List<String> skills,
+      final CareerOption? career,
+      final String? selfIntroduction,
       final String? avatarUrl,
       final String? twitterLink,
       final String? musubiteLink}) = _$ProfileImpl;
   const _Profile._() : super._();
 
   @override
-  String get name;
+  String? get name;
   @override
   List<String> get skills;
   @override
-  CareerOption get career;
+  CareerOption? get career;
   @override
-  String get selfIntroduction;
+  String? get selfIntroduction;
   @override
   String? get avatarUrl;
   @override

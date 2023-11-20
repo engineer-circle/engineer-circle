@@ -6,10 +6,10 @@ part 'profile.freezed.dart';
 @freezed
 class Profile with _$Profile {
   const factory Profile({
-    required String name,
-    required List<String> skills,
-    required CareerOption career,
-    required String selfIntroduction,
+    String? name,
+    @Default([]) List<String> skills,
+    CareerOption? career,
+    String? selfIntroduction,
     String? avatarUrl,
     String? twitterLink,
     String? musubiteLink,
