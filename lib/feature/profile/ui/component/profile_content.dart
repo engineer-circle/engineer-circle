@@ -1,16 +1,17 @@
-import 'package:engineer_circle/feature/profile/ui/profile_page.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileContent extends StatelessWidget {
   const ProfileContent({
     Key? key,
-    required this.profileData,
+    required this.profile,
     required this.onTwitterPressed,
     required this.onMusubitePressed,
   }) : super(key: key);
 
-  final ProfileData profileData;
+  final Profile profile;
   final Function(String url) onTwitterPressed;
   final Function(String url) onMusubitePressed;
 
@@ -21,15 +22,15 @@ class ProfileContent extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            profileData.avatarUrl != null
+            profile.avatarUrl != null
                 ? CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(profileData.avatarUrl!),
+                    backgroundImage: NetworkImage(profile.avatarUrl!),
                   )
                 : const Icon(Icons.account_circle, size: 100),
             const SizedBox(height: 8),
             Text(
-              profileData.name != null ? profileData.name! : "",
+              profile.name != null ? profile.name! : "",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -44,10 +45,10 @@ class ProfileContent extends StatelessWidget {
                     Assets.images.xLogo.path,
                     width: 24,
                     height: 24,
-                    color: profileData.twitterLink != null ? null : Colors.grey,
+                    color: profile.twitterLink != null ? null : Colors.grey,
                   ),
-                  onPressed: profileData.twitterLink != null
-                      ? () => onTwitterPressed(profileData.twitterLink!)
+                  onPressed: profile.twitterLink != null
+                      ? () => onTwitterPressed(profile.twitterLink!)
                       : null,
                 ),
                 const SizedBox(width: 16),
@@ -56,11 +57,10 @@ class ProfileContent extends StatelessWidget {
                     Assets.images.musubiteLogo.path,
                     width: 28,
                     height: 28,
-                    color:
-                        profileData.musubiteLink != null ? null : Colors.grey,
+                    color: profile.musubiteLink != null ? null : Colors.grey,
                   ),
-                  onPressed: profileData.musubiteLink != null
-                      ? () => onMusubitePressed(profileData.musubiteLink!)
+                  onPressed: profile.musubiteLink != null
+                      ? () => onMusubitePressed(profile.musubiteLink!)
                       : null,
                 ),
               ],
@@ -71,7 +71,7 @@ class ProfileContent extends StatelessWidget {
               title: const Text('スキル'),
               subtitle: Wrap(
                 spacing: 8.0,
-                children: profileData.skills
+                children: profile.skills
                     .map(
                       (skill) => Chip(
                         label: Text(skill),
@@ -84,14 +84,16 @@ class ProfileContent extends StatelessWidget {
             ListTile(
               title: const Text('キャリア'),
               subtitle: Text(
-                profileData.career != null ? profileData.career! : "",
+                profile.career != null ? profile.career!.displayName : "",
               ),
             ),
             const Divider(),
             ListTile(
               title: const Text('自己紹介'),
               subtitle: Text(
-                profileData.bio != null ? profileData.bio! : "",
+                profile.selfIntroduction != null
+                    ? profile.selfIntroduction!
+                    : "",
               ),
             ),
           ],
