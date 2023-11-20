@@ -25,15 +25,6 @@ class _CreateSeatingChartPageState
   final plusIconSize = 24.0;
 
   @override
-  void initState() {
-    /// 画面表示後に実行
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(createSeatingChartStateProvider.notifier).init();
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final seatState = ref.watch(createSeatingChartStateProvider);
 
@@ -71,9 +62,11 @@ class _CreateSeatingChartPageState
             children: [
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Front',
-                  style: TextStyle(fontSize: 16),
+                child: Center(
+                  child: Text(
+                    'Front',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               ...buildSeatRows(

@@ -9,47 +9,7 @@ final createSeatingChartStateProvider = StateNotifierProvider.autoDispose<
 
 class CreateSeatingChartStateNotifier
     extends StateNotifier<CreateSeatingChartState> {
-  CreateSeatingChartStateNotifier() : super(CreateSeatingChartState());
-
-  void init() {
-    state = state.copyWith(seats: [
-      CreateSeat(
-          row: 1,
-          column: 1,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.horizontal),
-      CreateSeat(
-          row: 1,
-          column: 2,
-          seatCount: 3,
-          seatOrientation: SeatOrientation.horizontal),
-      CreateSeat(
-          row: 1,
-          column: 3,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.horizontal),
-      CreateSeat(
-          row: 1,
-          column: 4,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.horizontal),
-      CreateSeat(
-          row: 2,
-          column: 1,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.horizontal),
-      CreateSeat(
-          row: 2,
-          column: 2,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.vertical),
-      CreateSeat(
-          row: 3,
-          column: 1,
-          seatCount: 4,
-          seatOrientation: SeatOrientation.vertical),
-    ]);
-  }
+  CreateSeatingChartStateNotifier() : super(const CreateSeatingChartState());
 
   void addColumn(
     int selectedRow,
@@ -76,9 +36,12 @@ class CreateSeatingChartStateNotifier
     int seatCount,
     SeatOrientation seatOrientation,
   ) {
-    final bottomSeatRow = state.seats
-        .reduce((value, element) => element.row > value.row ? element : value)
-        .row;
+    final bottomSeatRow = state.seats.isEmpty
+        ? 0
+        : state.seats
+            .reduce(
+                (value, element) => element.row > value.row ? element : value)
+            .row;
     final newSeats = [
       ...state.seats,
       CreateSeat(
