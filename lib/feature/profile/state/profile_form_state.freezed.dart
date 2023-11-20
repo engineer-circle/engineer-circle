@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileFormStateSuccess {
   Profile? get initialProfile => throw _privateConstructorUsedError;
-  DraftProfile get draftProfile => throw _privateConstructorUsedError;
+  Profile get draftProfile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileFormStateSuccessCopyWith<ProfileFormStateSuccess> get copyWith =>
@@ -30,10 +30,10 @@ abstract class $ProfileFormStateSuccessCopyWith<$Res> {
           $Res Function(ProfileFormStateSuccess) then) =
       _$ProfileFormStateSuccessCopyWithImpl<$Res, ProfileFormStateSuccess>;
   @useResult
-  $Res call({Profile? initialProfile, DraftProfile draftProfile});
+  $Res call({Profile? initialProfile, Profile draftProfile});
 
   $ProfileCopyWith<$Res>? get initialProfile;
-  $DraftProfileCopyWith<$Res> get draftProfile;
+  $ProfileCopyWith<$Res> get draftProfile;
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$ProfileFormStateSuccessCopyWithImpl<$Res,
       draftProfile: null == draftProfile
           ? _value.draftProfile
           : draftProfile // ignore: cast_nullable_to_non_nullable
-              as DraftProfile,
+              as Profile,
     ) as $Val);
   }
 
@@ -79,8 +79,8 @@ class _$ProfileFormStateSuccessCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $DraftProfileCopyWith<$Res> get draftProfile {
-    return $DraftProfileCopyWith<$Res>(_value.draftProfile, (value) {
+  $ProfileCopyWith<$Res> get draftProfile {
+    return $ProfileCopyWith<$Res>(_value.draftProfile, (value) {
       return _then(_value.copyWith(draftProfile: value) as $Val);
     });
   }
@@ -95,12 +95,12 @@ abstract class _$$ProfileFormStateSuccessImplCopyWith<$Res>
       __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Profile? initialProfile, DraftProfile draftProfile});
+  $Res call({Profile? initialProfile, Profile draftProfile});
 
   @override
   $ProfileCopyWith<$Res>? get initialProfile;
   @override
-  $DraftProfileCopyWith<$Res> get draftProfile;
+  $ProfileCopyWith<$Res> get draftProfile;
 }
 
 /// @nodoc
@@ -127,7 +127,7 @@ class __$$ProfileFormStateSuccessImplCopyWithImpl<$Res>
       draftProfile: null == draftProfile
           ? _value.draftProfile
           : draftProfile // ignore: cast_nullable_to_non_nullable
-              as DraftProfile,
+              as Profile,
     ));
   }
 }
@@ -141,7 +141,7 @@ class _$ProfileFormStateSuccessImpl implements _ProfileFormStateSuccess {
   @override
   final Profile? initialProfile;
   @override
-  final DraftProfile draftProfile;
+  final Profile draftProfile;
 
   @override
   String toString() {
@@ -172,14 +172,13 @@ class _$ProfileFormStateSuccessImpl implements _ProfileFormStateSuccess {
 
 abstract class _ProfileFormStateSuccess implements ProfileFormStateSuccess {
   const factory _ProfileFormStateSuccess(
-          {required final Profile? initialProfile,
-          required final DraftProfile draftProfile}) =
-      _$ProfileFormStateSuccessImpl;
+      {required final Profile? initialProfile,
+      required final Profile draftProfile}) = _$ProfileFormStateSuccessImpl;
 
   @override
   Profile? get initialProfile;
   @override
-  DraftProfile get draftProfile;
+  Profile get draftProfile;
   @override
   @JsonKey(ignore: true)
   _$$ProfileFormStateSuccessImplCopyWith<_$ProfileFormStateSuccessImpl>
