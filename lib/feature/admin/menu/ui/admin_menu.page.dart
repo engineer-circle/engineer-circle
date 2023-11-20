@@ -15,39 +15,37 @@ class AdminMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text('管理者画面')),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-          child: ListView(
-            children: <Widget>[
-              const Text(
-                'シート管理',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('管理者画面')),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+        child: ListView(
+          children: <Widget>[
+            const Text(
+              'シート管理',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
               ),
-              const Divider(color: Colors.black),
-              ListTile(
-                title: const Text('シートを作成する'),
-                onTap: () => context.router.push(
-                  const CreateSeatRoute(),
-                ),
+            ),
+            const Divider(color: Colors.black),
+            ListTile(
+              title: const Text('シートを作成する'),
+              onTap: () => context.router.push(
+                const CreateSeatRoute(),
               ),
-              const Divider(color: Colors.black),
-              ListTile(
-                title: const Text('シートを削除する'),
-                onTap: () {
-                  // TODO
-                },
-              ),
-              const Divider(color: Colors.black),
-            ],
-          ),
+            ),
+            const Divider(color: Colors.black),
+            ListTile(
+              title: const Text('シートを削除する'),
+              onTap: () {
+                // TODO
+              },
+            ),
+            const Divider(color: Colors.black),
+          ],
         ),
       ),
     );
