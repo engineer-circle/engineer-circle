@@ -15,3 +15,15 @@ class ProfileStateSuccess extends ProfileState with _$ProfileStateSuccess {
     required Profile profile,
   }) = _ProfileStateSuccess;
 }
+
+extension ProfileStateExtension on ProfileState {
+  bool get isRegisteredProfile {
+    switch (this) {
+      case ProfileStateLoading _:
+      case ProfileStateFailure _:
+        return false;
+      case ProfileStateSuccess state:
+        return state.profile.name != null;
+    }
+  }
+}
