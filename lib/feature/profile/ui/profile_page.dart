@@ -64,7 +64,9 @@ class _ProfileState extends ConsumerState<ProfilePage> {
         );
 
       case ProfileStateFailure _:
-        return Center();
+        return const Center(
+          child: Text('プロフィール情報の取得に失敗しました'),
+        );
 
       case ProfileStateSuccess state:
         final profile = state.profile;
