@@ -30,37 +30,35 @@ class SeatingArea extends StatelessWidget {
   }
 
   Widget rowSeatWidget(List<SeatGroup> rowSeatGroup) {
-    List<Widget> listRow = rowSeatGroup.map<Widget>((seatGroup) {
-      switch (seatGroup.seatOrientation) {
-        case SeatOrientation.horizontal:
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: HorizontalSeatingLayout(
-              tableId: seatGroup.groupId,
-              seats: seatGroup.seats,
-              onSeatSelected: (seatId) {
-                // TODO
-              },
-            ),
-          );
-        case SeatOrientation.vertical:
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: VerticalSeatingLayout(
-              tableId: seatGroup.groupId,
-              seats: seatGroup.seats,
-              onSeatSelected: (seatId) {
-                // TODO
-              },
-            ),
-          );
-        default:
-          return Container(); // または、デフォルトのウィジェットを返す
-      }
-    }).toList();
-
     return Row(
-      children: listRow,
+      children: rowSeatGroup.map<Widget>((seatGroup) {
+        switch (seatGroup.seatOrientation) {
+          case SeatOrientation.horizontal:
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: HorizontalSeatingLayout(
+                tableId: seatGroup.groupId,
+                seats: seatGroup.seats,
+                onSeatSelected: (seatId) {
+                  // TODO
+                },
+              ),
+            );
+          case SeatOrientation.vertical:
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: VerticalSeatingLayout(
+                tableId: seatGroup.groupId,
+                seats: seatGroup.seats,
+                onSeatSelected: (seatId) {
+                  // TODO
+                },
+              ),
+            );
+          default:
+            return Container(); // または、デフォルトのウィジェットを返す
+        }
+      }).toList(),
     );
   }
 }

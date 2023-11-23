@@ -32,7 +32,7 @@ class SeatingChartController {
                   ? SeatOrientation.horizontal
                   : SeatOrientation.vertical,
               seats: List.generate(
-                4,
+                6,
                 (seatIndex) => Seat(
                   seatId: '$row-$column-$seatIndex',
                 ),
