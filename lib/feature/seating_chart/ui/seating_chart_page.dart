@@ -16,6 +16,9 @@ class SeatingChartPage extends ConsumerStatefulWidget {
 }
 
 class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
+  final _controllerX = ScrollController();
+  final _controllerY = ScrollController();
+
   @override
   void initState() {
     /// 画面表示後に実行
@@ -30,7 +33,33 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
         title: const Text('ホーム'),
       ),
       drawer: const AppDrawer(),
-      body: SeatingArea(),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            controller: _controllerY,
+            child: SingleChildScrollView(
+              controller: _controllerX,
+              scrollDirection: Axis.horizontal,
+              child: SeatingArea(),
+            ),
+          ),
+
+          // 斜めスクロールするためのListener
+          Listener(
+            behavior: HitTestBehavior
+                .translucent, // 背後にあるターゲットもイベントを受け取ることを許可する(内部のComponentのonTapを検知させたいため)
+            child: const SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+            ),
+            onPointerMove: (event) {
+              // ポインターの移動方向と逆方向にスクロールさせる。左にスワイプするときにビューが右に動く。
+              _controllerX.jumpTo(_controllerX.offset + (event.delta.dx * -1));
+              _controllerY.jumpTo(_controllerY.offset + (event.delta.dy * -1));
+            },
+          )
+        ],
+      ),
     );
   }
 }
