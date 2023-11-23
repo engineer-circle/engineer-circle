@@ -1,10 +1,16 @@
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/horizontal_seating_layout.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/vertical_seating_layout.dart';
 import 'package:flutter/material.dart';
 
 class SeatingArea extends StatelessWidget {
-  const SeatingArea({super.key});
+  const SeatingArea({
+    super.key,
+    required this.seatGroups,
+  });
+
+  final List<List<SeatGroup>> seatGroups;
 
   @override
   Widget build(BuildContext context) {
