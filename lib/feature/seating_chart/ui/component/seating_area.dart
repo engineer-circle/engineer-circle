@@ -30,20 +30,16 @@ class SeatingArea extends StatelessWidget {
   }
 
   Widget rowSeatWidget(List<SeatGroup> rowSeatGroup) {
-    final int sideSeatCounts = 3;
-    final int seatId = 1;
-
-    List<Widget> _listRow = rowSeatGroup.map<Widget>((seatGroup) {
+    List<Widget> listRow = rowSeatGroup.map<Widget>((seatGroup) {
       switch (seatGroup.seatOrientation) {
         case SeatOrientation.horizontal:
           return Padding(
             padding: const EdgeInsets.all(16),
             child: HorizontalSeatingLayout(
               tableId: seatGroup.groupId,
-              firstSeatId: 1,
-              sideSeatCounts: sideSeatCounts,
+              seats: seatGroup.seats,
               onSeatSelected: (seatId) {
-                print('@@@@@Tap: 1, seatId: $seatId');
+                // TODO
               },
             ),
           );
@@ -52,10 +48,9 @@ class SeatingArea extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: VerticalSeatingLayout(
               tableId: seatGroup.groupId,
-              firstSeatId: 1,
-              sideSeatCounts: sideSeatCounts,
+              seats: seatGroup.seats,
               onSeatSelected: (seatId) {
-                print('@@@@@Tap: 1, seatId: $seatId');
+                // TODO
               },
             ),
           );
@@ -65,7 +60,7 @@ class SeatingArea extends StatelessWidget {
     }).toList();
 
     return Row(
-      children: _listRow,
+      children: listRow,
     );
   }
 }
