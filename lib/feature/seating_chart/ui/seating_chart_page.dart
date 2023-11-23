@@ -77,7 +77,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                 controller: _controllerX,
                 scrollDirection: Axis.horizontal,
                 child: SeatingArea(
-                  seatGroups: state.seatGroups,
+                  seatGroupMatrix: state.seatGroupMatrix,
                 ),
               ),
             ),

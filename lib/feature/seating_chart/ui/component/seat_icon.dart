@@ -8,9 +8,9 @@ class SeatIcon extends StatelessWidget {
     required this.onSeatSelected,
   });
 
-  final int seatId;
+  final String seatId;
   final double iconSize;
-  final Function(int) onSeatSelected;
+  final Function(String) onSeatSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SeatIcon extends StatelessWidget {
       child: InkWell(
         onTap: () => onSeatSelected(seatId),
         child: CircleAvatar(
-          child: Text('$seatId'),
+          child: Text(seatId),
         ),
       ),
     );
