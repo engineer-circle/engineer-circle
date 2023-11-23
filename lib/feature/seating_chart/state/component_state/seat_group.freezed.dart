@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SeatGroup {
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
+  SeatOrientation get seatOrientation => throw _privateConstructorUsedError;
   List<Seat> get seats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,8 @@ abstract class $SeatGroupCopyWith<$Res> {
   factory $SeatGroupCopyWith(SeatGroup value, $Res Function(SeatGroup) then) =
       _$SeatGroupCopyWithImpl<$Res, SeatGroup>;
   @useResult
-  $Res call({int row, int column, List<Seat> seats});
+  $Res call(
+      {int row, int column, SeatOrientation seatOrientation, List<Seat> seats});
 }
 
 /// @nodoc
@@ -48,6 +50,7 @@ class _$SeatGroupCopyWithImpl<$Res, $Val extends SeatGroup>
   $Res call({
     Object? row = null,
     Object? column = null,
+    Object? seatOrientation = null,
     Object? seats = null,
   }) {
     return _then(_value.copyWith(
@@ -59,6 +62,10 @@ class _$SeatGroupCopyWithImpl<$Res, $Val extends SeatGroup>
           ? _value.column
           : column // ignore: cast_nullable_to_non_nullable
               as int,
+      seatOrientation: null == seatOrientation
+          ? _value.seatOrientation
+          : seatOrientation // ignore: cast_nullable_to_non_nullable
+              as SeatOrientation,
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -75,7 +82,8 @@ abstract class _$$SeatGroupImplCopyWith<$Res>
       __$$SeatGroupImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int row, int column, List<Seat> seats});
+  $Res call(
+      {int row, int column, SeatOrientation seatOrientation, List<Seat> seats});
 }
 
 /// @nodoc
@@ -91,6 +99,7 @@ class __$$SeatGroupImplCopyWithImpl<$Res>
   $Res call({
     Object? row = null,
     Object? column = null,
+    Object? seatOrientation = null,
     Object? seats = null,
   }) {
     return _then(_$SeatGroupImpl(
@@ -102,6 +111,10 @@ class __$$SeatGroupImplCopyWithImpl<$Res>
           ? _value.column
           : column // ignore: cast_nullable_to_non_nullable
               as int,
+      seatOrientation: null == seatOrientation
+          ? _value.seatOrientation
+          : seatOrientation // ignore: cast_nullable_to_non_nullable
+              as SeatOrientation,
       seats: null == seats
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -116,6 +129,7 @@ class _$SeatGroupImpl extends _SeatGroup {
   const _$SeatGroupImpl(
       {required this.row,
       required this.column,
+      required this.seatOrientation,
       required final List<Seat> seats})
       : _seats = seats,
         super._();
@@ -124,6 +138,8 @@ class _$SeatGroupImpl extends _SeatGroup {
   final int row;
   @override
   final int column;
+  @override
+  final SeatOrientation seatOrientation;
   final List<Seat> _seats;
   @override
   List<Seat> get seats {
@@ -134,7 +150,7 @@ class _$SeatGroupImpl extends _SeatGroup {
 
   @override
   String toString() {
-    return 'SeatGroup(row: $row, column: $column, seats: $seats)';
+    return 'SeatGroup(row: $row, column: $column, seatOrientation: $seatOrientation, seats: $seats)';
   }
 
   @override
@@ -144,12 +160,14 @@ class _$SeatGroupImpl extends _SeatGroup {
             other is _$SeatGroupImpl &&
             (identical(other.row, row) || other.row == row) &&
             (identical(other.column, column) || other.column == column) &&
+            (identical(other.seatOrientation, seatOrientation) ||
+                other.seatOrientation == seatOrientation) &&
             const DeepCollectionEquality().equals(other._seats, _seats));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, row, column, const DeepCollectionEquality().hash(_seats));
+  int get hashCode => Object.hash(runtimeType, row, column, seatOrientation,
+      const DeepCollectionEquality().hash(_seats));
 
   @JsonKey(ignore: true)
   @override
@@ -162,6 +180,7 @@ abstract class _SeatGroup extends SeatGroup {
   const factory _SeatGroup(
       {required final int row,
       required final int column,
+      required final SeatOrientation seatOrientation,
       required final List<Seat> seats}) = _$SeatGroupImpl;
   const _SeatGroup._() : super._();
 
@@ -169,6 +188,8 @@ abstract class _SeatGroup extends SeatGroup {
   int get row;
   @override
   int get column;
+  @override
+  SeatOrientation get seatOrientation;
   @override
   List<Seat> get seats;
   @override
