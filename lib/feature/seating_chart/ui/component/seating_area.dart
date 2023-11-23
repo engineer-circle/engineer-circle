@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/horizontal_seating_layout.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/vertical_seating_layout.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,17 @@ class SeatingArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: listColumn(),
-      ),
+    final seats = [1, 2, 3, 4];
+    return Column(
+      children: [
+        const Text(
+          'Front',
+          style: TextStyle(fontSize: 24),
+        ),
+        ...seats.expandIndexed<Widget>((index, number) {
+          return listColumn();
+        }),
+      ],
     );
   }
 

@@ -31,6 +31,17 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ホーム'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: InkWell(
+              onTap: () {
+                // TOOD: リロード
+              },
+              child: const Icon(Icons.autorenew, size: 32),
+            ),
+          ),
+        ],
       ),
       drawer: const AppDrawer(),
       body: Stack(
