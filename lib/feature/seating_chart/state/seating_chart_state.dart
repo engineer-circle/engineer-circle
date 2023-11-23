@@ -13,6 +13,7 @@ class SeatingChartStateFailure extends SeatingChartState {}
 class SeatingChartStateSuccess extends SeatingChartState
     with _$SeatingChartStateSuccess {
   const factory SeatingChartStateSuccess({
-    required List<List<SeatGroup>> seatGroups,
+    // 行と列で構成される2次元配列
+    required List<List<SeatGroup>> seatGroupMatrix,
   }) = _SeatingChartStateSuccess;
 }

@@ -16,7 +16,7 @@ class SeatingChartController {
   Future<void> init() async {
     // TODO: Remoteから取得する
     const seatingChart = SeatingChartStateSuccess(
-      seatGroups: [],
+      seatGroupMatrix: [],
     );
 
     _ref

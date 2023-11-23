@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 class SeatingArea extends StatelessWidget {
   const SeatingArea({
     super.key,
-    required this.seatGroups,
+    required this.seatGroupMatrix,
   });
 
-  final List<List<SeatGroup>> seatGroups;
+  final List<List<SeatGroup>> seatGroupMatrix;
 
   @override
   Widget build(BuildContext context) {
