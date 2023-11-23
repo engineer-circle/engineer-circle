@@ -10,7 +10,7 @@ class HorizontalSeatingLayout extends StatelessWidget {
     required this.onSeatSelected,
   });
 
-  final int tableId;
+  final String tableId;
   final int firstSeatId;
   final int sideSeatCounts;
   final Function(int) onSeatSelected;

@@ -21,22 +21,24 @@ class SeatingChartController {
       seatGroupMatrix: List.generate(
         4,
         (rowIndex) {
-          return List.generate(
-            3,
-            (columnIndex) => SeatGroup(
-              row: rowIndex,
-              column: columnIndex,
-              seatOrientation: rowIndex % 2 == 0
+          final row = rowIndex + 1;
+          return List.generate(3, (columnIndex) {
+            final column = columnIndex + 1;
+            return SeatGroup(
+              groupId: '$row-$column',
+              row: row,
+              column: column,
+              seatOrientation: row % 2 == 1
                   ? SeatOrientation.horizontal
                   : SeatOrientation.vertical,
               seats: List.generate(
                 4,
                 (seatIndex) => Seat(
-                  seatId: '$rowIndex-$columnIndex-$seatIndex',
+                  seatId: '$row-$column-$seatIndex',
                 ),
               ),
-            ),
-          );
+            );
+          });
         },
       ),
     );

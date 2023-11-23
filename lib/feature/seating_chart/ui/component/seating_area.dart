@@ -39,7 +39,7 @@ class SeatingArea extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: HorizontalSeatingLayout(
-              tableId: 1,
+              tableId: seatGroup.groupId,
               firstSeatId: 1,
               sideSeatCounts: sideSeatCounts,
               onSeatSelected: (seatId) {
@@ -51,7 +51,7 @@ class SeatingArea extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: VerticalSeatingLayout(
-              tableId: 2,
+              tableId: seatGroup.groupId,
               firstSeatId: 1,
               sideSeatCounts: sideSeatCounts,
               onSeatSelected: (seatId) {
