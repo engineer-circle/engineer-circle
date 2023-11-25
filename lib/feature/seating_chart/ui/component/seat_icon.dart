@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 class SeatIcon extends StatelessWidget {
   const SeatIcon({
     super.key,
+    required this.iconSize,
     required this.avatarUrl,
     required this.isSeated,
     required this.onSeatSelected,
   });
 
+  final double iconSize;
   final String? avatarUrl;
   final bool isSeated;
   final Function() onSeatSelected;
-
-  static const double iconSize = 40;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +47,9 @@ class SeatIcon extends StatelessWidget {
 
     // avatarUrlがnullの場合、デフォルトアイコンを返す
     if (avatarUrl == null) {
-      return const Icon(
+      return Icon(
         Icons.account_circle,
-        size: iconSize + 4,
+        size: iconSize + 4.0,
       );
     }
 

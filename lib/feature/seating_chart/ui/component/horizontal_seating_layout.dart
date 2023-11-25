@@ -34,6 +34,7 @@ class HorizontalSeatingLayout extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.all(iconPadding),
               child: SeatIcon(
+                iconSize: iconSize,
                 avatarUrl: seat.user?.avatarUrl,
                 isSeated: seat.isSeated,
                 onSeatSelected: () => onSeatSelected(seat.seatId),
@@ -61,6 +62,7 @@ class HorizontalSeatingLayout extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.all(iconPadding),
               child: SeatIcon(
+                iconSize: iconSize,
                 avatarUrl: seat.user?.avatarUrl,
                 isSeated: seat.isSeated,
                 onSeatSelected: () => onSeatSelected(seat.seatId),
