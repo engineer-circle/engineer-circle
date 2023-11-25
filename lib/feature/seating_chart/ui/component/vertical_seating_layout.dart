@@ -34,9 +34,9 @@ class VerticalSeatingLayout extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.all(iconPadding),
               child: SeatIcon(
-                seatId: seat.seatId,
-                iconSize: iconSize,
-                onSeatSelected: onSeatSelected,
+                avatarUrl: seat.user?.avatarUrl,
+                isSeated: seat.isSeated,
+                onSeatSelected: () => onSeatSelected(seat.seatId),
               ),
             );
           }),
@@ -61,9 +61,9 @@ class VerticalSeatingLayout extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.all(iconPadding),
               child: SeatIcon(
-                seatId: seat.seatId,
-                iconSize: iconSize,
-                onSeatSelected: onSeatSelected,
+                avatarUrl: seat.user?.avatarUrl,
+                isSeated: seat.isSeated,
+                onSeatSelected: () => onSeatSelected(seat.seatId),
               ),
             );
           }),
