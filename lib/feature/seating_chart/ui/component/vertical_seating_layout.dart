@@ -15,32 +15,52 @@ class VerticalSeatingLayout extends StatelessWidget {
   final Function(String) onSeatSelected;
 
   final double iconSize = 40;
-  final double iconPadding = 8;
+  final double seatPadding = 8;
+  final double nameTextHeight = 16;
 
   @override
   Widget build(BuildContext context) {
     final int sideSeatCounts = (seats.length) ~/ 2;
     // テーブルの高さを計算
-    final double tableHeight =
-        (iconSize * sideSeatCounts) + (iconPadding * 2 * sideSeatCounts);
+    final double tableHeight = (iconSize * sideSeatCounts) +
+        (seatPadding * (sideSeatCounts + 1)) +
+        (nameTextHeight * sideSeatCounts);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // 左側
-        Column(
-          children: List.generate(sideSeatCounts, (index) {
-            final seat = seats[index];
-            return Padding(
-              padding: EdgeInsets.all(iconPadding),
-              child: SeatIcon(
-                iconSize: iconSize,
-                avatarUrl: seat.user?.avatarUrl,
-                isSeated: seat.isSeated,
-                onSeatSelected: () => onSeatSelected(seat.seatId),
-              ),
-            );
-          }),
+        Padding(
+          padding: EdgeInsets.only(top: seatPadding),
+          child: Column(
+            children: List.generate(sideSeatCounts, (index) {
+              final seat = seats[index];
+              return Padding(
+                padding:
+                    EdgeInsets.only(right: seatPadding, bottom: seatPadding),
+                child: Column(
+                  children: [
+                    SeatIcon(
+                      iconSize: iconSize,
+                      avatarUrl: seat.user?.avatarUrl,
+                      isSeated: seat.isSeated,
+                      onSeatSelected: () => onSeatSelected(seat.seatId),
+                    ),
+                    SizedBox(
+                      width: iconSize + seatPadding * 2,
+                      height: nameTextHeight,
+                      child: Text(
+                        seat.user?.name ?? "",
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
         ),
 
         // テーブル
@@ -56,19 +76,37 @@ class VerticalSeatingLayout extends StatelessWidget {
         ),
 
         // 右側
-        Column(
-          children: List.generate(sideSeatCounts, (index) {
-            final seat = seats[index + sideSeatCounts];
-            return Padding(
-              padding: EdgeInsets.all(iconPadding),
-              child: SeatIcon(
-                iconSize: iconSize,
-                avatarUrl: seat.user?.avatarUrl,
-                isSeated: seat.isSeated,
-                onSeatSelected: () => onSeatSelected(seat.seatId),
-              ),
-            );
-          }),
+        Padding(
+          padding: EdgeInsets.only(top: seatPadding),
+          child: Column(
+            children: List.generate(sideSeatCounts, (index) {
+              final seat = seats[index + sideSeatCounts];
+              return Padding(
+                padding:
+                    EdgeInsets.only(left: seatPadding, bottom: seatPadding),
+                child: Column(
+                  children: [
+                    SeatIcon(
+                      iconSize: iconSize,
+                      avatarUrl: seat.user?.avatarUrl,
+                      isSeated: seat.isSeated,
+                      onSeatSelected: () => onSeatSelected(seat.seatId),
+                    ),
+                    SizedBox(
+                      width: iconSize + seatPadding * 2,
+                      height: nameTextHeight,
+                      child: Text(
+                        seat.user?.name ?? "",
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
         ),
       ],
     );
