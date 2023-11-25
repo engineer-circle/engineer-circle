@@ -18,6 +18,7 @@ class SeatIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => onSeatSelected(),
+      customBorder: const CircleBorder(),
       child: _avatarIcon(avatarUrl, isSeated),
     );
   }
@@ -39,7 +40,7 @@ class SeatIcon extends StatelessWidget {
           ),
         ),
         child: const CircleAvatar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
         ),
       );
     }
