@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/drawer/drawer.dart';
+import 'package:engineer_circle/feature/profile/ui/component/profile_content.dart';
 import 'package:engineer_circle/feature/seating_chart/controller/seating_chart_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seating_area.dart';
+import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -81,9 +83,21 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                   onSeatSelected: (seatId) {
                     // TODO: ダイアログ
                   },
-                  onUserSelected: (user) {
-                    // TODO: 画面遷移
-                  },
+                  onUserSelected: (user) => showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    useSafeArea: true,
+                    builder: (BuildContext context) {
+                      return ProfileContent(
+                          profile: user,
+                          onTwitterPressed: (url) async {
+                            await ref.read(urlLauncherProvider).launch(url);
+                          },
+                          onMusubitePressed: (url) async {
+                            await ref.read(urlLauncherProvider).launch(url);
+                          });
+                    },
+                  ),
                 ),
               ),
             ),
