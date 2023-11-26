@@ -31,40 +31,11 @@ class HorizontalSeatingLayout extends StatelessWidget {
         Row(
           children: List.generate(sideSeatCounts, (index) {
             final seat = seats[index];
-            return Column(
-              children: [
-                SeatIcon(
-                  iconSize: iconSize,
-                  avatarUrl: seat.user?.avatarUrl,
-                  isSeated: seat.isSeated,
-                  onSeatSelected: () => onSeatSelected(seat.seatId),
-                ),
-                Container(
-                  width: iconSize + seatPadding * 2,
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Text(
-                    seat.user?.name ?? "",
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ),
-              ],
-            );
+            return _buildSeat(seat);
           }),
         ),
 
-        // テーブル
-        Container(
-          width: tableWidth,
-          padding: const EdgeInsets.symmetric(
-            vertical: 16.0,
-          ),
-          color: Colors.grey[300],
-          child: Center(
-            child: Text('テーブル$tableId'),
-          ),
-        ),
+        _buildTable(tableWidth, tableId),
 
         // 下部
         Row(
@@ -74,29 +45,47 @@ class HorizontalSeatingLayout extends StatelessWidget {
               padding: EdgeInsets.only(
                 top: seatPadding,
               ),
-              child: Column(
-                children: [
-                  SeatIcon(
-                    iconSize: iconSize,
-                    avatarUrl: seat.user?.avatarUrl,
-                    isSeated: seat.isSeated,
-                    onSeatSelected: () => onSeatSelected(seat.seatId),
-                  ),
-                  SizedBox(
-                    width: iconSize + seatPadding * 2,
-                    child: Text(
-                      seat.user?.name ?? "",
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ],
-              ),
+              child: _buildSeat(seat),
             );
           }),
         ),
       ],
+    );
+  }
+
+  Widget _buildSeat(Seat seat) {
+    return Column(
+      children: [
+        SeatIcon(
+          iconSize: iconSize,
+          avatarUrl: seat.user?.avatarUrl,
+          isSeated: seat.isSeated,
+          onSeatSelected: () => onSeatSelected(seat.seatId),
+        ),
+        Container(
+          width: iconSize + seatPadding * 2,
+          padding: const EdgeInsets.only(bottom: 4),
+          child: Text(
+            seat.user?.name ?? "",
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTable(double tableWidth, String tableId) {
+    return Container(
+      width: tableWidth,
+      padding: const EdgeInsets.symmetric(
+        vertical: 16.0,
+      ),
+      color: Colors.grey[300],
+      child: Center(
+        child: Text('テーブル$tableId'),
+      ),
     );
   }
 }
