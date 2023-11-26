@@ -82,44 +82,48 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                   seatGroupMatrix: state.seatGroupMatrix,
                   onSeatSelected: (seatId) {
                     showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: const Text(
-                              'この席に座りますか?',
-                              style: TextStyle(fontSize: 16),
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: const Text(
+                            'この席に座りますか?',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: const Text('いいえ'),
                             ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: const Text('いいえ'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  // TODO: 席確定処理
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('はい'),
-                              ),
-                            ],
-                          );
-                        });
+                            TextButton(
+                              onPressed: () {
+                                // TODO: 席確定処理
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('はい'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
-                  onUserSelected: (user) => showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    useSafeArea: true,
-                    builder: (BuildContext context) {
-                      return ProfileContent(
+                  onUserSelected: (user) {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (BuildContext context) {
+                        return ProfileContent(
                           profile: user,
                           onTwitterPressed: (url) async {
                             await ref.read(urlLauncherProvider).launch(url);
                           },
                           onMusubitePressed: (url) async {
                             await ref.read(urlLauncherProvider).launch(url);
-                          });
-                    },
-                  ),
+                          },
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ),
