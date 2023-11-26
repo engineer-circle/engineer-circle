@@ -1,3 +1,4 @@
+import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class SeatIcon extends StatelessWidget {
@@ -47,9 +48,28 @@ class SeatIcon extends StatelessWidget {
 
     // avatarUrlがnullの場合、デフォルトアイコンを返す
     if (avatarUrl == null) {
-      return Icon(
-        Icons.account_circle,
-        size: iconSize + 4.0,
+      return Container(
+        width: iconSize,
+        height: iconSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: Colors.black,
+          ),
+        ),
+        child: CircleAvatar(
+          backgroundColor: Colors.black,
+          radius: iconSize / 2,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: ClipOval(
+              child: Image.asset(
+                Assets.images.defaultPersonIc.path,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
       );
     }
 

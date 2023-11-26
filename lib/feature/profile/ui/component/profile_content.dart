@@ -15,6 +15,8 @@ class ProfileContent extends StatelessWidget {
   final Function(String url) onTwitterPressed;
   final Function(String url) onMusubitePressed;
 
+  static const double iconSize = 100;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,10 +26,32 @@ class ProfileContent extends StatelessWidget {
           children: [
             profile.avatarUrl != null
                 ? CircleAvatar(
-                    radius: 50,
+                    radius: iconSize / 2,
                     backgroundImage: NetworkImage(profile.avatarUrl!),
                   )
-                : const Icon(Icons.account_circle, size: 100),
+                : Container(
+                    width: iconSize,
+                    height: iconSize,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.black,
+                      ),
+                    ),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black,
+                      radius: iconSize / 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: ClipOval(
+                          child: Image.asset(
+                            Assets.images.defaultPersonIc.path,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
             const SizedBox(height: 8),
             Text(
               profile.name != null ? profile.name! : "",
