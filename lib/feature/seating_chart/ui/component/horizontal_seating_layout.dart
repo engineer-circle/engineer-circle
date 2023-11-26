@@ -15,13 +15,13 @@ class HorizontalSeatingLayout extends StatelessWidget {
   final Function(String) onSeatSelected;
 
   final double iconSize = 40;
-  final double iconPadding = 8;
+  final double seatPadding = 8;
 
   @override
   Widget build(BuildContext context) {
     final int sideSeatCounts = (seats.length) ~/ 2;
     final double tableWidth =
-        (iconSize * sideSeatCounts) + (iconPadding * 2 * sideSeatCounts);
+        (iconSize * sideSeatCounts) + (seatPadding * 2 * sideSeatCounts);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -31,44 +31,61 @@ class HorizontalSeatingLayout extends StatelessWidget {
         Row(
           children: List.generate(sideSeatCounts, (index) {
             final seat = seats[index];
-            return Padding(
-              padding: EdgeInsets.all(iconPadding),
-              child: SeatIcon(
-                seatId: seat.seatId,
-                iconSize: iconSize,
-                onSeatSelected: onSeatSelected,
-              ),
-            );
+            return _buildSeat(seat);
           }),
         ),
 
-        // テーブル
-        Container(
-          width: tableWidth,
-          padding: const EdgeInsets.symmetric(
-            vertical: 16.0,
-          ),
-          color: Colors.grey[300],
-          child: Center(
-            child: Text('テーブル$tableId'),
-          ),
-        ),
+        _buildTable(tableWidth, tableId),
 
         // 下部
         Row(
           children: List.generate(sideSeatCounts, (index) {
             final seat = seats[index + sideSeatCounts];
             return Padding(
-              padding: EdgeInsets.all(iconPadding),
-              child: SeatIcon(
-                seatId: seat.seatId,
-                iconSize: iconSize,
-                onSeatSelected: onSeatSelected,
+              padding: EdgeInsets.only(
+                top: seatPadding,
               ),
+              child: _buildSeat(seat),
             );
           }),
         ),
       ],
+    );
+  }
+
+  Widget _buildSeat(Seat seat) {
+    return Column(
+      children: [
+        SeatIcon(
+          iconSize: iconSize,
+          avatarUrl: seat.user?.avatarUrl,
+          isSeated: seat.isSeated,
+          onSeatSelected: () => onSeatSelected(seat.seatId),
+        ),
+        Container(
+          width: iconSize + seatPadding * 2,
+          padding: const EdgeInsets.only(bottom: 4),
+          child: Text(
+            seat.user?.name ?? "",
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTable(double tableWidth, String tableId) {
+    return Container(
+      width: tableWidth,
+      padding: const EdgeInsets.symmetric(
+        vertical: 16.0,
+      ),
+      color: Colors.grey[300],
+      child: Center(
+        child: Text('テーブル$tableId'),
+      ),
     );
   }
 }
