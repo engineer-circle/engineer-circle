@@ -40,17 +40,19 @@ class SeatingChartController {
                 return Seat(
                   seatId: '$row-$column-$seatIndex',
                   isSeated: isSeated,
-                  user: Profile(
-                    name: isSeated ? 'kuwa' : null,
-                    skills: ['Android', 'Flutter'],
-                    career: CareerOption.jobHuntingOrConsideringChange,
-                    selfIntroduction: 'エンジニア4年目です。\nよろしくお願いします！',
-                    avatarUrl: column % 2 == 1
-                        ? "https://lh3.googleusercontent.com/a/ACg8ocLEtQvFJ-FBYsPcdzNrSebBlKXfdySdQdEKmIBbcNwyAWU=s288-c-no"
-                        : null,
-                    twitterLink: 'https://twitter.com/kilalabu',
-                    musubiteLink: 'https://musubite-job.com',
-                  ),
+                  user: isSeated
+                      ? Profile(
+                          name: column % 2 == 1 ? 'kuwa' : null,
+                          skills: ['Android', 'Flutter'],
+                          career: CareerOption.jobHuntingOrConsideringChange,
+                          selfIntroduction: 'エンジニア4年目です。\nよろしくお願いします！',
+                          avatarUrl: column % 2 == 1
+                              ? "https://lh3.googleusercontent.com/a/ACg8ocLEtQvFJ-FBYsPcdzNrSebBlKXfdySdQdEKmIBbcNwyAWU=s288-c-no"
+                              : null,
+                          twitterLink: 'https://twitter.com/kilalabu',
+                          musubiteLink: 'https://musubite-job.com',
+                        )
+                      : null,
                 );
               }),
             );
