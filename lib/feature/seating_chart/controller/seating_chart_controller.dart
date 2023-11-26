@@ -35,13 +35,13 @@ class SeatingChartController {
               seatOrientation: row % 2 == 1
                   ? SeatOrientation.horizontal
                   : SeatOrientation.vertical,
-              seats: List.generate(
-                6,
-                (seatIndex) => Seat(
+              seats: List.generate(6, (seatIndex) {
+                final isSeated = Random().nextBool();
+                return Seat(
                   seatId: '$row-$column-$seatIndex',
-                  isSeated: Random().nextBool(),
+                  isSeated: isSeated,
                   user: Profile(
-                    name: 'kuwa',
+                    name: isSeated ? 'kuwa' : null,
                     skills: ['Android', 'Flutter'],
                     career: CareerOption.jobHuntingOrConsideringChange,
                     selfIntroduction: 'エンジニア4年目です。\nよろしくお願いします！',
@@ -51,8 +51,8 @@ class SeatingChartController {
                     twitterLink: 'https://twitter.com/kilalabu',
                     musubiteLink: 'https://musubite-job.com',
                   ),
-                ),
-              ),
+                );
+              }),
             );
           });
         },
