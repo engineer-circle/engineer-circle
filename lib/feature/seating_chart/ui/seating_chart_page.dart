@@ -78,6 +78,12 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                 scrollDirection: Axis.horizontal,
                 child: SeatingArea(
                   seatGroupMatrix: state.seatGroupMatrix,
+                  onSeatSelected: (seatId) {
+                    // TODO: ダイアログ
+                  },
+                  onUserSelected: (user) {
+                    // TODO: 画面遷移
+                  },
                 ),
               ),
             ),

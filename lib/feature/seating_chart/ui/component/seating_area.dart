@@ -1,4 +1,5 @@
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/horizontal_seating_layout.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/vertical_seating_layout.dart';
@@ -8,9 +9,13 @@ class SeatingArea extends StatelessWidget {
   const SeatingArea({
     super.key,
     required this.seatGroupMatrix,
+    required this.onSeatSelected,
+    required this.onUserSelected,
   });
 
   final List<List<SeatGroup>> seatGroupMatrix;
+  final Function(String seatId) onSeatSelected;
+  final Function(Profile user) onUserSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +44,8 @@ class SeatingArea extends StatelessWidget {
               child: HorizontalSeatingLayout(
                 tableId: seatGroup.groupId,
                 seats: seatGroup.seats,
-                onSeatSelected: (seatId) {
-                  // TODO
-                },
+                onSeatSelected: onSeatSelected,
+                onUserSelected: onUserSelected,
               ),
             );
           case SeatOrientation.vertical:
@@ -50,9 +54,8 @@ class SeatingArea extends StatelessWidget {
               child: VerticalSeatingLayout(
                 tableId: seatGroup.groupId,
                 seats: seatGroup.seats,
-                onSeatSelected: (seatId) {
-                  // TODO
-                },
+                onSeatSelected: onSeatSelected,
+                onUserSelected: onUserSelected,
               ),
             );
           default:

@@ -1,3 +1,4 @@
+import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seat_icon.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +9,13 @@ class VerticalSeatingLayout extends StatelessWidget {
     required this.tableId,
     required this.seats,
     required this.onSeatSelected,
+    required this.onUserSelected,
   });
 
   final String tableId;
   final List<Seat> seats;
-  final Function(String) onSeatSelected;
+  final Function(String seatId) onSeatSelected;
+  final Function(Profile user) onUserSelected;
 
   final double iconSize = 40;
   final double seatPadding = 8;
@@ -69,7 +72,9 @@ class VerticalSeatingLayout extends StatelessWidget {
             iconSize: iconSize,
             avatarUrl: seat.user?.avatarUrl,
             isSeated: seat.isSeated,
-            onSeatSelected: () => onSeatSelected(seat.seatId),
+            onSeatSelected: () => seat.user != null
+                ? onUserSelected(seat.user!)
+                : onSeatSelected(seat.seatId),
           ),
           SizedBox(
             width: iconSize + seatPadding * 2,
