@@ -71,6 +71,14 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
         );
 
       case SeatingChartStateSuccess state:
+        // TODO: Remoteから設定候補を取得する
+        final List<String> titles = [
+          '23/10/21(初回)',
+          '23/9/21(2回目)',
+          '23/9/21(初回)'
+        ];
+        final int currentTitleIndex = 0;
+
         return Stack(
           children: [
             SingleChildScrollView(
@@ -78,52 +86,76 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
               child: SingleChildScrollView(
                 controller: _controllerX,
                 scrollDirection: Axis.horizontal,
-                child: SeatingArea(
-                  seatGroupMatrix: state.seatGroupMatrix,
-                  onSeatSelected: (seatId) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          content: const Text(
-                            'この席に座りますか?',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.of(context).pop(),
-                              child: const Text('いいえ'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                // TODO: 席確定処理
-                                Navigator.of(context).pop();
+                child: Column(
+                  children: [
+                    Container(
+                      width: 240,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        items: titles
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          // TODO: 選択したタイトルの座席表に更新する
+                        },
+                        value: titles[currentTitleIndex],
+                      ),
+                    ),
+                    SeatingArea(
+                      seatGroupMatrix: state.seatGroupMatrix,
+                      onSeatSelected: (seatId) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: const Text(
+                                'この席に座りますか?',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: const Text('いいえ'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    // TODO: 席確定処理
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('はい'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      onUserSelected: (user) {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          useSafeArea: true,
+                          builder: (BuildContext context) {
+                            return ProfileContent(
+                              profile: user,
+                              onTwitterPressed: (url) async {
+                                await ref.read(urlLauncherProvider).launch(url);
                               },
-                              child: const Text('はい'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  onUserSelected: (user) {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      useSafeArea: true,
-                      builder: (BuildContext context) {
-                        return ProfileContent(
-                          profile: user,
-                          onTwitterPressed: (url) async {
-                            await ref.read(urlLauncherProvider).launch(url);
-                          },
-                          onMusubitePressed: (url) async {
-                            await ref.read(urlLauncherProvider).launch(url);
+                              onMusubitePressed: (url) async {
+                                await ref.read(urlLauncherProvider).launch(url);
+                              },
+                            );
                           },
                         );
                       },
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
             ),
