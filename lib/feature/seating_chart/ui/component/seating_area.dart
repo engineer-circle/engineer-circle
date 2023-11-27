@@ -23,8 +23,9 @@ class SeatingArea extends StatelessWidget {
       children: [
         const Text(
           'Front',
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 20),
         ),
+        const SizedBox(height: 8),
         ...seatGroupMatrix.map<Widget>(
           (rowSeatGroup) {
             return rowSeatWidget(rowSeatGroup);

@@ -82,7 +82,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                   children: [
                     Container(
                       width: 240,
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.only(top: 20, bottom: 28),
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
