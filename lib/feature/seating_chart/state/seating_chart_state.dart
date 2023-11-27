@@ -15,5 +15,7 @@ class SeatingChartStateSuccess extends SeatingChartState
   const factory SeatingChartStateSuccess({
     // 行と列で構成される2次元配列
     required List<List<SeatGroup>> seatGroupMatrix,
+    required List<String> seatTitles,
+    required String currentSeatTitle,
   }) = _SeatingChartStateSuccess;
 }

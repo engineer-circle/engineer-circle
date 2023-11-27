@@ -71,14 +71,6 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
         );
 
       case SeatingChartStateSuccess state:
-        // TODO: Remoteから設定候補を取得する
-        final List<String> titles = [
-          '23/10/21(初回)',
-          '23/9/21(2回目)',
-          '23/9/21(初回)'
-        ];
-        final int currentTitleIndex = 0;
-
         return Stack(
           children: [
             SingleChildScrollView(
@@ -95,7 +87,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
-                        items: titles
+                        items: state.seatTitles
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -105,7 +97,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                         onChanged: (newValue) {
                           // TODO: 選択したタイトルの座席表に更新する
                         },
-                        value: titles[currentTitleIndex],
+                        value: state.currentSeatTitle,
                       ),
                     ),
                     SeatingArea(
