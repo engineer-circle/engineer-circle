@@ -59,6 +59,8 @@ class SeatingChartController {
           });
         },
       ),
+      seatTitles: ['23/10/21(初回)', '23/9/21(2回目)', '23/9/21(初回)'],
+      currentSeatTitle: '23/10/21(初回)',
     );
 
     _ref
