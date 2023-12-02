@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_state.freezed.dart';
@@ -12,7 +12,7 @@ class ProfileStateFailure extends ProfileState {}
 @freezed
 class ProfileStateSuccess extends ProfileState with _$ProfileStateSuccess {
   const factory ProfileStateSuccess({
-    required Profile profile,
+    required User user,
   }) = _ProfileStateSuccess;
 }
 
@@ -23,7 +23,7 @@ extension ProfileStateExtension on ProfileState {
       case ProfileStateFailure _:
         return false;
       case ProfileStateSuccess state:
-        return state.profile.name != null;
+        return state.user.name != null;
     }
   }
 }

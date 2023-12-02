@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +16,7 @@ class ProfileController {
 
   Future<void> init() async {
     // TODO: Remoteから取得する
-    const profile = Profile(
+    const user = User(
       name: 'kuwa',
       skills: ['Android', 'Flutter'],
       career: CareerOption.jobHuntingOrConsideringChange,
@@ -27,6 +27,6 @@ class ProfileController {
       musubiteLink: 'https://musubite-job.com',
     );
 
-    _ref.read(profileStateProvider.notifier).initProfile(profile);
+    _ref.read(profileStateProvider.notifier).initProfile(user);
   }
 }

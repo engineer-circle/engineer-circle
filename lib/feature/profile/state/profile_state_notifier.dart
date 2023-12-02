@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,17 +11,17 @@ class ProfileStateNotifier extends StateNotifier<ProfileState> {
   ProfileStateNotifier() : super(ProfileStateLoading());
 
   void initProfile(
-    Profile profile,
+    User user,
   ) {
     state = ProfileStateSuccess(
-      profile: Profile(
-        name: profile.name,
-        skills: profile.skills,
-        career: profile.career,
-        selfIntroduction: profile.selfIntroduction,
-        avatarUrl: profile.avatarUrl,
-        twitterLink: profile.twitterLink,
-        musubiteLink: profile.musubiteLink,
+      user: User(
+        name: user.name,
+        skills: user.skills,
+        career: user.career,
+        selfIntroduction: user.selfIntroduction,
+        avatarUrl: user.avatarUrl,
+        twitterLink: user.twitterLink,
+        musubiteLink: user.musubiteLink,
       ),
     );
   }
