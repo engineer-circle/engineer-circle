@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,18 +12,18 @@ class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
   ProfileFormStateNotifier() : super(ProfileFormStateLoading());
 
   void initProfileForm(
-    Profile? profile,
+    User? user,
   ) {
     state = ProfileFormStateSuccess(
-      initialProfile: profile,
-      draftProfile: Profile(
-        name: profile?.name,
-        skills: profile?.skills ?? [],
-        career: profile?.career,
-        selfIntroduction: profile?.selfIntroduction,
-        avatarUrl: profile?.avatarUrl,
-        twitterLink: profile?.twitterLink,
-        musubiteLink: profile?.musubiteLink,
+      initialProfile: user,
+      draftProfile: User(
+        name: user?.name,
+        skills: user?.skills ?? [],
+        career: user?.career,
+        selfIntroduction: user?.selfIntroduction,
+        avatarUrl: user?.avatarUrl,
+        twitterLink: user?.twitterLink,
+        musubiteLink: user?.musubiteLink,
       ),
     );
   }

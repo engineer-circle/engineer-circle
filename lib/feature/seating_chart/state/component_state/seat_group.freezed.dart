@@ -228,7 +228,7 @@ abstract class _SeatGroup extends SeatGroup {
 mixin _$Seat {
   String get seatId => throw _privateConstructorUsedError;
   bool get isSeated => throw _privateConstructorUsedError;
-  Profile? get user => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SeatCopyWith<Seat> get copyWith => throw _privateConstructorUsedError;
@@ -239,9 +239,9 @@ abstract class $SeatCopyWith<$Res> {
   factory $SeatCopyWith(Seat value, $Res Function(Seat) then) =
       _$SeatCopyWithImpl<$Res, Seat>;
   @useResult
-  $Res call({String seatId, bool isSeated, Profile? user});
+  $Res call({String seatId, bool isSeated, User? user});
 
-  $ProfileCopyWith<$Res>? get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -273,18 +273,18 @@ class _$SeatCopyWithImpl<$Res, $Val extends Seat>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as Profile?,
+              as User?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProfileCopyWith<$Res>? get user {
+  $UserCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $ProfileCopyWith<$Res>(_value.user!, (value) {
+    return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -297,10 +297,10 @@ abstract class _$$SeatImplCopyWith<$Res> implements $SeatCopyWith<$Res> {
       __$$SeatImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String seatId, bool isSeated, Profile? user});
+  $Res call({String seatId, bool isSeated, User? user});
 
   @override
-  $ProfileCopyWith<$Res>? get user;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -329,7 +329,7 @@ class __$$SeatImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as Profile?,
+              as User?,
     ));
   }
 }
@@ -346,7 +346,7 @@ class _$SeatImpl extends _Seat {
   @JsonKey()
   final bool isSeated;
   @override
-  final Profile? user;
+  final User? user;
 
   @override
   String toString() {
@@ -378,7 +378,7 @@ abstract class _Seat extends Seat {
   const factory _Seat(
       {required final String seatId,
       final bool isSeated,
-      final Profile? user}) = _$SeatImpl;
+      final User? user}) = _$SeatImpl;
   const _Seat._() : super._();
 
   @override
@@ -386,7 +386,7 @@ abstract class _Seat extends Seat {
   @override
   bool get isSeated;
   @override
-  Profile? get user;
+  User? get user;
   @override
   @JsonKey(ignore: true)
   _$$SeatImplCopyWith<_$SeatImpl> get copyWith =>

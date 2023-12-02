@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class ProfileContent extends StatelessWidget {
     required this.onMusubitePressed,
   }) : super(key: key);
 
-  final Profile profile;
+  final User profile;
   final Function(String url) onTwitterPressed;
   final Function(String url) onMusubitePressed;
 

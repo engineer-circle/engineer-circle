@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seat_icon.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class VerticalSeatingLayout extends StatelessWidget {
   final String tableId;
   final List<Seat> seats;
   final Function(String seatId) onSeatSelected;
-  final Function(Profile user) onUserSelected;
+  final Function(User user) onUserSelected;
 
   final double iconSize = 40;
   final double seatPadding = 8;

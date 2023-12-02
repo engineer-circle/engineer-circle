@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileStateSuccess {
-  Profile get profile => throw _privateConstructorUsedError;
+  User get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateSuccessCopyWith<ProfileStateSuccess> get copyWith =>
@@ -29,9 +29,9 @@ abstract class $ProfileStateSuccessCopyWith<$Res> {
           ProfileStateSuccess value, $Res Function(ProfileStateSuccess) then) =
       _$ProfileStateSuccessCopyWithImpl<$Res, ProfileStateSuccess>;
   @useResult
-  $Res call({Profile profile});
+  $Res call({User user});
 
-  $ProfileCopyWith<$Res> get profile;
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -47,21 +47,21 @@ class _$ProfileStateSuccessCopyWithImpl<$Res, $Val extends ProfileStateSuccess>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? profile = null,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      profile: null == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Profile,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProfileCopyWith<$Res> get profile {
-    return $ProfileCopyWith<$Res>(_value.profile, (value) {
-      return _then(_value.copyWith(profile: value) as $Val);
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -74,10 +74,10 @@ abstract class _$$ProfileStateSuccessImplCopyWith<$Res>
       __$$ProfileStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Profile profile});
+  $Res call({User user});
 
   @override
-  $ProfileCopyWith<$Res> get profile;
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -91,13 +91,13 @@ class __$$ProfileStateSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? profile = null,
+    Object? user = null,
   }) {
     return _then(_$ProfileStateSuccessImpl(
-      profile: null == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Profile,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -105,14 +105,14 @@ class __$$ProfileStateSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileStateSuccessImpl implements _ProfileStateSuccess {
-  const _$ProfileStateSuccessImpl({required this.profile});
+  const _$ProfileStateSuccessImpl({required this.user});
 
   @override
-  final Profile profile;
+  final User user;
 
   @override
   String toString() {
-    return 'ProfileStateSuccess(profile: $profile)';
+    return 'ProfileStateSuccess(user: $user)';
   }
 
   @override
@@ -120,11 +120,11 @@ class _$ProfileStateSuccessImpl implements _ProfileStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileStateSuccessImpl &&
-            (identical(other.profile, profile) || other.profile == profile));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, profile);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -135,11 +135,11 @@ class _$ProfileStateSuccessImpl implements _ProfileStateSuccess {
 }
 
 abstract class _ProfileStateSuccess implements ProfileStateSuccess {
-  const factory _ProfileStateSuccess({required final Profile profile}) =
+  const factory _ProfileStateSuccess({required final User user}) =
       _$ProfileStateSuccessImpl;
 
   @override
-  Profile get profile;
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$ProfileStateSuccessImplCopyWith<_$ProfileStateSuccessImpl> get copyWith =>
