@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() async {
+Future<void> main() async {
   // 設定の初期化を待たせる
   WidgetsFlutterBinding.ensureInitialized();
 
