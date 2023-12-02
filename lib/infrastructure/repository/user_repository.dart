@@ -18,6 +18,17 @@ class UserRepository {
 
   static const usersCollectionName = 'users';
 
+  Future<User?> getUser(String uid) async {
+    final userRef = firestore.collection(usersCollectionName);
+    final snapshot = await userRef.doc(uid).get();
+
+    if (snapshot.data() != null) {
+      return User.fromJson(snapshot.data()!);
+    } else {
+      return null;
+    }
+  }
+
   Future<void> updateProfile(
     String uid,
     User user,
