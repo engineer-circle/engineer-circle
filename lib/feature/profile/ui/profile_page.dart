@@ -69,7 +69,7 @@ class _ProfileState extends ConsumerState<ProfilePage> {
         );
 
       case ProfileStateSuccess state:
-        final profile = state.profile;
+        final profile = state.user;
         return state.isRegisteredProfile
             ? ProfileContent(
                 profile: profile,

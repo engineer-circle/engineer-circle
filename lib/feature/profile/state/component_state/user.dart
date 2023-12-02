@@ -1,11 +1,11 @@
 import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'profile.freezed.dart';
+part 'user.freezed.dart';
 
 @freezed
-class Profile with _$Profile {
-  const factory Profile({
+class User with _$User {
+  const factory User({
     String? name,
     @Default([]) List<String> skills,
     CareerOption? career,
@@ -13,7 +13,7 @@ class Profile with _$Profile {
     String? avatarUrl,
     String? twitterLink,
     String? musubiteLink,
-  }) = _Profile;
+  }) = _User;
 
-  const Profile._();
+  const User._();
 }

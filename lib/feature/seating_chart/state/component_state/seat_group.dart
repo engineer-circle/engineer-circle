@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'seat_group.freezed.dart';
@@ -22,7 +22,7 @@ class Seat with _$Seat {
   const factory Seat({
     required String seatId,
     @Default(false) bool isSeated,
-    Profile? user,
+    User? user,
   }) = _Seat;
 
   const Seat._();

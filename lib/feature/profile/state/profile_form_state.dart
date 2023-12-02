@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/profile.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_form_state.freezed.dart';
@@ -11,7 +11,7 @@ class ProfileFormStateLoading extends ProfileFormState {}
 class ProfileFormStateSuccess extends ProfileFormState
     with _$ProfileFormStateSuccess {
   const factory ProfileFormStateSuccess({
-    required Profile? initialProfile,
-    required Profile draftProfile,
+    required User? initialProfile,
+    required User draftProfile,
   }) = _ProfileFormStateSuccess;
 }
