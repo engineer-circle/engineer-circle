@@ -173,10 +173,15 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // TODO: 更新・保存処理
-                    context.router.replaceAll(
-                      [const ProfileRoute()],
-                    );
+                    ref.read(profileFormProvider).updateProfile(
+                          user: state.draftProfile,
+                          onSuccess: () {
+                            if (!mounted) return;
+                            context.router.replaceAll(
+                              [const ProfileRoute()],
+                            );
+                          },
+                        );
                   }
                 },
                 child: Text(
