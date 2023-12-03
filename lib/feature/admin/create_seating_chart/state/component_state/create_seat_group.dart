@@ -5,6 +5,7 @@ part 'create_seat_group.freezed.dart';
 @freezed
 class CreateSeatGroup with _$CreateSeatGroup {
   const factory CreateSeatGroup({
+    required String groupId,
     required int row,
     required int column,
     required int seatCount,

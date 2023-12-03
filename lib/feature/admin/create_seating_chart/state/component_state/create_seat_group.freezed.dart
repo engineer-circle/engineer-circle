@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateSeatGroup {
+  String get groupId => throw _privateConstructorUsedError;
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
   int get seatCount => throw _privateConstructorUsedError;
@@ -33,7 +34,11 @@ abstract class $CreateSeatGroupCopyWith<$Res> {
       _$CreateSeatGroupCopyWithImpl<$Res, CreateSeatGroup>;
   @useResult
   $Res call(
-      {int row, int column, int seatCount, SeatOrientation seatOrientation});
+      {String groupId,
+      int row,
+      int column,
+      int seatCount,
+      SeatOrientation seatOrientation});
 }
 
 /// @nodoc
@@ -49,12 +54,17 @@ class _$CreateSeatGroupCopyWithImpl<$Res, $Val extends CreateSeatGroup>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? groupId = null,
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
     Object? seatOrientation = null,
   }) {
     return _then(_value.copyWith(
+      groupId: null == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as String,
       row: null == row
           ? _value.row
           : row // ignore: cast_nullable_to_non_nullable
@@ -84,7 +94,11 @@ abstract class _$$CreateSeatGroupImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int row, int column, int seatCount, SeatOrientation seatOrientation});
+      {String groupId,
+      int row,
+      int column,
+      int seatCount,
+      SeatOrientation seatOrientation});
 }
 
 /// @nodoc
@@ -98,12 +112,17 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? groupId = null,
     Object? row = null,
     Object? column = null,
     Object? seatCount = null,
     Object? seatOrientation = null,
   }) {
     return _then(_$CreateSeatGroupImpl(
+      groupId: null == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as String,
       row: null == row
           ? _value.row
           : row // ignore: cast_nullable_to_non_nullable
@@ -128,12 +147,15 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
 
 class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   const _$CreateSeatGroupImpl(
-      {required this.row,
+      {required this.groupId,
+      required this.row,
       required this.column,
       required this.seatCount,
       required this.seatOrientation})
       : super._();
 
+  @override
+  final String groupId;
   @override
   final int row;
   @override
@@ -145,7 +167,7 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
 
   @override
   String toString() {
-    return 'CreateSeatGroup(row: $row, column: $column, seatCount: $seatCount, seatOrientation: $seatOrientation)';
+    return 'CreateSeatGroup(groupId: $groupId, row: $row, column: $column, seatCount: $seatCount, seatOrientation: $seatOrientation)';
   }
 
   @override
@@ -153,6 +175,7 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateSeatGroupImpl &&
+            (identical(other.groupId, groupId) || other.groupId == groupId) &&
             (identical(other.row, row) || other.row == row) &&
             (identical(other.column, column) || other.column == column) &&
             (identical(other.seatCount, seatCount) ||
@@ -162,8 +185,8 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, row, column, seatCount, seatOrientation);
+  int get hashCode => Object.hash(
+      runtimeType, groupId, row, column, seatCount, seatOrientation);
 
   @JsonKey(ignore: true)
   @override
@@ -175,12 +198,15 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
 
 abstract class _CreateSeatGroup extends CreateSeatGroup {
   const factory _CreateSeatGroup(
-      {required final int row,
+      {required final String groupId,
+      required final int row,
       required final int column,
       required final int seatCount,
       required final SeatOrientation seatOrientation}) = _$CreateSeatGroupImpl;
   const _CreateSeatGroup._() : super._();
 
+  @override
+  String get groupId;
   @override
   int get row;
   @override

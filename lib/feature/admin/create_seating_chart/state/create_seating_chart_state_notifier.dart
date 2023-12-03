@@ -19,11 +19,13 @@ class CreateSeatingChartStateNotifier
     final endSeat =
         state.seats.lastWhere((element) => element.row == selectedRow);
 
+    final nextColumn = endSeat.column + 1;
     final newSeats = [
       ...state.seats,
       CreateSeatGroup(
+        groupId: '$selectedRow-$nextColumn',
         row: selectedRow,
-        column: endSeat.column + 1,
+        column: nextColumn,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
       ),
@@ -42,10 +44,12 @@ class CreateSeatingChartStateNotifier
             .reduce(
                 (value, element) => element.row > value.row ? element : value)
             .row;
+    final nextRow = bottomSeatRow + 1;
     final newSeats = [
       ...state.seats,
       CreateSeatGroup(
-        row: bottomSeatRow + 1,
+        groupId: '$nextRow-1',
+        row: nextRow,
         column: 1,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
