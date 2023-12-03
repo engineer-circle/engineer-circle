@@ -1,3 +1,4 @@
+import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_seat_group.freezed.dart';
@@ -13,20 +14,4 @@ class CreateSeatGroup with _$CreateSeatGroup {
   }) = _CreateSeatGroup;
 
   const CreateSeatGroup._();
-}
-
-enum SeatOrientation {
-  horizontal, // 横並び
-  vertical // 縦並び
-}
-
-extension SeatOrientationExtension on SeatOrientation {
-  String get label {
-    switch (this) {
-      case SeatOrientation.horizontal:
-        return '横並び';
-      case SeatOrientation.vertical:
-        return '縦並び';
-    }
-  }
 }
