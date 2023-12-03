@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:engineer_circle/domain/create_seat_group.dart';
+import 'package:engineer_circle/feature/admin/create_seating_chart/controller/create_seating_chart_controller.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/seating_arrangement_form.dart';
@@ -57,7 +59,16 @@ class _CreateSeatingChartPageState
             padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               onTap: () {
-                // TODO
+                ref.read(createSeatingChartProvider).createSeatingChart(
+                      title: seatState.title,
+                      seats: seatState.seats,
+                      onSuccess: () {
+                        if (!mounted) return;
+                        context.router.replaceAll(
+                          [const SeatingChartRoute()],
+                        );
+                      },
+                    );
               },
               child: const Padding(
                 padding: EdgeInsets.all(12),
