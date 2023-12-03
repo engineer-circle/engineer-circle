@@ -1,6 +1,6 @@
-import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_state_notifier.dart';
+import 'package:engineer_circle/global/logger.dart';
+import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final profileProvider = Provider(
@@ -15,18 +15,17 @@ class ProfileController {
   final Ref _ref;
 
   Future<void> init() async {
-    // TODO: Remoteから取得する
-    const user = User(
-      name: 'kuwa',
-      skills: ['Android', 'Flutter'],
-      career: CareerOption.jobHuntingOrConsideringChange,
-      selfIntroduction: 'エンジニア4年目です。\nよろしくお願いします！',
-      avatarUrl:
-          "https://lh3.googleusercontent.com/a/ACg8ocLEtQvFJ-FBYsPcdzNrSebBlKXfdySdQdEKmIBbcNwyAWU=s288-c-no",
-      twitterLink: 'https://twitter.com/kilalabu',
-      musubiteLink: 'https://musubite-job.com',
-    );
-
-    _ref.read(profileStateProvider.notifier).initProfile(user);
+    try {
+      // TODO: uidを取得する
+      final uid = 'hYrMueItZqHe4hCVkpmX';
+      final user = await _ref.read(userRepositoryProvider).getUser(uid);
+      if (user == null) {
+        throw Exception('User is null');
+      }
+      _ref.read(profileStateProvider.notifier).initProfile(user);
+    } on Exception catch (e) {
+      // TODO: エラーハンドリング
+      logger.e(e);
+    }
   }
 }
