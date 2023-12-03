@@ -15,17 +15,10 @@ class ProfileFormController {
 
   final Ref _ref;
 
-  Future<void> initProfileForm(bool isEdit) async {
-    try {
-      // TODO: uidを取得する
-      final uid = 'hYrMueItZqHe4hCVkpmX';
-      final user =
-          isEdit ? await _ref.read(userRepositoryProvider).getUser(uid) : null;
-      _ref.read(profileFormStateProvider.notifier).initProfileForm(user);
-    } on Exception catch (e) {
-      // TODO: エラーハンドリング
-      logger.e(e);
-    }
+  Future<void> initProfileForm(User? initialProfile) async {
+    _ref
+        .read(profileFormStateProvider.notifier)
+        .initProfileForm(initialProfile);
   }
 
   Future<void> updateProfile({

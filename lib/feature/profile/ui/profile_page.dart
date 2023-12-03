@@ -33,13 +33,16 @@ class _ProfileState extends ConsumerState<ProfilePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('プロフィール'),
-          actions: state.isRegisteredProfile
+          actions: state is ProfileStateSuccess && state.isRegisteredProfile
               ? [
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
                     child: InkWell(
                       onTap: () => context.router.push(
-                        ProfileFormRoute(isEdit: true),
+                        ProfileFormRoute(
+                          initialProfile: state.user,
+                          isEdit: true,
+                        ),
                       ),
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -48,7 +51,7 @@ class _ProfileState extends ConsumerState<ProfilePage> {
                     ),
                   )
                 ]
-              : null,
+              : [],
         ),
         drawer: const AppDrawer(),
         body: _body(state));
@@ -83,7 +86,7 @@ class _ProfileState extends ConsumerState<ProfilePage> {
             : Center(
                 child: FilledButton(
                   onPressed: () => context.router.push(
-                    ProfileFormRoute(isEdit: false),
+                    ProfileFormRoute(initialProfile: null, isEdit: false),
                   ),
                   child: const Text(
                     'プロフィールを登録しましょう',

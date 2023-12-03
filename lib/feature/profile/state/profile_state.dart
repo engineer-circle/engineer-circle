@@ -16,14 +16,6 @@ class ProfileStateSuccess extends ProfileState with _$ProfileStateSuccess {
   }) = _ProfileStateSuccess;
 }
 
-extension ProfileStateExtension on ProfileState {
-  bool get isRegisteredProfile {
-    switch (this) {
-      case ProfileStateLoading _:
-      case ProfileStateFailure _:
-        return false;
-      case ProfileStateSuccess state:
-        return state.user.name != null;
-    }
-  }
+extension ProfileStateSuccessExtension on ProfileStateSuccess {
+  bool get isRegisteredProfile => user.name != null;
 }

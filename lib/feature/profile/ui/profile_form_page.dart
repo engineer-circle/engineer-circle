@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
 import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
+import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state_notifier.dart';
 import 'package:engineer_circle/feature/profile/ui/component/edit_avatar.dart';
@@ -13,9 +14,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ProfileFormPage extends ConsumerStatefulWidget {
   const ProfileFormPage({
     super.key,
+    required this.initialProfile,
     required this.isEdit,
   });
 
+  final User? initialProfile;
   final bool isEdit;
 
   @override
@@ -31,7 +34,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
   void initState() {
     /// 画面表示後に実行
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(profileFormProvider).initProfileForm(widget.isEdit);
+      ref.read(profileFormProvider).initProfileForm(widget.initialProfile);
     });
     super.initState();
   }
