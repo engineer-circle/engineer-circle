@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
+import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:flutter/material.dart';
 
 class SeatingArrangementForm extends StatefulWidget {

@@ -1,4 +1,5 @@
-import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
+import 'package:engineer_circle/domain/seat_orientation.dart';
+import 'package:engineer_circle/domain/create_seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,11 +20,13 @@ class CreateSeatingChartStateNotifier
     final endSeat =
         state.seats.lastWhere((element) => element.row == selectedRow);
 
+    final nextColumn = endSeat.column + 1;
     final newSeats = [
       ...state.seats,
-      CreateSeat(
+      CreateSeatGroup(
+        groupId: '$selectedRow-$nextColumn',
         row: selectedRow,
-        column: endSeat.column + 1,
+        column: nextColumn,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
       ),
@@ -42,10 +45,12 @@ class CreateSeatingChartStateNotifier
             .reduce(
                 (value, element) => element.row > value.row ? element : value)
             .row;
+    final nextRow = bottomSeatRow + 1;
     final newSeats = [
       ...state.seats,
-      CreateSeat(
-        row: bottomSeatRow + 1,
+      CreateSeatGroup(
+        groupId: '$nextRow-1',
+        row: nextRow,
         column: 1,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
