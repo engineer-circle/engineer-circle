@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
-import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
+import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/seating_arrangement_form.dart';
@@ -34,7 +34,7 @@ class _CreateSeatingChartPageState
         screenWidth - horizontalScreenPadding * 2 - plusIconSize;
 
     final seatsGroupedByRow =
-        groupBy(seatState.seats, (CreateSeat seat) => seat.row);
+        groupBy(seatState.seats, (CreateSeatGroup seat) => seat.row);
 
     return Scaffold(
       appBar: AppBar(
@@ -118,7 +118,7 @@ class _CreateSeatingChartPageState
   }
 
   List<Widget> buildSeatRows(
-    Map<int, List<CreateSeat>> seatsGroupedByRow,
+    Map<int, List<CreateSeatGroup>> seatsGroupedByRow,
     double usableScreenWidth,
     final Function(int) onCreateSeat,
   ) {
@@ -143,7 +143,7 @@ class _CreateSeatingChartPageState
     }).toList();
   }
 
-  Widget _buildSeatWidget(CreateSeat seat, double layoutWidth) {
+  Widget _buildSeatWidget(CreateSeatGroup seat, double layoutWidth) {
     switch (seat.seatOrientation) {
       case SeatOrientation.horizontal:
         return HorizontalAdminSeatingLayout(

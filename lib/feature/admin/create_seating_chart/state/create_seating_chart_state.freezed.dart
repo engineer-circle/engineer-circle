@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateSeatingChartState {
-  List<CreateSeat> get seats => throw _privateConstructorUsedError;
+  List<CreateSeatGroup> get seats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateSeatingChartStateCopyWith<CreateSeatingChartState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $CreateSeatingChartStateCopyWith<$Res> {
           $Res Function(CreateSeatingChartState) then) =
       _$CreateSeatingChartStateCopyWithImpl<$Res, CreateSeatingChartState>;
   @useResult
-  $Res call({List<CreateSeat> seats});
+  $Res call({List<CreateSeatGroup> seats});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$CreateSeatingChartStateCopyWithImpl<$Res,
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<CreateSeat>,
+              as List<CreateSeatGroup>,
     ) as $Val);
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$CreateSeatingChartStateImplCopyWith<$Res>
       __$$CreateSeatingChartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CreateSeat> seats});
+  $Res call({List<CreateSeatGroup> seats});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$CreateSeatingChartStateImplCopyWithImpl<$Res>
       seats: null == seats
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<CreateSeat>,
+              as List<CreateSeatGroup>,
     ));
   }
 }
@@ -96,14 +96,15 @@ class __$$CreateSeatingChartStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
-  const _$CreateSeatingChartStateImpl({final List<CreateSeat> seats = const []})
+  const _$CreateSeatingChartStateImpl(
+      {final List<CreateSeatGroup> seats = const []})
       : _seats = seats,
         super._();
 
-  final List<CreateSeat> _seats;
+  final List<CreateSeatGroup> _seats;
   @override
   @JsonKey()
-  List<CreateSeat> get seats {
+  List<CreateSeatGroup> get seats {
     if (_seats is EqualUnmodifiableListView) return _seats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_seats);
@@ -135,12 +136,12 @@ class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
 }
 
 abstract class _CreateSeatingChartState extends CreateSeatingChartState {
-  const factory _CreateSeatingChartState({final List<CreateSeat> seats}) =
+  const factory _CreateSeatingChartState({final List<CreateSeatGroup> seats}) =
       _$CreateSeatingChartStateImpl;
   const _CreateSeatingChartState._() : super._();
 
   @override
-  List<CreateSeat> get seats;
+  List<CreateSeatGroup> get seats;
   @override
   @JsonKey(ignore: true)
   _$$CreateSeatingChartStateImplCopyWith<_$CreateSeatingChartStateImpl>

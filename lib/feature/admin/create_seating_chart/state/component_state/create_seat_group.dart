@@ -1,17 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'create_seat.freezed.dart';
+part 'create_seat_group.freezed.dart';
 
 @freezed
-class CreateSeat with _$CreateSeat {
-  const factory CreateSeat({
+class CreateSeatGroup with _$CreateSeatGroup {
+  const factory CreateSeatGroup({
     required int row,
     required int column,
     required int seatCount,
     required SeatOrientation seatOrientation,
-  }) = _CreateSeat;
+  }) = _CreateSeatGroup;
 
-  const CreateSeat._();
+  const CreateSeatGroup._();
 }
 
 enum SeatOrientation {
