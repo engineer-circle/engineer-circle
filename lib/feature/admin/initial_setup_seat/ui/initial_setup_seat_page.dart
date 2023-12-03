@@ -36,82 +36,85 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
       appBar: AppBar(
         title: const Text('シート作成'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              '席の決め方',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 4),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                '席の決め方',
+                style: TextStyle(fontSize: 16),
               ),
-              items:
-                  ['自由', 'シャッフル'].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedSeatMethod = newValue!;
-                });
-              },
-              value: _selectedSeatMethod,
-            ),
-            const SizedBox(height: 16),
-            // TODO: シャッフル時のみ表示する
-            const Text(
-              '過去シートの選択',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 4),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              const SizedBox(height: 4),
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                items: ['自由', 'シャッフル']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedSeatMethod = newValue!;
+                  });
+                },
+                value: _selectedSeatMethod,
               ),
-              items: previousSettings
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedPreviousSetting = newValue;
-                });
-              },
-              value: _selectedPreviousSetting,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'シート名',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 4),
-            TextField(
-              controller: _seatNameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              // TODO: シャッフル時のみ表示する
+              const Text(
+                '過去シートの選択',
+                style: TextStyle(fontSize: 16),
               ),
-              maxLength: 20,
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              child: const Text('作成する'),
-              onPressed: () {
-                context.router.push(
-                  CreateSeatingChartRoute(seatTitle: _seatNameController.text),
-                );
-              },
-            ),
-          ],
+              const SizedBox(height: 4),
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                items: previousSettings
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedPreviousSetting = newValue;
+                  });
+                },
+                value: _selectedPreviousSetting,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'シート名',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 4),
+              TextField(
+                controller: _seatNameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                maxLength: 20,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                child: const Text('作成する'),
+                onPressed: () {
+                  context.router.push(
+                    CreateSeatingChartRoute(
+                        seatTitle: _seatNameController.text),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
