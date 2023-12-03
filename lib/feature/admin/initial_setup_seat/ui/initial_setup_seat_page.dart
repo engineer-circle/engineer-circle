@@ -65,6 +65,7 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
               value: _selectedSeatMethod,
             ),
             const SizedBox(height: 16),
+            // TODO: シャッフル時のみ表示する
             const Text(
               '過去シートの選択',
               style: TextStyle(fontSize: 16),
