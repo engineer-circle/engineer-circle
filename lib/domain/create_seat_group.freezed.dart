@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+CreateSeatGroup _$CreateSeatGroupFromJson(Map<String, dynamic> json) {
+  return _CreateSeatGroup.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CreateSeatGroup {
   String get groupId => throw _privateConstructorUsedError;
@@ -22,6 +26,7 @@ mixin _$CreateSeatGroup {
   int get seatCount => throw _privateConstructorUsedError;
   SeatOrientation get seatOrientation => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateSeatGroupCopyWith<CreateSeatGroup> get copyWith =>
       throw _privateConstructorUsedError;
@@ -144,7 +149,7 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   const _$CreateSeatGroupImpl(
       {required this.groupId,
@@ -153,6 +158,9 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
       required this.seatCount,
       required this.seatOrientation})
       : super._();
+
+  factory _$CreateSeatGroupImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateSeatGroupImplFromJson(json);
 
   @override
   final String groupId;
@@ -184,6 +192,7 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
                 other.seatOrientation == seatOrientation));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, groupId, row, column, seatCount, seatOrientation);
@@ -194,6 +203,13 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   _$$CreateSeatGroupImplCopyWith<_$CreateSeatGroupImpl> get copyWith =>
       __$$CreateSeatGroupImplCopyWithImpl<_$CreateSeatGroupImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreateSeatGroupImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CreateSeatGroup extends CreateSeatGroup {
@@ -204,6 +220,9 @@ abstract class _CreateSeatGroup extends CreateSeatGroup {
       required final int seatCount,
       required final SeatOrientation seatOrientation}) = _$CreateSeatGroupImpl;
   const _CreateSeatGroup._() : super._();
+
+  factory _CreateSeatGroup.fromJson(Map<String, dynamic> json) =
+      _$CreateSeatGroupImpl.fromJson;
 
   @override
   String get groupId;

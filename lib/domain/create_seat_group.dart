@@ -2,6 +2,7 @@ import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_seat_group.freezed.dart';
+part 'create_seat_group.g.dart';
 
 @freezed
 class CreateSeatGroup with _$CreateSeatGroup {
@@ -14,4 +15,7 @@ class CreateSeatGroup with _$CreateSeatGroup {
   }) = _CreateSeatGroup;
 
   const CreateSeatGroup._();
+
+  factory CreateSeatGroup.fromJson(Map<String, dynamic> json) =>
+      _$CreateSeatGroupFromJson(json);
 }
