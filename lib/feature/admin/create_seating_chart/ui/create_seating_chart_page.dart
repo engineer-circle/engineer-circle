@@ -65,7 +65,7 @@ class _CreateSeatingChartPageState
                       onSuccess: () {
                         if (!mounted) return;
                         context.router.replaceAll(
-                          [const SeatingChartRoute()],
+                          [const RootRoute()],
                         );
                       },
                     );
