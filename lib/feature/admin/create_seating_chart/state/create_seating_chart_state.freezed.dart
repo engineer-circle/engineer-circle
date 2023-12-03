@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateSeatingChartState {
+  String get title => throw _privateConstructorUsedError;
   List<CreateSeatGroup> get seats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $CreateSeatingChartStateCopyWith<$Res> {
           $Res Function(CreateSeatingChartState) then) =
       _$CreateSeatingChartStateCopyWithImpl<$Res, CreateSeatingChartState>;
   @useResult
-  $Res call({List<CreateSeatGroup> seats});
+  $Res call({String title, List<CreateSeatGroup> seats});
 }
 
 /// @nodoc
@@ -46,9 +47,14 @@ class _$CreateSeatingChartStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? seats = null,
   }) {
     return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -66,7 +72,7 @@ abstract class _$$CreateSeatingChartStateImplCopyWith<$Res>
       __$$CreateSeatingChartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CreateSeatGroup> seats});
+  $Res call({String title, List<CreateSeatGroup> seats});
 }
 
 /// @nodoc
@@ -82,9 +88,14 @@ class __$$CreateSeatingChartStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
     Object? seats = null,
   }) {
     return _then(_$CreateSeatingChartStateImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       seats: null == seats
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -97,10 +108,13 @@ class __$$CreateSeatingChartStateImplCopyWithImpl<$Res>
 
 class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
   const _$CreateSeatingChartStateImpl(
-      {final List<CreateSeatGroup> seats = const []})
+      {this.title = '', final List<CreateSeatGroup> seats = const []})
       : _seats = seats,
         super._();
 
+  @override
+  @JsonKey()
+  final String title;
   final List<CreateSeatGroup> _seats;
   @override
   @JsonKey()
@@ -112,7 +126,7 @@ class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
 
   @override
   String toString() {
-    return 'CreateSeatingChartState(seats: $seats)';
+    return 'CreateSeatingChartState(title: $title, seats: $seats)';
   }
 
   @override
@@ -120,12 +134,13 @@ class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateSeatingChartStateImpl &&
+            (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._seats, _seats));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_seats));
+  int get hashCode => Object.hash(
+      runtimeType, title, const DeepCollectionEquality().hash(_seats));
 
   @JsonKey(ignore: true)
   @override
@@ -136,10 +151,13 @@ class _$CreateSeatingChartStateImpl extends _CreateSeatingChartState {
 }
 
 abstract class _CreateSeatingChartState extends CreateSeatingChartState {
-  const factory _CreateSeatingChartState({final List<CreateSeatGroup> seats}) =
-      _$CreateSeatingChartStateImpl;
+  const factory _CreateSeatingChartState(
+      {final String title,
+      final List<CreateSeatGroup> seats}) = _$CreateSeatingChartStateImpl;
   const _CreateSeatingChartState._() : super._();
 
+  @override
+  String get title;
   @override
   List<CreateSeatGroup> get seats;
   @override

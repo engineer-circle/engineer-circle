@@ -6,6 +6,7 @@ part 'create_seating_chart_state.freezed.dart';
 @freezed
 class CreateSeatingChartState with _$CreateSeatingChartState {
   const factory CreateSeatingChartState({
+    @Default('') String title,
     @Default([]) List<CreateSeatGroup> seats,
   }) = _CreateSeatingChartState;
 
