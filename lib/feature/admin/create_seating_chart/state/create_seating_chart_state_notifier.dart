@@ -1,5 +1,5 @@
 import 'package:engineer_circle/domain/seat_orientation.dart';
-import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat_group.dart';
+import 'package:engineer_circle/domain/create_seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
