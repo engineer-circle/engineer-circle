@@ -1,7 +1,8 @@
-import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
+import 'package:engineer_circle/domain/career_option.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
+part 'user.g.dart';
 
 @freezed
 class User with _$User {
@@ -16,4 +17,6 @@ class User with _$User {
   }) = _User;
 
   const User._();
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

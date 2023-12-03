@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_form_state.freezed.dart';

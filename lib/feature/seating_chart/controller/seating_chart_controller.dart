@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/career_option.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';

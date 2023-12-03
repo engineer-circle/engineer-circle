@@ -1,5 +1,5 @@
-import 'package:engineer_circle/feature/profile/state/component_state/career_option.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/career_option.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

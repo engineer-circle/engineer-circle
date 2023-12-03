@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/horizontal_seating_layout.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/vertical_seating_layout.dart';

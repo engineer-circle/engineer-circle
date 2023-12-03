@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
 /// @nodoc
 mixin _$User {
   String? get name => throw _privateConstructorUsedError;
@@ -24,6 +28,7 @@ mixin _$User {
   String? get twitterLink => throw _privateConstructorUsedError;
   String? get musubiteLink => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -166,7 +171,7 @@ class __$$UserImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UserImpl extends _User {
   const _$UserImpl(
       {this.name,
@@ -178,6 +183,9 @@ class _$UserImpl extends _User {
       this.musubiteLink})
       : _skills = skills,
         super._();
+
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
 
   @override
   final String? name;
@@ -224,6 +232,7 @@ class _$UserImpl extends _User {
                 other.musubiteLink == musubiteLink));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -240,6 +249,13 @@ class _$UserImpl extends _User {
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _User extends User {
@@ -252,6 +268,8 @@ abstract class _User extends User {
       final String? twitterLink,
       final String? musubiteLink}) = _$UserImpl;
   const _User._() : super._();
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   String? get name;

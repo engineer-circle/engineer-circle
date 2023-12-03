@@ -51,6 +51,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: ProfileFormPage(
           key: args.key,
+          initialProfile: args.initialProfile,
           isEdit: args.isEdit,
         ),
       );
@@ -157,12 +158,14 @@ class HomeTabRouterRoute extends PageRouteInfo<void> {
 class ProfileFormRoute extends PageRouteInfo<ProfileFormRouteArgs> {
   ProfileFormRoute({
     Key? key,
+    required User? initialProfile,
     required bool isEdit,
     List<PageRouteInfo>? children,
   }) : super(
           ProfileFormRoute.name,
           args: ProfileFormRouteArgs(
             key: key,
+            initialProfile: initialProfile,
             isEdit: isEdit,
           ),
           initialChildren: children,
@@ -177,16 +180,19 @@ class ProfileFormRoute extends PageRouteInfo<ProfileFormRouteArgs> {
 class ProfileFormRouteArgs {
   const ProfileFormRouteArgs({
     this.key,
+    required this.initialProfile,
     required this.isEdit,
   });
 
   final Key? key;
 
+  final User? initialProfile;
+
   final bool isEdit;
 
   @override
   String toString() {
-    return 'ProfileFormRouteArgs{key: $key, isEdit: $isEdit}';
+    return 'ProfileFormRouteArgs{key: $key, initialProfile: $initialProfile, isEdit: $isEdit}';
   }
 }
 
