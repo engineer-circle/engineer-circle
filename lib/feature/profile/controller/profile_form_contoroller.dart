@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';

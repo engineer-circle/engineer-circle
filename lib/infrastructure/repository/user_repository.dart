@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

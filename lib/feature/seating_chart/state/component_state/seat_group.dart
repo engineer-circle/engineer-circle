@@ -1,5 +1,5 @@
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/component_state/create_seat.dart';
-import 'package:engineer_circle/feature/profile/state/component_state/user.dart';
+import 'package:engineer_circle/domain/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'seat_group.freezed.dart';
