@@ -13,7 +13,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class CreateSeatingChartPage extends ConsumerStatefulWidget {
   const CreateSeatingChartPage({
     super.key,
+    required this.seatTitle,
   });
+
+  final String seatTitle;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -24,6 +27,15 @@ class _CreateSeatingChartPageState
     extends ConsumerState<CreateSeatingChartPage> {
   final horizontalScreenPadding = 8.0;
   final plusIconSize = 24.0;
+
+  @override
+  void initState() {
+    /// 画面表示後に実行
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(createSeatingChartStateProvider.notifier).init(widget.seatTitle);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

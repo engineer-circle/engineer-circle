@@ -107,7 +107,7 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
               child: const Text('作成する'),
               onPressed: () {
                 context.router.push(
-                  const CreateSeatingChartRoute(),
+                  CreateSeatingChartRoute(seatTitle: _seatNameController.text),
                 );
               },
             ),

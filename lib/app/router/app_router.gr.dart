@@ -28,9 +28,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CreateSeatingChartRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateSeatingChartRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CreateSeatingChartPage(),
+        child: CreateSeatingChartPage(
+          key: args.key,
+          seatTitle: args.seatTitle,
+        ),
       );
     },
     HomeTabRouterRoute.name: (routeData) {
@@ -113,16 +117,41 @@ class AdminRootRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CreateSeatingChartPage]
-class CreateSeatingChartRoute extends PageRouteInfo<void> {
-  const CreateSeatingChartRoute({List<PageRouteInfo>? children})
-      : super(
+class CreateSeatingChartRoute
+    extends PageRouteInfo<CreateSeatingChartRouteArgs> {
+  CreateSeatingChartRoute({
+    Key? key,
+    required String seatTitle,
+    List<PageRouteInfo>? children,
+  }) : super(
           CreateSeatingChartRoute.name,
+          args: CreateSeatingChartRouteArgs(
+            key: key,
+            seatTitle: seatTitle,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CreateSeatingChartRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CreateSeatingChartRouteArgs> page =
+      PageInfo<CreateSeatingChartRouteArgs>(name);
+}
+
+class CreateSeatingChartRouteArgs {
+  const CreateSeatingChartRouteArgs({
+    this.key,
+    required this.seatTitle,
+  });
+
+  final Key? key;
+
+  final String seatTitle;
+
+  @override
+  String toString() {
+    return 'CreateSeatingChartRouteArgs{key: $key, seatTitle: $seatTitle}';
+  }
 }
 
 /// generated route for
