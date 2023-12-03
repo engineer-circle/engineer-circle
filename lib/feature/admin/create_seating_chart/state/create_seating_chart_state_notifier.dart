@@ -12,6 +12,10 @@ class CreateSeatingChartStateNotifier
     extends StateNotifier<CreateSeatingChartState> {
   CreateSeatingChartStateNotifier() : super(const CreateSeatingChartState());
 
+  init(String title) {
+    state = state.copyWith(title: title);
+  }
+
   void addColumn(
     int selectedRow,
     int seatCount,
