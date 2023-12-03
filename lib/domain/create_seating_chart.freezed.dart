@@ -20,8 +20,13 @@ CreateSeatingChart _$CreateSeatingChartFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateSeatingChart {
+  /// シート名
   String get title => throw _privateConstructorUsedError;
+
+  /// 座席表
   List<CreateSeatGroup> get seats => throw _privateConstructorUsedError;
+
+  /// 作成日
   @unionTimestampConverter
   UnionTimestamp get createdAt => throw _privateConstructorUsedError;
 
@@ -137,7 +142,8 @@ class __$$CreateSeatingChartImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$CreateSeatingChartImpl extends _CreateSeatingChart {
   const _$CreateSeatingChartImpl(
       {required this.title,
@@ -150,9 +156,14 @@ class _$CreateSeatingChartImpl extends _CreateSeatingChart {
   factory _$CreateSeatingChartImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateSeatingChartImplFromJson(json);
 
+  /// シート名
   @override
   final String title;
+
+  /// 座席表
   final List<CreateSeatGroup> _seats;
+
+  /// 座席表
   @override
   List<CreateSeatGroup> get seats {
     if (_seats is EqualUnmodifiableListView) return _seats;
@@ -160,6 +171,7 @@ class _$CreateSeatingChartImpl extends _CreateSeatingChart {
     return EqualUnmodifiableListView(_seats);
   }
 
+  /// 作成日
   @override
   @JsonKey()
   @unionTimestampConverter
@@ -213,10 +225,16 @@ abstract class _CreateSeatingChart extends CreateSeatingChart {
       _$CreateSeatingChartImpl.fromJson;
 
   @override
+
+  /// シート名
   String get title;
   @override
+
+  /// 座席表
   List<CreateSeatGroup> get seats;
   @override
+
+  /// 作成日
   @unionTimestampConverter
   UnionTimestamp get createdAt;
   @override

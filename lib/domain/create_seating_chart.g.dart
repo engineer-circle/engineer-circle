@@ -22,6 +22,6 @@ Map<String, dynamic> _$$CreateSeatingChartImplToJson(
         _$CreateSeatingChartImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
-      'seats': instance.seats,
+      'seats': instance.seats.map((e) => e.toJson()).toList(),
       'createdAt': unionTimestampConverter.toJson(instance.createdAt),
     };

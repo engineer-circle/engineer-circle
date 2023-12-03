@@ -7,6 +7,8 @@ part 'create_seating_chart.g.dart';
 
 @freezed
 class CreateSeatingChart with _$CreateSeatingChart {
+  // 警告出ているがclass自体に定義するとfreezedの自動生成とコンフリクトする
+  @JsonSerializable(explicitToJson: true)
   const factory CreateSeatingChart({
     /// シート名
     required String title,
