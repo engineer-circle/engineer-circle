@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
-class CreateSeatPage extends ConsumerStatefulWidget {
-  const CreateSeatPage({super.key});
+class InitialSetupSeatPage extends ConsumerStatefulWidget {
+  const InitialSetupSeatPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CreateSeatPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _InitialSetupSeatPageState();
 }
 
-class _CreateSeatPageState extends ConsumerState<CreateSeatPage> {
+class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
   String? _selectedPreviousSetting;
   final TextEditingController _seatNameController = TextEditingController();
   String? _selectedSeatMethod;
