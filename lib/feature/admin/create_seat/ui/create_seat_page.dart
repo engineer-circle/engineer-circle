@@ -41,7 +41,31 @@ class _CreateSeatPageState extends ConsumerState<CreateSeatPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              '以前のシート設定をコピーする',
+              '席の決め方',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 4),
+            DropdownButtonFormField<String>(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+              items:
+                  ['自由', 'シャッフル'].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedSeatMethod = newValue!;
+                });
+              },
+              value: _selectedSeatMethod,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              '過去シートの選択',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 4),
@@ -75,30 +99,6 @@ class _CreateSeatPageState extends ConsumerState<CreateSeatPage> {
                 border: OutlineInputBorder(),
               ),
               maxLength: 20,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              '席の決め方',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 4),
-            DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-              items:
-                  ['自由', 'シャッフル'].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedSeatMethod = newValue!;
-                });
-              },
-              value: _selectedSeatMethod,
             ),
             const SizedBox(height: 24),
             ElevatedButton(
