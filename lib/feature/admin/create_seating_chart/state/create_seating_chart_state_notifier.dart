@@ -33,6 +33,12 @@ class CreateSeatingChartStateNotifier
         column: nextColumn,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
+        seats: List.generate(seatCount, (seatIndex) {
+          final endId = seatIndex + 1;
+          return CreateSeat(
+            seatId: '$selectedRow-$nextColumn-$endId',
+          );
+        }),
       ),
     ];
 
@@ -58,6 +64,10 @@ class CreateSeatingChartStateNotifier
         column: 1,
         seatCount: seatCount,
         seatOrientation: seatOrientation,
+        seats: List.generate(seatCount, (seatIndex) {
+          final endId = seatIndex + 1;
+          return CreateSeat(seatId: '$nextRow-1-$endId');
+        }),
       ),
     ];
 
