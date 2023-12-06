@@ -1,5 +1,5 @@
 import 'package:engineer_circle/domain/user.dart';
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seat_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class HorizontalSeatingLayout extends StatelessWidget {
   });
 
   final String tableId;
-  final List<Seat> seats;
+  final List<SeatViewProperty> seats;
   final Function(String seatId) onSeatSelected;
   final Function(User user) onUserSelected;
 
@@ -56,7 +56,7 @@ class HorizontalSeatingLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildSeat(Seat seat) {
+  Widget _buildSeat(SeatViewProperty seat) {
     return Column(
       children: [
         SeatIcon(

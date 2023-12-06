@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'seating_chart_state.freezed.dart';
@@ -14,7 +14,7 @@ class SeatingChartStateSuccess extends SeatingChartState
     with _$SeatingChartStateSuccess {
   const factory SeatingChartStateSuccess({
     // 行と列で構成される2次元配列
-    required List<List<SeatGroup>> seatGroupMatrix,
+    required List<List<SeatGroupViewProperty>> seatGroupMatrix,
     required List<String> seatTitles,
     required String currentSeatTitle,
   }) = _SeatingChartStateSuccess;
