@@ -19,7 +19,7 @@ class SeatingChart with _$SeatingChart {
     /// 作成日
     @unionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-    UnionTimestamp dAt,
+    UnionTimestamp createdAt,
   }) = _SeatingChart;
 
   const SeatingChart._();

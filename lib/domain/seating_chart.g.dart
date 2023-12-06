@@ -12,14 +12,14 @@ _$SeatingChartImpl _$$SeatingChartImplFromJson(Map<String, dynamic> json) =>
       seats: (json['seats'] as List<dynamic>)
           .map((e) => SeatGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
-      dAt: json['dAt'] == null
+      createdAt: json['createdAt'] == null
           ? const UnionTimestamp.serverTimestamp()
-          : unionTimestampConverter.fromJson(json['dAt'] as Object),
+          : unionTimestampConverter.fromJson(json['createdAt'] as Object),
     );
 
 Map<String, dynamic> _$$SeatingChartImplToJson(_$SeatingChartImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'seats': instance.seats.map((e) => e.toJson()).toList(),
-      'dAt': unionTimestampConverter.toJson(instance.dAt),
+      'createdAt': unionTimestampConverter.toJson(instance.createdAt),
     };

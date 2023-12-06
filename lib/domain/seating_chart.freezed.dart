@@ -28,7 +28,7 @@ mixin _$SeatingChart {
 
   /// 作成日
   @unionTimestampConverter
-  UnionTimestamp get dAt => throw _privateConstructorUsedError;
+  UnionTimestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,9 +45,9 @@ abstract class $SeatingChartCopyWith<$Res> {
   $Res call(
       {String title,
       List<SeatGroup> seats,
-      @unionTimestampConverter UnionTimestamp dAt});
+      @unionTimestampConverter UnionTimestamp createdAt});
 
-  $UnionTimestampCopyWith<$Res> get dAt;
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$SeatingChartCopyWithImpl<$Res, $Val extends SeatingChart>
   $Res call({
     Object? title = null,
     Object? seats = null,
-    Object? dAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -76,18 +76,18 @@ class _$SeatingChartCopyWithImpl<$Res, $Val extends SeatingChart>
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
               as List<SeatGroup>,
-      dAt: null == dAt
-          ? _value.dAt
-          : dAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as UnionTimestamp,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UnionTimestampCopyWith<$Res> get dAt {
-    return $UnionTimestampCopyWith<$Res>(_value.dAt, (value) {
-      return _then(_value.copyWith(dAt: value) as $Val);
+  $UnionTimestampCopyWith<$Res> get createdAt {
+    return $UnionTimestampCopyWith<$Res>(_value.createdAt, (value) {
+      return _then(_value.copyWith(createdAt: value) as $Val);
     });
   }
 }
@@ -103,10 +103,10 @@ abstract class _$$SeatingChartImplCopyWith<$Res>
   $Res call(
       {String title,
       List<SeatGroup> seats,
-      @unionTimestampConverter UnionTimestamp dAt});
+      @unionTimestampConverter UnionTimestamp createdAt});
 
   @override
-  $UnionTimestampCopyWith<$Res> get dAt;
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -122,7 +122,7 @@ class __$$SeatingChartImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? seats = null,
-    Object? dAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_$SeatingChartImpl(
       title: null == title
@@ -133,9 +133,9 @@ class __$$SeatingChartImplCopyWithImpl<$Res>
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
               as List<SeatGroup>,
-      dAt: null == dAt
-          ? _value.dAt
-          : dAt // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as UnionTimestamp,
     ));
   }
@@ -149,7 +149,7 @@ class _$SeatingChartImpl extends _SeatingChart {
       {required this.title,
       required final List<SeatGroup> seats,
       @unionTimestampConverter
-      this.dAt = const UnionTimestamp.serverTimestamp()})
+      this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _seats = seats,
         super._();
 
@@ -175,11 +175,11 @@ class _$SeatingChartImpl extends _SeatingChart {
   @override
   @JsonKey()
   @unionTimestampConverter
-  final UnionTimestamp dAt;
+  final UnionTimestamp createdAt;
 
   @override
   String toString() {
-    return 'SeatingChart(title: $title, seats: $seats, dAt: $dAt)';
+    return 'SeatingChart(title: $title, seats: $seats, createdAt: $createdAt)';
   }
 
   @override
@@ -189,13 +189,14 @@ class _$SeatingChartImpl extends _SeatingChart {
             other is _$SeatingChartImpl &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._seats, _seats) &&
-            (identical(other.dAt, dAt) || other.dAt == dAt));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, title, const DeepCollectionEquality().hash(_seats), dAt);
+  int get hashCode => Object.hash(runtimeType, title,
+      const DeepCollectionEquality().hash(_seats), createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -213,9 +214,10 @@ class _$SeatingChartImpl extends _SeatingChart {
 
 abstract class _SeatingChart extends SeatingChart {
   const factory _SeatingChart(
-      {required final String title,
-      required final List<SeatGroup> seats,
-      @unionTimestampConverter final UnionTimestamp dAt}) = _$SeatingChartImpl;
+          {required final String title,
+          required final List<SeatGroup> seats,
+          @unionTimestampConverter final UnionTimestamp createdAt}) =
+      _$SeatingChartImpl;
   const _SeatingChart._() : super._();
 
   factory _SeatingChart.fromJson(Map<String, dynamic> json) =
@@ -233,7 +235,7 @@ abstract class _SeatingChart extends SeatingChart {
 
   /// 作成日
   @unionTimestampConverter
-  UnionTimestamp get dAt;
+  UnionTimestamp get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$SeatingChartImplCopyWith<_$SeatingChartImpl> get copyWith =>
