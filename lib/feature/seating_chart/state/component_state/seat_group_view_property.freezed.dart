@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'seat_group.dart';
+part of 'seat_group_view_property.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,35 +15,37 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SeatGroup {
+mixin _$SeatGroupViewProperty {
   String get groupId => throw _privateConstructorUsedError;
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
   SeatOrientation get seatOrientation => throw _privateConstructorUsedError;
-  List<Seat> get seats => throw _privateConstructorUsedError;
+  List<SeatViewProperty> get seats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SeatGroupCopyWith<SeatGroup> get copyWith =>
+  $SeatGroupViewPropertyCopyWith<SeatGroupViewProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SeatGroupCopyWith<$Res> {
-  factory $SeatGroupCopyWith(SeatGroup value, $Res Function(SeatGroup) then) =
-      _$SeatGroupCopyWithImpl<$Res, SeatGroup>;
+abstract class $SeatGroupViewPropertyCopyWith<$Res> {
+  factory $SeatGroupViewPropertyCopyWith(SeatGroupViewProperty value,
+          $Res Function(SeatGroupViewProperty) then) =
+      _$SeatGroupViewPropertyCopyWithImpl<$Res, SeatGroupViewProperty>;
   @useResult
   $Res call(
       {String groupId,
       int row,
       int column,
       SeatOrientation seatOrientation,
-      List<Seat> seats});
+      List<SeatViewProperty> seats});
 }
 
 /// @nodoc
-class _$SeatGroupCopyWithImpl<$Res, $Val extends SeatGroup>
-    implements $SeatGroupCopyWith<$Res> {
-  _$SeatGroupCopyWithImpl(this._value, this._then);
+class _$SeatGroupViewPropertyCopyWithImpl<$Res,
+        $Val extends SeatGroupViewProperty>
+    implements $SeatGroupViewPropertyCopyWith<$Res> {
+  _$SeatGroupViewPropertyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -79,17 +81,18 @@ class _$SeatGroupCopyWithImpl<$Res, $Val extends SeatGroup>
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<Seat>,
+              as List<SeatViewProperty>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SeatGroupImplCopyWith<$Res>
-    implements $SeatGroupCopyWith<$Res> {
-  factory _$$SeatGroupImplCopyWith(
-          _$SeatGroupImpl value, $Res Function(_$SeatGroupImpl) then) =
-      __$$SeatGroupImplCopyWithImpl<$Res>;
+abstract class _$$SeatGroupViewPropertyImplCopyWith<$Res>
+    implements $SeatGroupViewPropertyCopyWith<$Res> {
+  factory _$$SeatGroupViewPropertyImplCopyWith(
+          _$SeatGroupViewPropertyImpl value,
+          $Res Function(_$SeatGroupViewPropertyImpl) then) =
+      __$$SeatGroupViewPropertyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -97,15 +100,16 @@ abstract class _$$SeatGroupImplCopyWith<$Res>
       int row,
       int column,
       SeatOrientation seatOrientation,
-      List<Seat> seats});
+      List<SeatViewProperty> seats});
 }
 
 /// @nodoc
-class __$$SeatGroupImplCopyWithImpl<$Res>
-    extends _$SeatGroupCopyWithImpl<$Res, _$SeatGroupImpl>
-    implements _$$SeatGroupImplCopyWith<$Res> {
-  __$$SeatGroupImplCopyWithImpl(
-      _$SeatGroupImpl _value, $Res Function(_$SeatGroupImpl) _then)
+class __$$SeatGroupViewPropertyImplCopyWithImpl<$Res>
+    extends _$SeatGroupViewPropertyCopyWithImpl<$Res,
+        _$SeatGroupViewPropertyImpl>
+    implements _$$SeatGroupViewPropertyImplCopyWith<$Res> {
+  __$$SeatGroupViewPropertyImplCopyWithImpl(_$SeatGroupViewPropertyImpl _value,
+      $Res Function(_$SeatGroupViewPropertyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +121,7 @@ class __$$SeatGroupImplCopyWithImpl<$Res>
     Object? seatOrientation = null,
     Object? seats = null,
   }) {
-    return _then(_$SeatGroupImpl(
+    return _then(_$SeatGroupViewPropertyImpl(
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
@@ -137,20 +141,20 @@ class __$$SeatGroupImplCopyWithImpl<$Res>
       seats: null == seats
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<Seat>,
+              as List<SeatViewProperty>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SeatGroupImpl extends _SeatGroup {
-  const _$SeatGroupImpl(
+class _$SeatGroupViewPropertyImpl extends _SeatGroupViewProperty {
+  const _$SeatGroupViewPropertyImpl(
       {required this.groupId,
       required this.row,
       required this.column,
       required this.seatOrientation,
-      required final List<Seat> seats})
+      required final List<SeatViewProperty> seats})
       : _seats = seats,
         super._();
 
@@ -162,9 +166,9 @@ class _$SeatGroupImpl extends _SeatGroup {
   final int column;
   @override
   final SeatOrientation seatOrientation;
-  final List<Seat> _seats;
+  final List<SeatViewProperty> _seats;
   @override
-  List<Seat> get seats {
+  List<SeatViewProperty> get seats {
     if (_seats is EqualUnmodifiableListView) return _seats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_seats);
@@ -172,14 +176,14 @@ class _$SeatGroupImpl extends _SeatGroup {
 
   @override
   String toString() {
-    return 'SeatGroup(groupId: $groupId, row: $row, column: $column, seatOrientation: $seatOrientation, seats: $seats)';
+    return 'SeatGroupViewProperty(groupId: $groupId, row: $row, column: $column, seatOrientation: $seatOrientation, seats: $seats)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SeatGroupImpl &&
+            other is _$SeatGroupViewPropertyImpl &&
             (identical(other.groupId, groupId) || other.groupId == groupId) &&
             (identical(other.row, row) || other.row == row) &&
             (identical(other.column, column) || other.column == column) &&
@@ -195,18 +199,20 @@ class _$SeatGroupImpl extends _SeatGroup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SeatGroupImplCopyWith<_$SeatGroupImpl> get copyWith =>
-      __$$SeatGroupImplCopyWithImpl<_$SeatGroupImpl>(this, _$identity);
+  _$$SeatGroupViewPropertyImplCopyWith<_$SeatGroupViewPropertyImpl>
+      get copyWith => __$$SeatGroupViewPropertyImplCopyWithImpl<
+          _$SeatGroupViewPropertyImpl>(this, _$identity);
 }
 
-abstract class _SeatGroup extends SeatGroup {
-  const factory _SeatGroup(
-      {required final String groupId,
-      required final int row,
-      required final int column,
-      required final SeatOrientation seatOrientation,
-      required final List<Seat> seats}) = _$SeatGroupImpl;
-  const _SeatGroup._() : super._();
+abstract class _SeatGroupViewProperty extends SeatGroupViewProperty {
+  const factory _SeatGroupViewProperty(
+          {required final String groupId,
+          required final int row,
+          required final int column,
+          required final SeatOrientation seatOrientation,
+          required final List<SeatViewProperty> seats}) =
+      _$SeatGroupViewPropertyImpl;
+  const _SeatGroupViewProperty._() : super._();
 
   @override
   String get groupId;
@@ -217,27 +223,29 @@ abstract class _SeatGroup extends SeatGroup {
   @override
   SeatOrientation get seatOrientation;
   @override
-  List<Seat> get seats;
+  List<SeatViewProperty> get seats;
   @override
   @JsonKey(ignore: true)
-  _$$SeatGroupImplCopyWith<_$SeatGroupImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SeatGroupViewPropertyImplCopyWith<_$SeatGroupViewPropertyImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$Seat {
+mixin _$SeatViewProperty {
   String get seatId => throw _privateConstructorUsedError;
   bool get isSeated => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SeatCopyWith<Seat> get copyWith => throw _privateConstructorUsedError;
+  $SeatViewPropertyCopyWith<SeatViewProperty> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SeatCopyWith<$Res> {
-  factory $SeatCopyWith(Seat value, $Res Function(Seat) then) =
-      _$SeatCopyWithImpl<$Res, Seat>;
+abstract class $SeatViewPropertyCopyWith<$Res> {
+  factory $SeatViewPropertyCopyWith(
+          SeatViewProperty value, $Res Function(SeatViewProperty) then) =
+      _$SeatViewPropertyCopyWithImpl<$Res, SeatViewProperty>;
   @useResult
   $Res call({String seatId, bool isSeated, User? user});
 
@@ -245,9 +253,9 @@ abstract class $SeatCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SeatCopyWithImpl<$Res, $Val extends Seat>
-    implements $SeatCopyWith<$Res> {
-  _$SeatCopyWithImpl(this._value, this._then);
+class _$SeatViewPropertyCopyWithImpl<$Res, $Val extends SeatViewProperty>
+    implements $SeatViewPropertyCopyWith<$Res> {
+  _$SeatViewPropertyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -291,10 +299,11 @@ class _$SeatCopyWithImpl<$Res, $Val extends Seat>
 }
 
 /// @nodoc
-abstract class _$$SeatImplCopyWith<$Res> implements $SeatCopyWith<$Res> {
-  factory _$$SeatImplCopyWith(
-          _$SeatImpl value, $Res Function(_$SeatImpl) then) =
-      __$$SeatImplCopyWithImpl<$Res>;
+abstract class _$$SeatViewPropertyImplCopyWith<$Res>
+    implements $SeatViewPropertyCopyWith<$Res> {
+  factory _$$SeatViewPropertyImplCopyWith(_$SeatViewPropertyImpl value,
+          $Res Function(_$SeatViewPropertyImpl) then) =
+      __$$SeatViewPropertyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String seatId, bool isSeated, User? user});
@@ -304,10 +313,11 @@ abstract class _$$SeatImplCopyWith<$Res> implements $SeatCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SeatImplCopyWithImpl<$Res>
-    extends _$SeatCopyWithImpl<$Res, _$SeatImpl>
-    implements _$$SeatImplCopyWith<$Res> {
-  __$$SeatImplCopyWithImpl(_$SeatImpl _value, $Res Function(_$SeatImpl) _then)
+class __$$SeatViewPropertyImplCopyWithImpl<$Res>
+    extends _$SeatViewPropertyCopyWithImpl<$Res, _$SeatViewPropertyImpl>
+    implements _$$SeatViewPropertyImplCopyWith<$Res> {
+  __$$SeatViewPropertyImplCopyWithImpl(_$SeatViewPropertyImpl _value,
+      $Res Function(_$SeatViewPropertyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +327,7 @@ class __$$SeatImplCopyWithImpl<$Res>
     Object? isSeated = null,
     Object? user = freezed,
   }) {
-    return _then(_$SeatImpl(
+    return _then(_$SeatViewPropertyImpl(
       seatId: null == seatId
           ? _value.seatId
           : seatId // ignore: cast_nullable_to_non_nullable
@@ -336,8 +346,9 @@ class __$$SeatImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SeatImpl extends _Seat {
-  const _$SeatImpl({required this.seatId, this.isSeated = false, this.user})
+class _$SeatViewPropertyImpl extends _SeatViewProperty {
+  const _$SeatViewPropertyImpl(
+      {required this.seatId, this.isSeated = false, this.user})
       : super._();
 
   @override
@@ -350,14 +361,14 @@ class _$SeatImpl extends _Seat {
 
   @override
   String toString() {
-    return 'Seat(seatId: $seatId, isSeated: $isSeated, user: $user)';
+    return 'SeatViewProperty(seatId: $seatId, isSeated: $isSeated, user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SeatImpl &&
+            other is _$SeatViewPropertyImpl &&
             (identical(other.seatId, seatId) || other.seatId == seatId) &&
             (identical(other.isSeated, isSeated) ||
                 other.isSeated == isSeated) &&
@@ -370,16 +381,17 @@ class _$SeatImpl extends _Seat {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SeatImplCopyWith<_$SeatImpl> get copyWith =>
-      __$$SeatImplCopyWithImpl<_$SeatImpl>(this, _$identity);
+  _$$SeatViewPropertyImplCopyWith<_$SeatViewPropertyImpl> get copyWith =>
+      __$$SeatViewPropertyImplCopyWithImpl<_$SeatViewPropertyImpl>(
+          this, _$identity);
 }
 
-abstract class _Seat extends Seat {
-  const factory _Seat(
+abstract class _SeatViewProperty extends SeatViewProperty {
+  const factory _SeatViewProperty(
       {required final String seatId,
       final bool isSeated,
-      final User? user}) = _$SeatImpl;
-  const _Seat._() : super._();
+      final User? user}) = _$SeatViewPropertyImpl;
+  const _SeatViewProperty._() : super._();
 
   @override
   String get seatId;
@@ -389,6 +401,6 @@ abstract class _Seat extends Seat {
   User? get user;
   @override
   @JsonKey(ignore: true)
-  _$$SeatImplCopyWith<_$SeatImpl> get copyWith =>
+  _$$SeatViewPropertyImplCopyWith<_$SeatViewPropertyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

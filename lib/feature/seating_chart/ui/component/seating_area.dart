@@ -1,6 +1,6 @@
 import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:engineer_circle/domain/user.dart';
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/horizontal_seating_layout.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/vertical_seating_layout.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class SeatingArea extends StatelessWidget {
     required this.onUserSelected,
   });
 
-  final List<List<SeatGroup>> seatGroupMatrix;
+  final List<List<SeatGroupViewProperty>> seatGroupMatrix;
   final Function(String seatId) onSeatSelected;
   final Function(User user) onUserSelected;
 
@@ -35,7 +35,7 @@ class SeatingArea extends StatelessWidget {
     );
   }
 
-  Widget rowSeatWidget(List<SeatGroup> rowSeatGroup) {
+  Widget rowSeatWidget(List<SeatGroupViewProperty> rowSeatGroup) {
     return Row(
       children: rowSeatGroup.map<Widget>((seatGroup) {
         switch (seatGroup.seatOrientation) {

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:engineer_circle/domain/seat_orientation.dart';
 import 'package:engineer_circle/domain/career_option.dart';
 import 'package:engineer_circle/domain/user.dart';
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +28,7 @@ class SeatingChartController {
           final row = rowIndex + 1;
           return List.generate(3, (columnIndex) {
             final column = columnIndex + 1;
-            return SeatGroup(
+            return SeatGroupViewProperty(
               groupId: '$row-$column',
               row: row,
               column: column,
@@ -37,7 +37,7 @@ class SeatingChartController {
                   : SeatOrientation.vertical,
               seats: List.generate(6, (seatIndex) {
                 final isSeated = Random().nextBool();
-                return Seat(
+                return SeatViewProperty(
                   seatId: '$row-$column-$seatIndex',
                   isSeated: isSeated,
                   user: isSeated
