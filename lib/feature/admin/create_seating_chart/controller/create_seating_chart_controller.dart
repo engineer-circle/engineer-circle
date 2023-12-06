@@ -1,4 +1,4 @@
-import 'package:engineer_circle/domain/create_seat_group.dart';
+import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/usecase/admin_seating_chart_usecase.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +16,7 @@ class CreateSeatingChartController {
 
   Future<void> createSeatingChart({
     required String title,
-    required List<CreateSeatGroup> seats,
+    required List<SeatGroup> seats,
     required Function onSuccess,
   }) async {
     try {

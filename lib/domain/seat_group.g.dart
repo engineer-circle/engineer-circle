@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_seat_group.dart';
+part of 'seat_group.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreateSeatGroupImpl _$$CreateSeatGroupImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CreateSeatGroupImpl(
+_$SeatGroupImpl _$$SeatGroupImplFromJson(Map<String, dynamic> json) =>
+    _$SeatGroupImpl(
       groupId: json['groupId'] as String,
       row: json['row'] as int,
       column: json['column'] as int,
@@ -16,12 +15,11 @@ _$CreateSeatGroupImpl _$$CreateSeatGroupImplFromJson(
       seatOrientation:
           $enumDecode(_$SeatOrientationEnumMap, json['seatOrientation']),
       seats: (json['seats'] as List<dynamic>)
-          .map((e) => CreateSeat.fromJson(e as Map<String, dynamic>))
+          .map((e) => Seat.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$CreateSeatGroupImplToJson(
-        _$CreateSeatGroupImpl instance) =>
+Map<String, dynamic> _$$SeatGroupImplToJson(_$SeatGroupImpl instance) =>
     <String, dynamic>{
       'groupId': instance.groupId,
       'row': instance.row,
@@ -36,16 +34,15 @@ const _$SeatOrientationEnumMap = {
   SeatOrientation.vertical: 'vertical',
 };
 
-_$CreateSeatImpl _$$CreateSeatImplFromJson(Map<String, dynamic> json) =>
-    _$CreateSeatImpl(
+_$SeatImpl _$$SeatImplFromJson(Map<String, dynamic> json) => _$SeatImpl(
       seatId: json['seatId'] as String,
-      userId: json['userId'] as String?,
       isSeated: json['isSeated'] as bool? ?? false,
+      userId: json['userId'] as String?,
     );
 
-Map<String, dynamic> _$$CreateSeatImplToJson(_$CreateSeatImpl instance) =>
+Map<String, dynamic> _$$SeatImplToJson(_$SeatImpl instance) =>
     <String, dynamic>{
       'seatId': instance.seatId,
-      'userId': instance.userId,
       'isSeated': instance.isSeated,
+      'userId': instance.userId,
     };

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_seat_group.dart';
+part of 'seat_group.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,30 +14,29 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CreateSeatGroup _$CreateSeatGroupFromJson(Map<String, dynamic> json) {
-  return _CreateSeatGroup.fromJson(json);
+SeatGroup _$SeatGroupFromJson(Map<String, dynamic> json) {
+  return _SeatGroup.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateSeatGroup {
+mixin _$SeatGroup {
   String get groupId => throw _privateConstructorUsedError;
   int get row => throw _privateConstructorUsedError;
   int get column => throw _privateConstructorUsedError;
   int get seatCount => throw _privateConstructorUsedError;
   SeatOrientation get seatOrientation => throw _privateConstructorUsedError;
-  List<CreateSeat> get seats => throw _privateConstructorUsedError;
+  List<Seat> get seats => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateSeatGroupCopyWith<CreateSeatGroup> get copyWith =>
+  $SeatGroupCopyWith<SeatGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateSeatGroupCopyWith<$Res> {
-  factory $CreateSeatGroupCopyWith(
-          CreateSeatGroup value, $Res Function(CreateSeatGroup) then) =
-      _$CreateSeatGroupCopyWithImpl<$Res, CreateSeatGroup>;
+abstract class $SeatGroupCopyWith<$Res> {
+  factory $SeatGroupCopyWith(SeatGroup value, $Res Function(SeatGroup) then) =
+      _$SeatGroupCopyWithImpl<$Res, SeatGroup>;
   @useResult
   $Res call(
       {String groupId,
@@ -45,13 +44,13 @@ abstract class $CreateSeatGroupCopyWith<$Res> {
       int column,
       int seatCount,
       SeatOrientation seatOrientation,
-      List<CreateSeat> seats});
+      List<Seat> seats});
 }
 
 /// @nodoc
-class _$CreateSeatGroupCopyWithImpl<$Res, $Val extends CreateSeatGroup>
-    implements $CreateSeatGroupCopyWith<$Res> {
-  _$CreateSeatGroupCopyWithImpl(this._value, this._then);
+class _$SeatGroupCopyWithImpl<$Res, $Val extends SeatGroup>
+    implements $SeatGroupCopyWith<$Res> {
+  _$SeatGroupCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -92,17 +91,17 @@ class _$CreateSeatGroupCopyWithImpl<$Res, $Val extends CreateSeatGroup>
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<CreateSeat>,
+              as List<Seat>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CreateSeatGroupImplCopyWith<$Res>
-    implements $CreateSeatGroupCopyWith<$Res> {
-  factory _$$CreateSeatGroupImplCopyWith(_$CreateSeatGroupImpl value,
-          $Res Function(_$CreateSeatGroupImpl) then) =
-      __$$CreateSeatGroupImplCopyWithImpl<$Res>;
+abstract class _$$SeatGroupImplCopyWith<$Res>
+    implements $SeatGroupCopyWith<$Res> {
+  factory _$$SeatGroupImplCopyWith(
+          _$SeatGroupImpl value, $Res Function(_$SeatGroupImpl) then) =
+      __$$SeatGroupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,15 +110,15 @@ abstract class _$$CreateSeatGroupImplCopyWith<$Res>
       int column,
       int seatCount,
       SeatOrientation seatOrientation,
-      List<CreateSeat> seats});
+      List<Seat> seats});
 }
 
 /// @nodoc
-class __$$CreateSeatGroupImplCopyWithImpl<$Res>
-    extends _$CreateSeatGroupCopyWithImpl<$Res, _$CreateSeatGroupImpl>
-    implements _$$CreateSeatGroupImplCopyWith<$Res> {
-  __$$CreateSeatGroupImplCopyWithImpl(
-      _$CreateSeatGroupImpl _value, $Res Function(_$CreateSeatGroupImpl) _then)
+class __$$SeatGroupImplCopyWithImpl<$Res>
+    extends _$SeatGroupCopyWithImpl<$Res, _$SeatGroupImpl>
+    implements _$$SeatGroupImplCopyWith<$Res> {
+  __$$SeatGroupImplCopyWithImpl(
+      _$SeatGroupImpl _value, $Res Function(_$SeatGroupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +131,7 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
     Object? seatOrientation = null,
     Object? seats = null,
   }) {
-    return _then(_$CreateSeatGroupImpl(
+    return _then(_$SeatGroupImpl(
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
@@ -156,7 +155,7 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
       seats: null == seats
           ? _value._seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as List<CreateSeat>,
+              as List<Seat>,
     ));
   }
 }
@@ -164,19 +163,19 @@ class __$$CreateSeatGroupImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$CreateSeatGroupImpl extends _CreateSeatGroup {
-  const _$CreateSeatGroupImpl(
+class _$SeatGroupImpl extends _SeatGroup {
+  const _$SeatGroupImpl(
       {required this.groupId,
       required this.row,
       required this.column,
       required this.seatCount,
       required this.seatOrientation,
-      required final List<CreateSeat> seats})
+      required final List<Seat> seats})
       : _seats = seats,
         super._();
 
-  factory _$CreateSeatGroupImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateSeatGroupImplFromJson(json);
+  factory _$SeatGroupImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SeatGroupImplFromJson(json);
 
   @override
   final String groupId;
@@ -188,9 +187,9 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   final int seatCount;
   @override
   final SeatOrientation seatOrientation;
-  final List<CreateSeat> _seats;
+  final List<Seat> _seats;
   @override
-  List<CreateSeat> get seats {
+  List<Seat> get seats {
     if (_seats is EqualUnmodifiableListView) return _seats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_seats);
@@ -198,14 +197,14 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
 
   @override
   String toString() {
-    return 'CreateSeatGroup(groupId: $groupId, row: $row, column: $column, seatCount: $seatCount, seatOrientation: $seatOrientation, seats: $seats)';
+    return 'SeatGroup(groupId: $groupId, row: $row, column: $column, seatCount: $seatCount, seatOrientation: $seatOrientation, seats: $seats)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateSeatGroupImpl &&
+            other is _$SeatGroupImpl &&
             (identical(other.groupId, groupId) || other.groupId == groupId) &&
             (identical(other.row, row) || other.row == row) &&
             (identical(other.column, column) || other.column == column) &&
@@ -224,30 +223,29 @@ class _$CreateSeatGroupImpl extends _CreateSeatGroup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateSeatGroupImplCopyWith<_$CreateSeatGroupImpl> get copyWith =>
-      __$$CreateSeatGroupImplCopyWithImpl<_$CreateSeatGroupImpl>(
-          this, _$identity);
+  _$$SeatGroupImplCopyWith<_$SeatGroupImpl> get copyWith =>
+      __$$SeatGroupImplCopyWithImpl<_$SeatGroupImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateSeatGroupImplToJson(
+    return _$$SeatGroupImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateSeatGroup extends CreateSeatGroup {
-  const factory _CreateSeatGroup(
+abstract class _SeatGroup extends SeatGroup {
+  const factory _SeatGroup(
       {required final String groupId,
       required final int row,
       required final int column,
       required final int seatCount,
       required final SeatOrientation seatOrientation,
-      required final List<CreateSeat> seats}) = _$CreateSeatGroupImpl;
-  const _CreateSeatGroup._() : super._();
+      required final List<Seat> seats}) = _$SeatGroupImpl;
+  const _SeatGroup._() : super._();
 
-  factory _CreateSeatGroup.fromJson(Map<String, dynamic> json) =
-      _$CreateSeatGroupImpl.fromJson;
+  factory _SeatGroup.fromJson(Map<String, dynamic> json) =
+      _$SeatGroupImpl.fromJson;
 
   @override
   String get groupId;
@@ -260,42 +258,40 @@ abstract class _CreateSeatGroup extends CreateSeatGroup {
   @override
   SeatOrientation get seatOrientation;
   @override
-  List<CreateSeat> get seats;
+  List<Seat> get seats;
   @override
   @JsonKey(ignore: true)
-  _$$CreateSeatGroupImplCopyWith<_$CreateSeatGroupImpl> get copyWith =>
+  _$$SeatGroupImplCopyWith<_$SeatGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-CreateSeat _$CreateSeatFromJson(Map<String, dynamic> json) {
-  return _CreateSeat.fromJson(json);
+Seat _$SeatFromJson(Map<String, dynamic> json) {
+  return _Seat.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateSeat {
+mixin _$Seat {
   String get seatId => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
   bool get isSeated => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateSeatCopyWith<CreateSeat> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SeatCopyWith<Seat> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateSeatCopyWith<$Res> {
-  factory $CreateSeatCopyWith(
-          CreateSeat value, $Res Function(CreateSeat) then) =
-      _$CreateSeatCopyWithImpl<$Res, CreateSeat>;
+abstract class $SeatCopyWith<$Res> {
+  factory $SeatCopyWith(Seat value, $Res Function(Seat) then) =
+      _$SeatCopyWithImpl<$Res, Seat>;
   @useResult
-  $Res call({String seatId, String? userId, bool isSeated});
+  $Res call({String seatId, bool isSeated, String? userId});
 }
 
 /// @nodoc
-class _$CreateSeatCopyWithImpl<$Res, $Val extends CreateSeat>
-    implements $CreateSeatCopyWith<$Res> {
-  _$CreateSeatCopyWithImpl(this._value, this._then);
+class _$SeatCopyWithImpl<$Res, $Val extends Seat>
+    implements $SeatCopyWith<$Res> {
+  _$SeatCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -306,139 +302,135 @@ class _$CreateSeatCopyWithImpl<$Res, $Val extends CreateSeat>
   @override
   $Res call({
     Object? seatId = null,
-    Object? userId = freezed,
     Object? isSeated = null,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       seatId: null == seatId
           ? _value.seatId
           : seatId // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
       isSeated: null == isSeated
           ? _value.isSeated
           : isSeated // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CreateSeatImplCopyWith<$Res>
-    implements $CreateSeatCopyWith<$Res> {
-  factory _$$CreateSeatImplCopyWith(
-          _$CreateSeatImpl value, $Res Function(_$CreateSeatImpl) then) =
-      __$$CreateSeatImplCopyWithImpl<$Res>;
+abstract class _$$SeatImplCopyWith<$Res> implements $SeatCopyWith<$Res> {
+  factory _$$SeatImplCopyWith(
+          _$SeatImpl value, $Res Function(_$SeatImpl) then) =
+      __$$SeatImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String seatId, String? userId, bool isSeated});
+  $Res call({String seatId, bool isSeated, String? userId});
 }
 
 /// @nodoc
-class __$$CreateSeatImplCopyWithImpl<$Res>
-    extends _$CreateSeatCopyWithImpl<$Res, _$CreateSeatImpl>
-    implements _$$CreateSeatImplCopyWith<$Res> {
-  __$$CreateSeatImplCopyWithImpl(
-      _$CreateSeatImpl _value, $Res Function(_$CreateSeatImpl) _then)
+class __$$SeatImplCopyWithImpl<$Res>
+    extends _$SeatCopyWithImpl<$Res, _$SeatImpl>
+    implements _$$SeatImplCopyWith<$Res> {
+  __$$SeatImplCopyWithImpl(_$SeatImpl _value, $Res Function(_$SeatImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? seatId = null,
-    Object? userId = freezed,
     Object? isSeated = null,
+    Object? userId = freezed,
   }) {
-    return _then(_$CreateSeatImpl(
+    return _then(_$SeatImpl(
       seatId: null == seatId
           ? _value.seatId
           : seatId // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
       isSeated: null == isSeated
           ? _value.isSeated
           : isSeated // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateSeatImpl extends _CreateSeat {
-  const _$CreateSeatImpl(
-      {required this.seatId, this.userId, this.isSeated = false})
+class _$SeatImpl extends _Seat {
+  const _$SeatImpl({required this.seatId, this.isSeated = false, this.userId})
       : super._();
 
-  factory _$CreateSeatImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateSeatImplFromJson(json);
+  factory _$SeatImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SeatImplFromJson(json);
 
   @override
   final String seatId;
   @override
-  final String? userId;
-  @override
   @JsonKey()
   final bool isSeated;
+  @override
+  final String? userId;
 
   @override
   String toString() {
-    return 'CreateSeat(seatId: $seatId, userId: $userId, isSeated: $isSeated)';
+    return 'Seat(seatId: $seatId, isSeated: $isSeated, userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateSeatImpl &&
+            other is _$SeatImpl &&
             (identical(other.seatId, seatId) || other.seatId == seatId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.isSeated, isSeated) ||
-                other.isSeated == isSeated));
+                other.isSeated == isSeated) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, seatId, userId, isSeated);
+  int get hashCode => Object.hash(runtimeType, seatId, isSeated, userId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateSeatImplCopyWith<_$CreateSeatImpl> get copyWith =>
-      __$$CreateSeatImplCopyWithImpl<_$CreateSeatImpl>(this, _$identity);
+  _$$SeatImplCopyWith<_$SeatImpl> get copyWith =>
+      __$$SeatImplCopyWithImpl<_$SeatImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateSeatImplToJson(
+    return _$$SeatImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateSeat extends CreateSeat {
-  const factory _CreateSeat(
+abstract class _Seat extends Seat {
+  const factory _Seat(
       {required final String seatId,
-      final String? userId,
-      final bool isSeated}) = _$CreateSeatImpl;
-  const _CreateSeat._() : super._();
+      final bool isSeated,
+      final String? userId}) = _$SeatImpl;
+  const _Seat._() : super._();
 
-  factory _CreateSeat.fromJson(Map<String, dynamic> json) =
-      _$CreateSeatImpl.fromJson;
+  factory _Seat.fromJson(Map<String, dynamic> json) = _$SeatImpl.fromJson;
 
   @override
   String get seatId;
   @override
-  String? get userId;
-  @override
   bool get isSeated;
   @override
+  String? get userId;
+  @override
   @JsonKey(ignore: true)
-  _$$CreateSeatImplCopyWith<_$CreateSeatImpl> get copyWith =>
+  _$$SeatImplCopyWith<_$SeatImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

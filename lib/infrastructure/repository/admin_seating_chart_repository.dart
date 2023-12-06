@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:engineer_circle/domain/create_seating_chart.dart';
+import 'package:engineer_circle/domain/seating_chart.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,7 @@ class AdminSeatingChartRepository {
 
   Future<void> createSeatingChart(
     String docId,
-    CreateSeatingChart seatingChart,
+    SeatingChart seatingChart,
   ) async {
     final seatingChartRef = firestore.collection(seatsCollectionName);
     await seatingChartRef.doc(docId).set(seatingChart.toJson());

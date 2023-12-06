@@ -1,5 +1,5 @@
 import 'package:engineer_circle/domain/seat_orientation.dart';
-import 'package:engineer_circle/domain/create_seat_group.dart';
+import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_seating_chart_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,7 +27,7 @@ class CreateSeatingChartStateNotifier
     final nextColumn = endSeat.column + 1;
     final newSeats = [
       ...state.seats,
-      CreateSeatGroup(
+      SeatGroup(
         groupId: '$selectedRow-$nextColumn',
         row: selectedRow,
         column: nextColumn,
@@ -35,7 +35,7 @@ class CreateSeatingChartStateNotifier
         seatOrientation: seatOrientation,
         seats: List.generate(seatCount, (seatIndex) {
           final endId = seatIndex + 1;
-          return CreateSeat(
+          return Seat(
             seatId: '$selectedRow-$nextColumn-$endId',
           );
         }),
@@ -58,7 +58,7 @@ class CreateSeatingChartStateNotifier
     final nextRow = bottomSeatRow + 1;
     final newSeats = [
       ...state.seats,
-      CreateSeatGroup(
+      SeatGroup(
         groupId: '$nextRow-1',
         row: nextRow,
         column: 1,
@@ -66,7 +66,7 @@ class CreateSeatingChartStateNotifier
         seatOrientation: seatOrientation,
         seats: List.generate(seatCount, (seatIndex) {
           final endId = seatIndex + 1;
-          return CreateSeat(seatId: '$nextRow-1-$endId');
+          return Seat(seatId: '$nextRow-1-$endId');
         }),
       ),
     ];
