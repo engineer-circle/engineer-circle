@@ -36,4 +36,42 @@ class UserRepository {
     final userRef = firestore.collection(usersCollectionName);
     await userRef.doc(uid).set(user.toJson());
   }
+
+  Future<List<User>> getWhereInUsers(List<String> uids) async {
+    final List<List<String>> uidBatches = _partitionUids(uids, 10);
+
+    final List<User> fetchedUsers = [];
+
+    for (var uidBatch in uidBatches) {
+      final fetchedItems = await _getUsers(
+        reference: firestore.collection(usersCollectionName),
+        whereInList: uidBatch,
+      );
+
+      fetchedUsers.addAll(fetchedItems);
+    }
+
+    return fetchedUsers;
+  }
+
+  List<List<String>> _partitionUids(List<String> uids, int batchSize) {
+    List<List<String>> uidBatches = [];
+    for (int i = 0; i < uids.length; i += batchSize) {
+      uidBatches.add(uids.sublist(
+          i, i + batchSize > uids.length ? uids.length : i + batchSize));
+    }
+    return uidBatches;
+  }
+
+  Future<List<User>> _getUsers({
+    required CollectionReference<Map<String, dynamic>> reference,
+    required List<String> whereInList,
+  }) async {
+    final query = reference.limit(10).where('userRef', whereIn: whereInList);
+    final snapshot = await query.get();
+    if (snapshot.docs.isEmpty) {
+      return [];
+    }
+    return snapshot.docs.map((doc) => User.fromJson(doc.data())).toList();
+  }
 }
