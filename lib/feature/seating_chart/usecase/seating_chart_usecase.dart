@@ -25,27 +25,20 @@ class SeatingChartUseCase {
   Future<SeatingChartStateSuccess> getLatest() async {
     final seatingChart = await seatingChartRepository.getLatest();
 
+    // ユーザーIDの取得
     final userIds = seatingChart.seats
         .expand((seatGroup) => seatGroup.seats
-                .where((seat) => seat.userId != null) // nullでないuserIdをフィルタリング
-                .map((seat) => seat.userId!) // userIdを抽出
-            )
+            .where((seat) => seat.userId != null)
+            .map((seat) => seat.userId!))
         .toList();
+
+    // ユーザーデータの取得
     final users = await userRepository.getWhereInUsers(userIds);
 
-    final seatGroupMatrix = seatingChart.seats
-        .fold<List<List<SeatGroupViewProperty>>>([],
-            (previousValue, seatGroup) {
-      final value = _toSeatGroupViewProperty(seatGroup, users);
-      if (previousValue.isEmpty ||
-          previousValue.last.last.row != seatGroup.row) {
-        previousValue.add([value]);
-      } else {
-        previousValue.last.add(value);
-      }
-      return previousValue;
-    });
+    // 与えられた座席データを行列形式に変換する
+    final seatGroupMatrix = _createSeatGroupMatrix(seatingChart.seats, users);
 
+    // シートタイトルの取得
     final seatTitles = await seatingChartRepository.getTitles();
 
     return SeatingChartStateSuccess(
@@ -53,6 +46,31 @@ class SeatingChartUseCase {
       seatTitles: seatTitles,
       currentSeatTitle: seatingChart.title,
     );
+  }
+
+  /// 座席グループを行ごとに分割し、行列を作成する
+  List<List<SeatGroupViewProperty>> _createSeatGroupMatrix(
+    List<SeatGroup> seatGroups,
+    List<User> users,
+  ) {
+    return seatGroups.fold<List<List<SeatGroupViewProperty>>>([], (
+      matrix,
+      seatGroup,
+    ) {
+      // View表示用のクラスに変換
+      final seatGroupViewProperty = _toSeatGroupViewProperty(seatGroup, users);
+
+      // 前回の行の最終要素と現在の座席グループが同じ行にあるかどうかをチェック
+      if (matrix.isEmpty || matrix.last.last.row != seatGroup.row) {
+        // 現在の座席グループが新しい行にある場合、新しい行を追加
+        matrix.add([seatGroupViewProperty]);
+      } else {
+        // 現在の座席グループが前回の行にある場合、既存の行に追加
+        matrix.last.add(seatGroupViewProperty);
+      }
+
+      return matrix;
+    });
   }
 
   SeatGroupViewProperty _toSeatGroupViewProperty(
