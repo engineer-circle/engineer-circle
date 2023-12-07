@@ -17,6 +17,7 @@ class UserRepository {
   final FirebaseFirestore firestore;
 
   static const usersCollectionName = 'users';
+  static const userIdFieldName = 'id';
 
   Future<User?> getUser(String uid) async {
     final userRef = firestore.collection(usersCollectionName);
@@ -67,7 +68,8 @@ class UserRepository {
     required CollectionReference<Map<String, dynamic>> reference,
     required List<String> whereInList,
   }) async {
-    final query = reference.limit(10).where('userRef', whereIn: whereInList);
+    final query =
+        reference.limit(10).where(userIdFieldName, whereIn: whereInList);
     final snapshot = await query.get();
     if (snapshot.docs.isEmpty) {
       return [];
