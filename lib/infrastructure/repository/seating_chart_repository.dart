@@ -33,8 +33,12 @@ class SeatingChartRepository {
 
   Future<List<String>> getTitles() async {
     final seatingChartRef = firestore.collection(seatsCollectionName);
-    final snapshot =
-        await seatingChartRef.orderBy('createdAt', descending: true).get();
+
+    final snapshot = await seatingChartRef
+        .orderBy('createdAt', descending: true)
+        .limit(10)
+        .get();
+
     if (snapshot.docs.isEmpty) {
       throw Exception('No seating chart found');
     }
