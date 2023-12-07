@@ -18,7 +18,7 @@ class ProfileFormPage extends ConsumerStatefulWidget {
     required this.isEdit,
   });
 
-  final User? initialProfile;
+  final User initialProfile;
   final bool isEdit;
 
   @override
