@@ -15,6 +15,7 @@ class ProfileStateNotifier extends StateNotifier<ProfileState> {
   ) {
     state = ProfileStateSuccess(
       user: User(
+        id: user.id,
         name: user.name,
         skills: user.skills,
         career: user.career,

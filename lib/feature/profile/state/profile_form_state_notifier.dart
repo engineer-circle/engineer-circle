@@ -12,18 +12,19 @@ class ProfileFormStateNotifier extends StateNotifier<ProfileFormState> {
   ProfileFormStateNotifier() : super(ProfileFormStateLoading());
 
   void initProfileForm(
-    User? user,
+    User user,
   ) {
     state = ProfileFormStateSuccess(
       initialProfile: user,
       draftProfile: User(
-        name: user?.name,
-        skills: user?.skills ?? [],
-        career: user?.career,
-        selfIntroduction: user?.selfIntroduction,
-        avatarUrl: user?.avatarUrl,
-        twitterLink: user?.twitterLink,
-        musubiteLink: user?.musubiteLink,
+        id: user.id,
+        name: user.name,
+        skills: user.skills,
+        career: user.career,
+        selfIntroduction: user.selfIntroduction,
+        avatarUrl: user.avatarUrl,
+        twitterLink: user.twitterLink,
+        musubiteLink: user.musubiteLink,
       ),
     );
   }

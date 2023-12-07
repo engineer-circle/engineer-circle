@@ -20,6 +20,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   List<String> get skills => throw _privateConstructorUsedError;
   CareerOption? get career => throw _privateConstructorUsedError;
@@ -39,7 +40,8 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String? name,
+      {String id,
+      String? name,
       List<String> skills,
       CareerOption? career,
       String? selfIntroduction,
@@ -61,6 +63,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = freezed,
     Object? skills = null,
     Object? career = freezed,
@@ -70,6 +73,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? musubiteLink = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -110,7 +117,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String id,
+      String? name,
       List<String> skills,
       CareerOption? career,
       String? selfIntroduction,
@@ -129,6 +137,7 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = freezed,
     Object? skills = null,
     Object? career = freezed,
@@ -138,6 +147,10 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? musubiteLink = freezed,
   }) {
     return _then(_$UserImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -174,7 +187,8 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl extends _User {
   const _$UserImpl(
-      {this.name,
+      {required this.id,
+      this.name,
       final List<String> skills = const [],
       this.career,
       this.selfIntroduction,
@@ -187,6 +201,8 @@ class _$UserImpl extends _User {
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String? name;
   final List<String> _skills;
@@ -211,7 +227,7 @@ class _$UserImpl extends _User {
 
   @override
   String toString() {
-    return 'User(name: $name, skills: $skills, career: $career, selfIntroduction: $selfIntroduction, avatarUrl: $avatarUrl, twitterLink: $twitterLink, musubiteLink: $musubiteLink)';
+    return 'User(id: $id, name: $name, skills: $skills, career: $career, selfIntroduction: $selfIntroduction, avatarUrl: $avatarUrl, twitterLink: $twitterLink, musubiteLink: $musubiteLink)';
   }
 
   @override
@@ -219,6 +235,7 @@ class _$UserImpl extends _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._skills, _skills) &&
             (identical(other.career, career) || other.career == career) &&
@@ -236,6 +253,7 @@ class _$UserImpl extends _User {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       const DeepCollectionEquality().hash(_skills),
       career,
@@ -260,7 +278,8 @@ class _$UserImpl extends _User {
 
 abstract class _User extends User {
   const factory _User(
-      {final String? name,
+      {required final String id,
+      final String? name,
       final List<String> skills,
       final CareerOption? career,
       final String? selfIntroduction,
@@ -271,6 +290,8 @@ abstract class _User extends User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String? get name;
   @override

@@ -187,7 +187,7 @@ class InitialSetupSeatRoute extends PageRouteInfo<void> {
 class ProfileFormRoute extends PageRouteInfo<ProfileFormRouteArgs> {
   ProfileFormRoute({
     Key? key,
-    required User? initialProfile,
+    required User initialProfile,
     required bool isEdit,
     List<PageRouteInfo>? children,
   }) : super(
@@ -215,7 +215,7 @@ class ProfileFormRouteArgs {
 
   final Key? key;
 
-  final User? initialProfile;
+  final User initialProfile;
 
   final bool isEdit;
 
