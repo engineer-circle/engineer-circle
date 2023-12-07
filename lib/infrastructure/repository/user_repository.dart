@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
@@ -19,6 +21,8 @@ class UserRepository {
   static const usersCollectionName = 'users';
   static const userIdFieldName = 'id';
 
+  static const whereInLimit = 10;
+
   Future<User?> getUser(String uid) async {
     final userRef = firestore.collection(usersCollectionName);
     final snapshot = await userRef.doc(uid).get();
@@ -38,38 +42,41 @@ class UserRepository {
     await userRef.doc(uid).set(user.toJson());
   }
 
+  /// FirestoreのwhereInクエリの制限に基づいてUIDリストをバッチ処理する。
+  /// 各バッチに対して非同期でユーザーデータを取得し、最終的に全ての結果を統合して返す。
   Future<List<User>> getWhereInUsers(List<String> uids) async {
-    final List<List<String>> uidBatches = _partitionUids(uids, 10);
+    final List<List<String>> uidBatches = _partitionUids(uids, whereInLimit);
+    final usersCollectionRef = firestore.collection(usersCollectionName);
 
-    final List<User> fetchedUsers = [];
-
-    for (var uidBatch in uidBatches) {
-      final fetchedItems = await _getUsers(
-        reference: firestore.collection(usersCollectionName),
+    final List<Future<List<User>>> fetchFutureUsers =
+        uidBatches.map((uidBatch) {
+      return _getUsers(
+        reference: usersCollectionRef,
         whereInList: uidBatch,
       );
+    }).toList();
 
-      fetchedUsers.addAll(fetchedItems);
-    }
-
-    return fetchedUsers;
+    // すべてのバッチ処理が完了するまで待つ
+    final List<List<User>> fetchedUsersLists =
+        await Future.wait(fetchFutureUsers);
+    return fetchedUsersLists.expand((usersList) => usersList).toList();
   }
 
-  List<List<String>> _partitionUids(List<String> uids, int batchSize) {
-    List<List<String>> uidBatches = [];
-    for (int i = 0; i < uids.length; i += batchSize) {
-      uidBatches.add(uids.sublist(
-          i, i + batchSize > uids.length ? uids.length : i + batchSize));
-    }
-    return uidBatches;
+  /// 指定されたpartitionSizeをもとにUIDリストを均等なサブリストに分割する。
+  List<List<String>> _partitionUids(List<String> uids, int partitionSize) {
+    return [
+      for (int i = 0; i < uids.length; i += partitionSize)
+        // 分割例 [0, 10), [10, 20), [20, 24)
+        uids.sublist(i, min(i + partitionSize, uids.length)),
+    ];
   }
 
+  /// 指定されたUIDリストに基づくユーザーデータを取得する
   Future<List<User>> _getUsers({
     required CollectionReference<Map<String, dynamic>> reference,
     required List<String> whereInList,
   }) async {
-    final query =
-        reference.limit(10).where(userIdFieldName, whereIn: whereInList);
+    final query = reference.where(userIdFieldName, whereIn: whereInList);
     final snapshot = await query.get();
     if (snapshot.docs.isEmpty) {
       return [];
