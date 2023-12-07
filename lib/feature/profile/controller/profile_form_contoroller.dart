@@ -15,7 +15,7 @@ class ProfileFormController {
 
   final Ref _ref;
 
-  Future<void> initProfileForm(User? initialProfile) async {
+  Future<void> initProfileForm(User initialProfile) async {
     _ref
         .read(profileFormStateProvider.notifier)
         .initProfileForm(initialProfile);

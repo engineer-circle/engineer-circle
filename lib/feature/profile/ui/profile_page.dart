@@ -86,7 +86,7 @@ class _ProfileState extends ConsumerState<ProfilePage> {
             : Center(
                 child: FilledButton(
                   onPressed: () => context.router.push(
-                    ProfileFormRoute(initialProfile: null, isEdit: false),
+                    ProfileFormRoute(initialProfile: state.user, isEdit: false),
                   ),
                   child: const Text(
                     'プロフィールを登録しましょう',
