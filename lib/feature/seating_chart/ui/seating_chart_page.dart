@@ -45,7 +45,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
             padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               onTap: () {
-                // TOOD: リロード
+                ref.read(seatingChartProvider).init();
               },
               child: const Icon(Icons.autorenew, size: 32),
             ),
