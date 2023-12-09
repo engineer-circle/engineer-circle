@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/domain/seat_group.dart';
+import 'package:engineer_circle/domain/seating_chart.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_title_view_property.dart';
@@ -27,17 +28,7 @@ class SeatingChartUseCase {
   Future<SeatingChartStateSuccess> getLatest() async {
     final seatingChart = await seatingChartRepository.getLatest();
 
-    // ユーザーIDの取得
-    final userIds = seatingChart.seatGroupList
-        .expand((seatGroup) => seatGroup.seats
-            .where((seat) => seat.userId != null)
-            .map((seat) => seat.userId!))
-        .toList();
-
-    // ユーザーデータの取得
-    final users = await userRepository.getWhereInUsers(userIds);
-
-    // 与えられた座席データを行列形式に変換する
+    final users = await _getUsers(seatingChart.seatGroupList);
     final seatGroupMatrix =
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
@@ -51,17 +42,7 @@ class SeatingChartUseCase {
       DocumentReference docRef) async {
     final seatingChart = await seatingChartRepository.getSeatingChart(docRef);
 
-    // ユーザーIDの取得
-    final userIds = seatingChart.seatGroupList
-        .expand((seatGroup) => seatGroup.seats
-            .where((seat) => seat.userId != null)
-            .map((seat) => seat.userId!))
-        .toList();
-
-    // ユーザーデータの取得
-    final users = await userRepository.getWhereInUsers(userIds);
-
-    // 与えられた座席データを行列形式に変換する
+    final users = await _getUsers(seatingChart.seatGroupList);
     final seatGroupMatrix =
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
@@ -84,6 +65,21 @@ class SeatingChartUseCase {
         title: seatingChart.seatTitle,
       );
     }).toList();
+  }
+
+  /// 着座しているユーザーを取得する
+  Future<List<User>> _getUsers(
+    List<SeatGroup> seatGroupList,
+  ) {
+    // ユーザーIDの取得
+    final userIds = seatGroupList
+        .expand((seatGroup) => seatGroup.seats
+            .where((seat) => seat.userId != null)
+            .map((seat) => seat.userId!))
+        .toList();
+
+    // ユーザーデータの取得
+    return userRepository.getWhereInUsers(userIds);
   }
 
   /// 座席グループを行ごとに分割し、行列を作成する
