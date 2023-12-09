@@ -4,16 +4,20 @@ import 'package:engineer_circle/feature/seating_chart/state/component_state/seat
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SeatTitlesView extends ConsumerStatefulWidget {
-  const SeatTitlesView({
+class SelectSeatTitleDialog extends ConsumerStatefulWidget {
+  const SelectSeatTitleDialog({
     super.key,
+    required this.onTitleSelected,
   });
 
+  final Function() onTitleSelected;
+
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SeatTitlesViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _SelectSeatTitleDialogState();
 }
 
-class _SeatTitlesViewState extends ConsumerState<SeatTitlesView> {
+class _SelectSeatTitleDialogState extends ConsumerState<SelectSeatTitleDialog> {
   @override
   void initState() {
     /// 画面表示後に実行
@@ -26,6 +30,16 @@ class _SeatTitlesViewState extends ConsumerState<SeatTitlesView> {
   @override
   Widget build(BuildContext context) {
     final seatTitlesState = ref.watch(seatTitlesStateProvider);
+    return AlertDialog(
+      content: SizedBox(
+        width: double.maxFinite,
+        height: 300,
+        child: _dialogContent(seatTitlesState),
+      ),
+    );
+  }
+
+  Widget _dialogContent(SeatTitlesState seatTitlesState) {
     switch (seatTitlesState) {
       case SeatTitlesStateLoading _:
         return const Center(child: CircularProgressIndicator());
@@ -38,7 +52,7 @@ class _SeatTitlesViewState extends ConsumerState<SeatTitlesView> {
                 (title) => ListTile(
                   title: Text(title),
                   onTap: () {
-                    Navigator.of(context).pop();
+                    widget.onTitleSelected();
                   },
                 ),
               )

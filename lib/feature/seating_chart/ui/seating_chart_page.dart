@@ -5,7 +5,7 @@ import 'package:engineer_circle/feature/seating_chart/controller/seating_chart_c
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seating_area.dart';
-import 'package:engineer_circle/feature/seating_chart/ui/seat_titles_view.dart';
+import 'package:engineer_circle/feature/seating_chart/ui/select_seat_title_dialog.dart';
 import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,12 +86,10 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return const AlertDialog(
-                              content: SizedBox(
-                                width: double.maxFinite,
-                                height: 300,
-                                child: SeatTitlesView(),
-                              ),
+                            return SelectSeatTitleDialog(
+                              onTitleSelected: () {
+                                Navigator.of(context).pop();
+                              },
                             );
                           },
                         );
