@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
+import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/usecase/seating_chart_usecase.dart';
 import 'package:engineer_circle/global/logger.dart';
@@ -26,6 +27,7 @@ class SeatingChartController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
+      _ref.read(seatingChartStateProvider.notifier).failure();
     }
   }
 
@@ -44,6 +46,7 @@ class SeatingChartController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
     } finally {
       _ref.read(overlayLoadingProvider.notifier).hide();
     }

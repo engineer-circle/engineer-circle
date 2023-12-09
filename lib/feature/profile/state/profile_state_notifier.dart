@@ -26,4 +26,8 @@ class ProfileStateNotifier extends StateNotifier<ProfileState> {
       ),
     );
   }
+
+  void failure() {
+    state = ProfileStateFailure();
+  }
 }

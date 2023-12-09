@@ -14,4 +14,8 @@ class SeatingChartStateNotifier extends StateNotifier<SeatingChartState> {
   ) {
     state = seatingChartStateSuccess;
   }
+
+  void failure() {
+    state = SeatingChartStateFailure();
+  }
 }

@@ -26,6 +26,7 @@ class ProfileController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
+      _ref.read(profileStateProvider.notifier).failure();
     }
   }
 }
