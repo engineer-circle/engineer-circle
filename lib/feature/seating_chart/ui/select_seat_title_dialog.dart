@@ -49,8 +49,8 @@ class _SelectSeatTitleDialogState extends ConsumerState<SelectSeatTitleDialog> {
         return ListView(
           children: state.titles
               .map(
-                (title) => ListTile(
-                  title: Text(title),
+                (titleViewProperty) => ListTile(
+                  title: Text(titleViewProperty.title),
                   onTap: () {
                     widget.onTitleSelected();
                   },

@@ -31,7 +31,7 @@ class SeatingChartRepository {
     return SeatingChart.fromJson(doc.data());
   }
 
-  Future<List<String>> getTitles() async {
+  Future<List<SeatingChart>> getSeatingCharts() async {
     final seatingChartRef = firestore.collection(seatsCollectionName);
 
     final snapshot = await seatingChartRef
@@ -43,7 +43,7 @@ class SeatingChartRepository {
       throw Exception('No seating chart found');
     }
     return snapshot.docs
-        .map((doc) => SeatingChart.fromJson(doc.data()).seatTitle)
+        .map((doc) => SeatingChart.fromJson(doc.data()))
         .toList();
   }
 }

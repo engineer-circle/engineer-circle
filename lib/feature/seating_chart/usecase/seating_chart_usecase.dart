@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_title_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/infrastructure/repository/seating_chart_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
@@ -45,8 +46,19 @@ class SeatingChartUseCase {
     );
   }
 
-  Future<List<String>> getTitles() {
-    return seatingChartRepository.getTitles();
+  Future<List<SeatTitleViewProperty>> getTitles() async {
+    final seatingCharts = await seatingChartRepository.getSeatingCharts();
+
+    // DocumentReferenceがnullのものを除外（データ不整合が起きない限りnullになることはない）
+    final validSeatingCharts =
+        seatingCharts.where((seatingChart) => seatingChart.docRef != null);
+
+    return validSeatingCharts.map((seatingChart) {
+      return SeatTitleViewProperty(
+        docRef: seatingChart.docRef!,
+        title: seatingChart.seatTitle,
+      );
+    }).toList();
   }
 
   /// 座席グループを行ごとに分割し、行列を作成する
