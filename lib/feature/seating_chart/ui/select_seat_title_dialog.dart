@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engineer_circle/feature/seating_chart/controller/seat_titles_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seat_titles_state.dart';
-import 'package:engineer_circle/feature/seating_chart/state/seat_titles_view_state_notifier.dart';
+import 'package:engineer_circle/feature/seating_chart/state/seat_titles_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
