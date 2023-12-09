@@ -38,14 +38,14 @@ class SeatingChartUseCase {
     // 与えられた座席データを行列形式に変換する
     final seatGroupMatrix = _createSeatGroupMatrix(seatingChart.seats, users);
 
-    // シートタイトルの取得
-    final seatTitles = await seatingChartRepository.getTitles();
-
     return SeatingChartStateSuccess(
       seatGroupMatrix: seatGroupMatrix,
-      seatTitles: seatTitles,
       currentSeatTitle: seatingChart.title,
     );
+  }
+
+  Future<List<String>> getTitles() {
+    return seatingChartRepository.getTitles();
   }
 
   /// 座席グループを行ごとに分割し、行列を作成する
