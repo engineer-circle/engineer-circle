@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/domain/user.dart';
@@ -25,6 +26,30 @@ class SeatingChartUseCase {
 
   Future<SeatingChartStateSuccess> getLatest() async {
     final seatingChart = await seatingChartRepository.getLatest();
+
+    // ユーザーIDの取得
+    final userIds = seatingChart.seatGroupList
+        .expand((seatGroup) => seatGroup.seats
+            .where((seat) => seat.userId != null)
+            .map((seat) => seat.userId!))
+        .toList();
+
+    // ユーザーデータの取得
+    final users = await userRepository.getWhereInUsers(userIds);
+
+    // 与えられた座席データを行列形式に変換する
+    final seatGroupMatrix =
+        _createSeatGroupMatrix(seatingChart.seatGroupList, users);
+
+    return SeatingChartStateSuccess(
+      seatGroupMatrix: seatGroupMatrix,
+      currentSeatTitle: seatingChart.seatTitle,
+    );
+  }
+
+  Future<SeatingChartStateSuccess> getSeatingChart(
+      DocumentReference docRef) async {
+    final seatingChart = await seatingChartRepository.getSeatingChart(docRef);
 
     // ユーザーIDの取得
     final userIds = seatingChart.seatGroupList

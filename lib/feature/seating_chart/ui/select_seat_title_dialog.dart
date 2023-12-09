@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engineer_circle/feature/seating_chart/controller/seat_titles_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seat_titles_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seat_titles_view_state_notifier.dart';
@@ -10,7 +11,7 @@ class SelectSeatTitleDialog extends ConsumerStatefulWidget {
     required this.onTitleSelected,
   });
 
-  final Function() onTitleSelected;
+  final Function(DocumentReference docRef) onTitleSelected;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -52,7 +53,7 @@ class _SelectSeatTitleDialogState extends ConsumerState<SelectSeatTitleDialog> {
                 (titleViewProperty) => ListTile(
                   title: Text(titleViewProperty.title),
                   onTap: () {
-                    widget.onTitleSelected();
+                    widget.onTitleSelected(titleViewProperty.docRef);
                   },
                 ),
               )
