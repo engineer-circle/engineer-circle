@@ -45,7 +45,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
             padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               onTap: () {
-                // TOOD: リロード
+                ref.read(seatingChartProvider).init();
               },
               child: const Icon(Icons.autorenew, size: 32),
             ),
@@ -87,8 +87,13 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                           context: context,
                           builder: (BuildContext context) {
                             return SelectSeatTitleDialog(
-                              onTitleSelected: () {
-                                Navigator.of(context).pop();
+                              onTitleSelected: (docRef) {
+                                ref.read(seatingChartProvider).changeSeat(
+                                      docRef: docRef,
+                                      onSuccess: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    );
                               },
                             );
                           },

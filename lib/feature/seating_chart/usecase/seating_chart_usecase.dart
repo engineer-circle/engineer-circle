@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
+import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_title_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/infrastructure/repository/seating_chart_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
@@ -25,27 +27,58 @@ class SeatingChartUseCase {
   Future<SeatingChartStateSuccess> getLatest() async {
     final seatingChart = await seatingChartRepository.getLatest();
 
+    final users = await _getUsers(seatingChart.seatGroupList);
+    final seatGroupMatrix =
+        _createSeatGroupMatrix(seatingChart.seatGroupList, users);
+
+    return SeatingChartStateSuccess(
+      seatGroupMatrix: seatGroupMatrix,
+      currentSeatTitle: seatingChart.seatTitle,
+    );
+  }
+
+  Future<SeatingChartStateSuccess> getSeatingChart(
+      DocumentReference docRef) async {
+    final seatingChart = await seatingChartRepository.getSeatingChart(docRef);
+
+    final users = await _getUsers(seatingChart.seatGroupList);
+    final seatGroupMatrix =
+        _createSeatGroupMatrix(seatingChart.seatGroupList, users);
+
+    return SeatingChartStateSuccess(
+      seatGroupMatrix: seatGroupMatrix,
+      currentSeatTitle: seatingChart.seatTitle,
+    );
+  }
+
+  Future<List<SeatTitleViewProperty>> getTitles() async {
+    final seatingCharts = await seatingChartRepository.getSeatingCharts();
+
+    // DocumentReferenceがnullのものを除外（データ不整合が起きない限りnullになることはない）
+    final validSeatingCharts =
+        seatingCharts.where((seatingChart) => seatingChart.docRef != null);
+
+    return validSeatingCharts.map((seatingChart) {
+      return SeatTitleViewProperty(
+        docRef: seatingChart.docRef!,
+        title: seatingChart.seatTitle,
+      );
+    }).toList();
+  }
+
+  /// 着座しているユーザーを取得する
+  Future<List<User>> _getUsers(
+    List<SeatGroup> seatGroupList,
+  ) {
     // ユーザーIDの取得
-    final userIds = seatingChart.seats
+    final userIds = seatGroupList
         .expand((seatGroup) => seatGroup.seats
             .where((seat) => seat.userId != null)
             .map((seat) => seat.userId!))
         .toList();
 
     // ユーザーデータの取得
-    final users = await userRepository.getWhereInUsers(userIds);
-
-    // 与えられた座席データを行列形式に変換する
-    final seatGroupMatrix = _createSeatGroupMatrix(seatingChart.seats, users);
-
-    return SeatingChartStateSuccess(
-      seatGroupMatrix: seatGroupMatrix,
-      currentSeatTitle: seatingChart.title,
-    );
-  }
-
-  Future<List<String>> getTitles() {
-    return seatingChartRepository.getTitles();
+    return userRepository.getWhereInUsers(userIds);
   }
 
   /// 座席グループを行ごとに分割し、行列を作成する

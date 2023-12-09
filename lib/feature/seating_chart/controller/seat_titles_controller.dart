@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_titles_view_state_notifier.dart';
+import 'package:engineer_circle/feature/seating_chart/state/seat_titles_view_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/usecase/seating_chart_usecase.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

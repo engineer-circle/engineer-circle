@@ -22,7 +22,9 @@ class AdminSeatingChartRepository {
     String docId,
     SeatingChart seatingChart,
   ) async {
-    final seatingChartRef = firestore.collection(seatsCollectionName);
-    await seatingChartRef.doc(docId).set(seatingChart.toJson());
+    final seatingChartRef =
+        firestore.collection(seatsCollectionName).doc(docId);
+    final newSeatingChart = seatingChart.copyWith(docRef: seatingChartRef);
+    await seatingChartRef.set(newSeatingChart.toJson());
   }
 }
