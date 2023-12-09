@@ -1,4 +1,4 @@
-import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_titles_state.dart';
+import 'package:engineer_circle/feature/seating_chart/state/seat_titles_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final seatTitlesStateProvider =

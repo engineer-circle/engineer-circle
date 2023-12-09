@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SeatTitlesStateSuccess {
-  List<String> get titles => throw _privateConstructorUsedError;
+  List<SeatTitleViewProperty> get titles => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SeatTitlesStateSuccessCopyWith<SeatTitlesStateSuccess> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $SeatTitlesStateSuccessCopyWith<$Res> {
           $Res Function(SeatTitlesStateSuccess) then) =
       _$SeatTitlesStateSuccessCopyWithImpl<$Res, SeatTitlesStateSuccess>;
   @useResult
-  $Res call({List<String> titles});
+  $Res call({List<SeatTitleViewProperty> titles});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$SeatTitlesStateSuccessCopyWithImpl<$Res,
       titles: null == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SeatTitleViewProperty>,
     ) as $Val);
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$SeatTitlesStateSuccessImplCopyWith<$Res>
       __$$SeatTitlesStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> titles});
+  $Res call({List<SeatTitleViewProperty> titles});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$SeatTitlesStateSuccessImplCopyWithImpl<$Res>
       titles: null == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SeatTitleViewProperty>,
     ));
   }
 }
@@ -96,12 +96,13 @@ class __$$SeatTitlesStateSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SeatTitlesStateSuccessImpl implements _SeatTitlesStateSuccess {
-  const _$SeatTitlesStateSuccessImpl({required final List<String> titles})
+  const _$SeatTitlesStateSuccessImpl(
+      {required final List<SeatTitleViewProperty> titles})
       : _titles = titles;
 
-  final List<String> _titles;
+  final List<SeatTitleViewProperty> _titles;
   @override
-  List<String> get titles {
+  List<SeatTitleViewProperty> get titles {
     if (_titles is EqualUnmodifiableListView) return _titles;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_titles);
@@ -133,11 +134,12 @@ class _$SeatTitlesStateSuccessImpl implements _SeatTitlesStateSuccess {
 }
 
 abstract class _SeatTitlesStateSuccess implements SeatTitlesStateSuccess {
-  const factory _SeatTitlesStateSuccess({required final List<String> titles}) =
+  const factory _SeatTitlesStateSuccess(
+          {required final List<SeatTitleViewProperty> titles}) =
       _$SeatTitlesStateSuccessImpl;
 
   @override
-  List<String> get titles;
+  List<SeatTitleViewProperty> get titles;
   @override
   @JsonKey(ignore: true)
   _$$SeatTitlesStateSuccessImplCopyWith<_$SeatTitlesStateSuccessImpl>
