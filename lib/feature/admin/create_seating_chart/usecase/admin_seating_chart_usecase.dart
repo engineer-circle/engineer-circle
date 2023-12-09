@@ -25,7 +25,7 @@ class AdminSeatingChartUseCase {
     final now = DateTime.now();
     final docId = formatter.format(now);
 
-    final seatingChart = SeatingChart(title: title, seats: seats);
+    final seatingChart = SeatingChart(seatTitle: title, seatGroupList: seats);
     repository.createSeatingChart(docId, seatingChart);
   }
 }

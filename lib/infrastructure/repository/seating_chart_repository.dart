@@ -43,7 +43,7 @@ class SeatingChartRepository {
       throw Exception('No seating chart found');
     }
     return snapshot.docs
-        .map((doc) => SeatingChart.fromJson(doc.data()).title)
+        .map((doc) => SeatingChart.fromJson(doc.data()).seatTitle)
         .toList();
   }
 }

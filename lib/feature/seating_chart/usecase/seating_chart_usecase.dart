@@ -26,7 +26,7 @@ class SeatingChartUseCase {
     final seatingChart = await seatingChartRepository.getLatest();
 
     // ユーザーIDの取得
-    final userIds = seatingChart.seats
+    final userIds = seatingChart.seatGroupList
         .expand((seatGroup) => seatGroup.seats
             .where((seat) => seat.userId != null)
             .map((seat) => seat.userId!))
@@ -36,11 +36,12 @@ class SeatingChartUseCase {
     final users = await userRepository.getWhereInUsers(userIds);
 
     // 与えられた座席データを行列形式に変換する
-    final seatGroupMatrix = _createSeatGroupMatrix(seatingChart.seats, users);
+    final seatGroupMatrix =
+        _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
     return SeatingChartStateSuccess(
       seatGroupMatrix: seatGroupMatrix,
-      currentSeatTitle: seatingChart.title,
+      currentSeatTitle: seatingChart.seatTitle,
     );
   }
 
