@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/domain/seat_group.dart';
-import 'package:engineer_circle/domain/seating_chart.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_title_view_property.dart';
