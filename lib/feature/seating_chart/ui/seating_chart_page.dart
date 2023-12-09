@@ -5,6 +5,7 @@ import 'package:engineer_circle/feature/seating_chart/controller/seating_chart_c
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seating_area.dart';
+import 'package:engineer_circle/feature/seating_chart/ui/select_seat_title_dialog.dart';
 import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -80,26 +81,22 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                 scrollDirection: Axis.horizontal,
                 child: Column(
                   children: [
-                    Container(
-                      width: 240,
-                      padding: const EdgeInsets.only(top: 20, bottom: 28),
-                      child: DropdownButtonFormField<String>(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        items: state.seatTitles
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          // TODO: 選択したタイトルの座席表に更新する
-                        },
-                        value: state.currentSeatTitle,
-                      ),
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SelectSeatTitleDialog(
+                              onTitleSelected: () {
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: currentTitle(state.currentSeatTitle),
                     ),
+                    const SizedBox(height: 12),
                     SeatingArea(
                       seatGroupMatrix: state.seatGroupMatrix,
                       onSeatSelected: (seatId) {
@@ -171,5 +168,31 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
           ],
         );
     }
+  }
+
+  Widget currentTitle(String currentSeatTitle) {
+    return Container(
+      width: 240,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 8,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            currentSeatTitle,
+            style: const TextStyle(fontSize: 16),
+          ),
+          const Icon(
+            Icons.arrow_drop_down,
+          ),
+        ],
+      ),
+    );
   }
 }
