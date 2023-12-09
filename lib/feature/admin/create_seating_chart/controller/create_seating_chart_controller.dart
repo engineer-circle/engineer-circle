@@ -1,5 +1,6 @@
 import 'package:engineer_circle/domain/seat_group.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/usecase/admin_seating_chart_usecase.dart';
+import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +21,7 @@ class CreateSeatingChartController {
     required Function onSuccess,
   }) async {
     try {
-      // TODO ローディング
+      _ref.read(overlayLoadingProvider.notifier).show();
       await _ref
           .read(adminSeatingChartUseCaseProvider)
           .createSeatingChart(title, seats);
@@ -28,6 +29,8 @@ class CreateSeatingChartController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
+    } finally {
+      _ref.read(overlayLoadingProvider.notifier).hide();
     }
   }
 }

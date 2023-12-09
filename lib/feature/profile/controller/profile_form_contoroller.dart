@@ -1,4 +1,5 @@
 import 'package:engineer_circle/domain/user.dart';
+import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
@@ -25,6 +26,7 @@ class ProfileFormController {
     required User user,
     required Function onSuccess,
   }) async {
+    _ref.read(overlayLoadingProvider.notifier).show();
     try {
       // TODO: uidを取得する
       final uid = 'hYrMueItZqHe4hCVkpmX';
@@ -33,6 +35,8 @@ class ProfileFormController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
+    } finally {
+      _ref.read(overlayLoadingProvider.notifier).hide();
     }
   }
 }
