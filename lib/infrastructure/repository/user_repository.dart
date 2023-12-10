@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final userRepositoryProvider = Provider(
@@ -32,6 +34,22 @@ class UserRepository {
     } else {
       return null;
     }
+  }
+
+  Future<String> uploadImageAndGetUrl(
+    String uid,
+    File file,
+  ) async {
+    final String fileName = "$uid.jpg";
+    final storageRef = FirebaseStorage.instance
+        .ref()
+        .child(usersCollectionName)
+        .child(uid)
+        .child(fileName);
+    // users/uid/ファイル名 にアップロード
+    await storageRef.putFile(file);
+    // users/uid/ファイル名 のURLを取得
+    return await storageRef.getDownloadURL();
   }
 
   Future<void> updateProfile(
