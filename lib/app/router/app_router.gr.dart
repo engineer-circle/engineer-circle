@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AdminRootPage(),
       );
     },
+    AuthenticationRootRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthenticationRootPage(),
+      );
+    },
     CreateSeatingChartRoute.name: (routeData) {
       final args = routeData.argsAs<CreateSeatingChartRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -47,6 +53,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const InitialSetupSeatPage(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LoginPage(),
       );
     },
     ProfileFormRoute.name: (routeData) {
@@ -84,6 +96,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SeatingChartPage(),
       );
     },
+    SignUpRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignUpPage(),
+      );
+    },
   };
 }
 
@@ -111,6 +129,20 @@ class AdminRootRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AdminRootRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AuthenticationRootPage]
+class AuthenticationRootRoute extends PageRouteInfo<void> {
+  const AuthenticationRootRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthenticationRootRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthenticationRootRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -178,6 +210,20 @@ class InitialSetupSeatRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'InitialSetupSeatRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -277,6 +323,20 @@ class SeatingChartRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SeatingChartRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignUpPage]
+class SignUpRoute extends PageRouteInfo<void> {
+  const SignUpRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
