@@ -13,7 +13,7 @@ class EditAvatar extends StatelessWidget {
 
   final String? draftAvatarUrl;
   final bool isLocalFilePath;
-  final Function(String filePath) onImageSelected;
+  final Function(File file) onImageSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class EditAvatar extends StatelessWidget {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      onImageSelected(pickedFile.path);
+      onImageSelected(File(pickedFile.path));
     }
   }
 }

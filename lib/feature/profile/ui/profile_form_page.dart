@@ -77,13 +77,12 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
             children: [
               Center(
                 child: EditAvatar(
-                  draftAvatarUrl: state.draftProfile.avatarUrl,
-                  isLocalFilePath: state.draftProfile.avatarUrl !=
-                      state.initialProfile?.avatarUrl,
-                  onImageSelected: (filePath) => ref
-                      .read(profileFormStateProvider.notifier)
-                      .updateProfile(avatarUrl: filePath),
-                ),
+                    draftAvatarUrl: state.draftProfile.avatarUrl,
+                    isLocalFilePath: state.draftProfile.avatarUrl !=
+                        state.initialProfile?.avatarUrl,
+                    onImageSelected: (file) => ref
+                        .read(profileFormProvider)
+                        .uploadImage(state.draftProfile.id, file)),
               ),
               TextFormField(
                 initialValue: state.initialProfile?.name,
