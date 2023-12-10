@@ -19,29 +19,32 @@ class _LoginState extends ConsumerState<LoginPage> {
         title: const Text('ログイン'),
       ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton.icon(
-              onPressed: () {
-                // Appleでサインインする処理
-              },
-              icon: const Icon(Icons.apple),
-              label: const Text('Sign in with Apple'),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () {
-                // Googleでサインインする処理
-              },
-              icon: const Icon(Icons.email),
-              label: const Text('Sign in with Google'),
-            ),
-            TextButton(
-              onPressed: () => context.router.push(const SignUpRoute()),
-              child: const Text('ご登録がまだの方はこちら'),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Appleでサインインする処理
+                },
+                icon: const Icon(Icons.apple),
+                label: const Text('Sign in with Apple'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Googleでサインインする処理
+                },
+                icon: const Icon(Icons.email),
+                label: const Text('Sign in with Google'),
+              ),
+              TextButton(
+                onPressed: () => context.router.push(const SignUpRoute()),
+                child: const Text('ご登録がまだの方はこちら'),
+              ),
+            ],
+          ),
         ),
       ),
     );

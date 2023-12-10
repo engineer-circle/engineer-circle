@@ -19,33 +19,37 @@ class _SignUpState extends ConsumerState<SignUpPage> {
         title: const Text('新規登録'),
       ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton.icon(
-              onPressed: () {
-                // Appleでサインインする処理
-              },
-              icon: const Icon(Icons.apple),
-              label: const Text('Sign up with Apple'),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () {
-                // Googleでサインインする処理
-              },
-              icon: const Icon(Icons.email),
-              label: const Text('Sign up with Google'),
-            ),
-            TermsAgreementText(
-              onTapTermsOfUse: () {
-                // TODO: 利用規約を開く
-              },
-              onTapPrivacyPolicy: () {
-                // TODO: プラポリを開く
-              },
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Appleでサインインする処理
+                },
+                icon: const Icon(Icons.apple),
+                label: const Text('Sign up with Apple'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Googleでサインインする処理
+                },
+                icon: const Icon(Icons.email),
+                label: const Text('Sign up with Google'),
+              ),
+              const SizedBox(height: 12),
+              TermsAgreementText(
+                onTapTermsOfUse: () {
+                  // TODO: 利用規約を開く
+                },
+                onTapPrivacyPolicy: () {
+                  // TODO: プラポリを開く
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

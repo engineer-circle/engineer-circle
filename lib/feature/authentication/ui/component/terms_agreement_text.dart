@@ -19,7 +19,8 @@ class TermsAgreementText extends StatelessWidget {
           fontSize: 16,
         ),
         children: [
-          const TextSpan(text: '利用を開始することで、'),
+          const TextSpan(
+              text: '利用を開始することで、', style: TextStyle(color: Colors.black)),
           TextSpan(
               text: '利用規約',
               style: const TextStyle(
@@ -28,7 +29,7 @@ class TermsAgreementText extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () => onTapTermsOfUse()),
-          const TextSpan(text: ' と '),
+          const TextSpan(text: ' と ', style: TextStyle(color: Colors.black)),
           TextSpan(
             text: 'プライバシーポリシー',
             style: const TextStyle(
@@ -38,7 +39,8 @@ class TermsAgreementText extends StatelessWidget {
             recognizer: TapGestureRecognizer()
               ..onTap = () => onTapPrivacyPolicy(),
           ),
-          const TextSpan(text: 'に同意したとみなします'),
+          const TextSpan(
+              text: 'に同意したとみなします', style: TextStyle(color: Colors.black)),
         ],
       ),
     );
