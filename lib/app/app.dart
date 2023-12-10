@@ -19,8 +19,10 @@ class _AppState extends ConsumerState<App> {
   @override
   void initState() {
     super.initState();
-    // 認証状態を更新
-    ref.read(authProvider).update();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 認証状態を更新
+      ref.read(authProvider).update();
+    });
   }
 
   @override
