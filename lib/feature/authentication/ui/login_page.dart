@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,7 +35,7 @@ class _LoginState extends ConsumerState<LoginPage> {
               const SizedBox(height: 8),
               ElevatedButton.icon(
                 onPressed: () {
-                  // Googleでサインインする処理
+                  ref.read(authProvider).googleAuthenticate();
                 },
                 icon: const Icon(Icons.email),
                 label: const Text('Sign in with Google'),
