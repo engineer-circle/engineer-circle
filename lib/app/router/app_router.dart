@@ -3,10 +3,16 @@ import 'package:engineer_circle/feature/admin/initial_setup_seat/ui/initial_setu
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/create_seating_chart_page.dart';
 import 'package:engineer_circle/feature/admin/menu/ui/admin_menu.page.dart';
 import 'package:engineer_circle/domain/user.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
+import 'package:engineer_circle/feature/authentication/ui/authentication_root_page.dart';
+import 'package:engineer_circle/feature/authentication/ui/login_page.dart';
+import 'package:engineer_circle/feature/authentication/ui/sign_up_page.dart';
 import 'package:engineer_circle/feature/profile/ui/profile_form_page.dart';
 import 'package:engineer_circle/feature/profile/ui/profile_page.dart';
 import 'package:engineer_circle/feature/root/ui/root_page.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/seating_chart_page.dart';
+import 'package:engineer_circle/global/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,6 +31,21 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
 
   @override
   List<AutoRoute> get routes => [
+        AutoRoute(
+          path: '/auth',
+          page: AuthenticationRootRoute.page,
+          children: [
+            AutoRoute(
+              initial: true,
+              path: 'login',
+              page: LoginRoute.page,
+            ),
+            AutoRoute(
+              path: 'signUp',
+              page: SignUpRoute.page,
+            ),
+          ],
+        ),
         AutoRoute(
           path: '/',
           page: RootRoute.page,
@@ -66,7 +87,39 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    resolver.next();
+    final routeName = resolver.route.name;
+    logger.i('onNavigation(): $routeName');
+
+    switch (ref.watch(authStateProvider)) {
+      case AuthenticationState.unAuthenticated:
+        if ([
+          AuthenticationRootRoute.name,
+          LoginRoute.name,
+          SignUpRoute.name,
+        ].contains(routeName)) {
+          // 未ログインなのでrouteNameをそのまま表示
+          resolver.next();
+          return;
+        }
+        logger.i('未ログインなので認証画面にリダイレクト');
+        router.replace(const AuthenticationRootRoute());
+
+      case AuthenticationState.authenticated:
+        if ([
+          AuthenticationRootRoute.name,
+          LoginRoute.name,
+          SignUpRoute.name,
+        ].contains(routeName)) {
+          logger.i('認証済みなのでホーム画面にリダイレクト');
+          router.replace(const RootRoute());
+          return;
+        }
+        // 認証済みなのでrouteNameをそのまま表示
+        resolver.next();
+
+      case AuthenticationState.checking:
+      // App()で状態を取得するまで待っているので、ここに流れることはない
+    }
   }
 
   List<AutoRoute> get homeTabRoutes => [
