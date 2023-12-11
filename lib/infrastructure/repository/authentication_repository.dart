@@ -16,12 +16,7 @@ class AuthenticationRepository {
 
   final FirebaseAuth firebaseAuth;
 
-  static final googleLogin = GoogleSignIn(
-      // scopes: [
-      // 'email',
-      // 'https://www.googleapis.com/auth/contacts.readonly',
-      // ],
-      );
+  static final googleLogin = GoogleSignIn();
 
   Future<String?> googleSignIn() async {
     GoogleSignInAccount? signinAccount = await googleLogin.signIn();
