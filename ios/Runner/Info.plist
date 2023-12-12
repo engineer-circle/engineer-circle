@@ -51,5 +51,16 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>アプリに表示・使用するための写真や動画をライブラリから選択する目的でリクエストします。</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(CFBundleURLSchemes)</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

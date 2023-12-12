@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "34416412021",
+    "project_id": "engineer-circle-dev",
+    "storage_bucket": "engineer-circle-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34416412021:android:830cb19443af80beb37f3c",
+        "android_client_info": {
+          "package_name": "com.engineercircle.engineer_circle.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34416412021-ore942p34qdrsrulmgl820gu4l7prqle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engineercircle.engineer_circle.dev",
+            "certificate_hash": "3e1648fdf01df47d805a9ab557e347c59a9766c4"
+          }
+        },
+        {
+          "client_id": "34416412021-6ohtduln964g857c5mggtf3b19f77a5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcIM05ww7K-HXQFrhhrWRbKJB5JJJYBxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34416412021-6ohtduln964g857c5mggtf3b19f77a5t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "34416412021-ol0ob94kvlc0obvhnfcujl71hbbvarkj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.engineercircle.engineerCircle"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

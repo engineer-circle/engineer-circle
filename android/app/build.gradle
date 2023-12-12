@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -64,3 +65,17 @@ flutter {
 }
 
 dependencies {}
+
+// dart_definesで指定した環境に応じたgoogle-services.jsonをルートディレクトリにコピーするスクリプト
+task selectGoogleServicesJson(type: Copy) {
+    from "src/$flavor/google-services.json"
+    into './'
+}
+
+// 新しいタスクが追加されるたびに実行されるスクリプト
+tasks.whenTaskAdded { task ->
+    // google-servicesプラグインによって自動的に生成されるタスクが追加された場合、selectGoogleServicesJsonに依存させる
+    if (task.name == 'processDebugGoogleServices' || task.name == 'processReleaseGoogleServices') {
+        task.dependsOn selectGoogleServicesJson
+    }
+}
