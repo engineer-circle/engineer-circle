@@ -44,5 +44,8 @@ app.*.map.json
 /android/app/release
 /android/app/google-services.json
 
+# iOS
+ios/GoogleService-Info.plist
+
 # fvm related
 .fvm/flutter_sdk
