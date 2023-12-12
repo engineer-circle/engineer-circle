@@ -50,7 +50,7 @@ class AuthenticationController {
         _ref.read(snackBarProvider).showSnackBar('アカウント登録に失敗しました');
         return;
       }
-      _ref.read(userRepositoryProvider).createUser(uid);
+      await _ref.read(userRepositoryProvider).createUser(uid);
       _ref.read(authStateProvider.notifier).authenticated();
     } on Exception catch (e) {
       // TODO: エラーハンドリング
