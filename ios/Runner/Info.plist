@@ -58,8 +58,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<!-- TODO: 本番用と切り替えられるように動的にする -->
-				<string>com.googleusercontent.apps.34416412021-m37qi0l4reahm5qore3rsvajjikli5pm</string>
+				<string>$(CFBundleURLSchemes)</string>
 			</array>
 		</dict>
 	</array>
