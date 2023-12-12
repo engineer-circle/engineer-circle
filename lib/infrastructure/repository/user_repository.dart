@@ -36,6 +36,12 @@ class UserRepository {
     }
   }
 
+  Future<void> createUser(String uid) {
+    final userRef = firestore.collection(usersCollectionName);
+    final user = User(id: uid);
+    return userRef.doc(uid).set(user.toJson());
+  }
+
   Future<String> uploadImageAndGetUrl(
     String uid,
     File file,
