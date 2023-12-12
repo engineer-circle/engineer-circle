@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:engineer_circle/feature/authentication/state/authentication_state.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
+import 'package:engineer_circle/feature/authentication/usecase/authentication_usecase.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/global/logger.dart';
@@ -17,11 +17,9 @@ class AuthenticationController {
 
   final Ref _ref;
 
-  Future<void> update() async {
-    // final authState = await ref.read(authUseCaseProvider).getAuthState();
-    _ref
-        .read(authStateProvider.notifier)
-        .updateState(AuthenticationState.unAuthenticated);
+  void update() async {
+    final authState = _ref.read(authUseCaseProvider).getAuthenticationState();
+    _ref.read(authStateProvider.notifier).updateState(authState);
   }
 
   Future<void> googleAuthenticate() async {
