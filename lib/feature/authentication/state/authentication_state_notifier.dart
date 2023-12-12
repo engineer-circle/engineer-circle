@@ -11,4 +11,12 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState> {
   void updateState(AuthenticationState state) async {
     this.state = state;
   }
+
+  void unAuthenticated() async {
+    state = AuthenticationState.unAuthenticated;
+  }
+
+  void authenticated() async {
+    state = AuthenticationState.authenticated;
+  }
 }

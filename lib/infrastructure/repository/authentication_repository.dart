@@ -18,6 +18,10 @@ class AuthenticationRepository {
 
   static final googleLogin = GoogleSignIn();
 
+  String? getCurrentUserUid() {
+    return firebaseAuth.currentUser?.uid;
+  }
+
   Future<String?> googleSignIn() async {
     GoogleSignInAccount? signinAccount = await googleLogin.signIn();
 

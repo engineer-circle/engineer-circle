@@ -35,7 +35,7 @@ class _LoginState extends ConsumerState<LoginPage> {
               const SizedBox(height: 8),
               ElevatedButton.icon(
                 onPressed: () {
-                  ref.read(authProvider).googleAuthenticate();
+                  ref.read(authProvider).googleSignIn();
                 },
                 icon: const Icon(Icons.email),
                 label: const Text('Sign in with Google'),

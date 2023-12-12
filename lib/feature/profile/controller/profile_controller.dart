@@ -1,5 +1,7 @@
+import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/profile/state/profile_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
+import 'package:engineer_circle/infrastructure/repository/authentication_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,8 +18,13 @@ class ProfileController {
 
   Future<void> init() async {
     try {
-      // TODO: uidを取得する
-      final uid = 'hYrMueItZqHe4hCVkpmX';
+      final uid = _ref.read(authRepositoryProvider).getCurrentUserUid();
+      if (uid == null) {
+        // 強制ログアウト
+        _ref.read(authStateProvider.notifier).unAuthenticated();
+        return;
+      }
+
       final user = await _ref.read(userRepositoryProvider).getUser(uid);
       if (user == null) {
         throw Exception('User is null');

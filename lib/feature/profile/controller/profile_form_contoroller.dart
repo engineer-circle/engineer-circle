@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:engineer_circle/domain/user.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/feature/profile/state/profile_form_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
+import 'package:engineer_circle/infrastructure/repository/authentication_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,8 +55,13 @@ class ProfileFormController {
   }) async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
-      // TODO: uidを取得する
-      final uid = 'hYrMueItZqHe4hCVkpmX';
+      final uid = _ref.read(authRepositoryProvider).getCurrentUserUid();
+      if (uid == null) {
+        // 強制ログアウト
+        _ref.read(authStateProvider.notifier).unAuthenticated();
+        return;
+      }
+
       await _ref.read(userRepositoryProvider).updateProfile(uid, user);
       onSuccess();
       _ref.read(snackBarProvider).showSnackBar('ユーザー情報を更新しました');
