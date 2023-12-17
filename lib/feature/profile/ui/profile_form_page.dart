@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/profile/controller/profile_controller.dart';
 import 'package:engineer_circle/feature/profile/controller/profile_form_contoroller.dart';
 import 'package:engineer_circle/domain/career_option.dart';
 import 'package:engineer_circle/domain/user.dart';
@@ -180,6 +181,11 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                             context.router.replaceAll(
                               [const ProfileRoute()],
                             );
+                            // auto_routeのReturning Resultsを使ってプロフィール画面に値を渡したいが,
+                            // なぜか受け取り検知してくれないため、やむなくここでプロフィール画面のStateにアクセスしている
+                            ref
+                                .read(profileProvider)
+                                .update(state.draftProfile);
                           },
                         );
                   }
