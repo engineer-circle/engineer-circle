@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -7,12 +8,10 @@ class EditAvatar extends StatelessWidget {
   const EditAvatar({
     Key? key,
     required this.draftAvatarUrl,
-    required this.isLocalFilePath,
     required this.onImageSelected,
   }) : super(key: key);
 
   final String? draftAvatarUrl;
-  final bool isLocalFilePath;
   final Function(File file) onImageSelected;
 
   @override
@@ -20,7 +19,7 @@ class EditAvatar extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        _avatarIcon(draftAvatarUrl, isLocalFilePath),
+        _avatarIcon(draftAvatarUrl),
         InkWell(
           onTap: () => _selectImage(context),
           child: _imagePickerIcon(),
@@ -29,10 +28,7 @@ class EditAvatar extends StatelessWidget {
     );
   }
 
-  Widget _avatarIcon(
-    String? draftAvatarUrl,
-    bool isLocalFilePath,
-  ) {
+  Widget _avatarIcon(String? draftAvatarUrl) {
     if (draftAvatarUrl == null) {
       // デフォルトアイコン
       return const Icon(Icons.account_circle, size: 100);
@@ -41,22 +37,12 @@ class EditAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: 50,
       child: ClipOval(
-        child: isLocalFilePath
-            // デバイスのローカルストレージから取得した場合
-            ? Image.file(
-                File(draftAvatarUrl),
-                fit: BoxFit.cover,
-                width: 100, // CircleAvatarの直径に合わせて調整
-                height: 100,
-              )
-            // Remoteから取得した場合
-            : Image.network(
-                draftAvatarUrl,
-                fit: BoxFit.cover,
-                width: 100, // CircleAvatarの直径に合わせて調整
-                height: 100,
-              ),
-      ),
+          child: Image(
+        image: CachedNetworkImageProvider(draftAvatarUrl),
+        fit: BoxFit.cover,
+        width: 100, // CircleAvatarの直径に合わせて調整
+        height: 100,
+      )),
     );
   }
 

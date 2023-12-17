@@ -78,8 +78,6 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
               Center(
                 child: EditAvatar(
                     draftAvatarUrl: state.draftProfile.avatarUrl,
-                    isLocalFilePath: state.draftProfile.avatarUrl !=
-                        state.initialProfile?.avatarUrl,
                     onImageSelected: (file) => ref
                         .read(profileFormProvider)
                         .uploadImage(state.draftProfile.id, file)),
