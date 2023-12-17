@@ -18,6 +18,10 @@ class ProfileContent extends StatelessWidget {
 
   static const double iconSize = 100;
 
+  bool isNotEmpty(String? value) {
+    return (value ?? '').isNotEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -82,9 +86,9 @@ class ProfileContent extends StatelessWidget {
                     Assets.images.xLogo.path,
                     width: 24,
                     height: 24,
-                    color: profile.twitterLink != null ? null : Colors.grey,
+                    color: isNotEmpty(profile.twitterLink) ? null : Colors.grey,
                   ),
-                  onPressed: profile.twitterLink != null
+                  onPressed: isNotEmpty(profile.twitterLink)
                       ? () => onTwitterPressed(profile.twitterLink!)
                       : null,
                 ),
@@ -94,9 +98,10 @@ class ProfileContent extends StatelessWidget {
                     Assets.images.musubiteLogo.path,
                     width: 28,
                     height: 28,
-                    color: profile.musubiteLink != null ? null : Colors.grey,
+                    color:
+                        isNotEmpty(profile.musubiteLink) ? null : Colors.grey,
                   ),
-                  onPressed: profile.musubiteLink != null
+                  onPressed: isNotEmpty(profile.musubiteLink)
                       ? () => onMusubitePressed(profile.musubiteLink!)
                       : null,
                 ),
