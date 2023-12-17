@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:engineer_circle/domain/career_option.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
@@ -27,7 +28,19 @@ class ProfileContent extends StatelessWidget {
             profile.avatarUrl != null
                 ? CircleAvatar(
                     radius: iconSize / 2,
-                    backgroundImage: NetworkImage(profile.avatarUrl!),
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: profile.avatarUrl!,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, dynamic error) =>
+                            const Icon(Icons.error),
+                        fit: BoxFit.cover,
+                        width: iconSize,
+                        height: iconSize,
+                      ),
+                    ),
                   )
                 : Container(
                     width: iconSize,

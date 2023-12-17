@@ -92,11 +92,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
 
     switch (ref.watch(authStateProvider)) {
       case AuthenticationState.unAuthenticated:
-        if ([
-          AuthenticationRootRoute.name,
-          LoginRoute.name,
-          SignUpRoute.name,
-        ].contains(routeName)) {
+        if (_isUnauthenticatedRoute(routeName)) {
           // 未ログインなのでrouteNameをそのまま表示
           resolver.next();
           return;
@@ -105,11 +101,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         router.replace(const AuthenticationRootRoute());
 
       case AuthenticationState.authenticated:
-        if ([
-          AuthenticationRootRoute.name,
-          LoginRoute.name,
-          SignUpRoute.name,
-        ].contains(routeName)) {
+        if (_isUnauthenticatedRoute(routeName)) {
           logger.i('認証済みなのでホーム画面にリダイレクト');
           router.replace(const RootRoute());
           return;
@@ -120,6 +112,14 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
       case AuthenticationState.checking:
       // App()で状態を取得するまで待っているので、ここに流れることはない
     }
+  }
+
+  bool _isUnauthenticatedRoute(String routeName) {
+    return [
+      AuthenticationRootRoute.name,
+      LoginRoute.name,
+      SignUpRoute.name,
+    ].contains(routeName);
   }
 
   List<AutoRoute> get homeTabRoutes => [

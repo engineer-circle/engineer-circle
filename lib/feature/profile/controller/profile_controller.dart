@@ -1,3 +1,4 @@
+import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/profile/state/profile_state_notifier.dart';
 import 'package:engineer_circle/global/logger.dart';
@@ -35,5 +36,9 @@ class ProfileController {
       logger.e(e);
       _ref.read(profileStateProvider.notifier).failure();
     }
+  }
+
+  Future<void> update(User user) async {
+    _ref.read(profileStateProvider.notifier).initProfile(user);
   }
 }
