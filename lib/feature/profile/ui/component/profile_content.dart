@@ -28,8 +28,19 @@ class ProfileContent extends StatelessWidget {
             profile.avatarUrl != null
                 ? CircleAvatar(
                     radius: iconSize / 2,
-                    backgroundImage:
-                        CachedNetworkImageProvider(profile.avatarUrl!),
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: profile.avatarUrl!,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, dynamic error) =>
+                            const Icon(Icons.error),
+                        fit: BoxFit.cover,
+                        width: iconSize,
+                        height: iconSize,
+                      ),
+                    ),
                   )
                 : Container(
                     width: iconSize,

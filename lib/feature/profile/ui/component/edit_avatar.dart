@@ -37,10 +37,14 @@ class EditAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: 50,
       child: ClipOval(
-          child: Image(
-        image: CachedNetworkImageProvider(draftAvatarUrl),
+          child: CachedNetworkImage(
+        imageUrl: draftAvatarUrl,
+        placeholder: (context, url) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        errorWidget: (context, url, dynamic error) => const Icon(Icons.error),
         fit: BoxFit.cover,
-        width: 100, // CircleAvatarの直径に合わせて調整
+        width: 100,
         height: 100,
       )),
     );
