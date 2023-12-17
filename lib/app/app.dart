@@ -49,6 +49,8 @@ class _AppState extends ConsumerState<App> {
               // 全ての端末における文字サイズ設定を固定化
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
               child: Navigator(
+                // routerを使用してルート遷移を管理しているため、Navigatorでの画面遷移を無効にする
+                onPopPage: (route, dynamic _) => false,
                 pages: [
                   MaterialPage(
                     child: Stack(
