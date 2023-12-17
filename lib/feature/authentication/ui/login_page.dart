@@ -3,6 +3,7 @@ import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 @RoutePage()
 class LoginPage extends ConsumerStatefulWidget {
@@ -25,21 +26,28 @@ class _LoginState extends ConsumerState<LoginPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Appleでサインインする処理
-                },
-                icon: const Icon(Icons.apple),
-                label: const Text('Sign in with Apple'),
+              SizedBox(
+                height: 60,
+                child: SignInButton(
+                  Buttons.apple,
+                  text: "Appleでサインイン",
+                  onPressed: () {
+                    // Appleでサインインする処理
+                  },
+                ),
               ),
-              const SizedBox(height: 8),
-              ElevatedButton.icon(
-                onPressed: () {
-                  ref.read(authProvider).googleSignIn();
-                },
-                icon: const Icon(Icons.email),
-                label: const Text('Sign in with Google'),
+              const SizedBox(height: 16),
+              SizedBox(
+                height: 60,
+                child: SignInButton(
+                  Buttons.google,
+                  text: "Googleでサインイン",
+                  onPressed: () {
+                    ref.read(authProvider).googleSignIn();
+                  },
+                ),
               ),
+              const SizedBox(height: 12),
               TextButton(
                 onPressed: () => context.router.push(const SignUpRoute()),
                 child: const Text('ご登録がまだの方はこちら'),

@@ -15,9 +15,6 @@ class TermsAgreementText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: const TextStyle(
-          fontSize: 16,
-        ),
         children: [
           const TextSpan(
               text: '利用を開始することで、', style: TextStyle(color: Colors.black)),
