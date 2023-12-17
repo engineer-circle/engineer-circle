@@ -16,14 +16,14 @@ class AuthenticationRepository {
 
   final FirebaseAuth firebaseAuth;
 
-  static final googleLogin = GoogleSignIn();
+  static final _googleSignIn = GoogleSignIn();
 
   String? getCurrentUserUid() {
     return firebaseAuth.currentUser?.uid;
   }
 
   Future<String?> googleSignIn() async {
-    GoogleSignInAccount? signinAccount = await googleLogin.signIn();
+    GoogleSignInAccount? signinAccount = await _googleSignIn.signIn();
 
     if (signinAccount == null) return null;
     GoogleSignInAuthentication auth = await signinAccount.authentication;
@@ -37,4 +37,6 @@ class AuthenticationRepository {
 
     return user?.uid;
   }
+
+  Future<void> googleLogout() => _googleSignIn.disconnect();
 }
