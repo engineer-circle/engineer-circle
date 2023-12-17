@@ -43,7 +43,7 @@ class _SignUpState extends ConsumerState<SignUpPage> {
                   Buttons.google,
                   text: "Googleで登録",
                   onPressed: () {
-                    ref.read(authProvider).googleSignUp();
+                    ref.read(authProvider).googleSignIn();
                   },
                 ),
               ),

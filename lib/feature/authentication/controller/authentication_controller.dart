@@ -27,30 +27,15 @@ class AuthenticationController {
   Future<void> googleSignIn() async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
+      // 認証
       final uid = await _ref.read(authRepositoryProvider).googleSignIn();
       if (uid == null) {
-        _ref.read(snackBarProvider).showSnackBar('ログインに失敗しました');
+        _ref.read(snackBarProvider).showSnackBar('認証に失敗しました');
         return;
       }
-      _ref.read(authStateProvider.notifier).authenticated();
-    } on Exception catch (e) {
-      // TODO: エラーハンドリング
-      logger.e(e);
-      _ref.read(snackBarProvider).showSnackBar(e.toString());
-    } finally {
-      _ref.read(overlayLoadingProvider.notifier).hide();
-    }
-  }
-
-  Future<void> googleSignUp() async {
-    _ref.read(overlayLoadingProvider.notifier).show();
-    try {
-      final uid = await _ref.read(authRepositoryProvider).googleSignIn();
-      if (uid == null) {
-        _ref.read(snackBarProvider).showSnackBar('アカウント登録に失敗しました');
-        return;
-      }
-      await _ref.read(userRepositoryProvider).createUser(uid);
+      // 新規の場合はuidを登録
+      await _ref.read(userRepositoryProvider).createUserIfNotExists(uid);
+      // 認証済状態に更新
       _ref.read(authStateProvider.notifier).authenticated();
     } on Exception catch (e) {
       // TODO: エラーハンドリング
