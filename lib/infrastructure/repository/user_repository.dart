@@ -36,10 +36,15 @@ class UserRepository {
     }
   }
 
-  Future<void> createUser(String uid) {
+  Future<void> createUserIfNotExists(String uid) async {
     final userRef = firestore.collection(usersCollectionName);
-    final user = User(id: uid);
-    return userRef.doc(uid).set(user.toJson());
+
+    final docSnapshot = await userRef.doc(uid).get();
+    // ドキュメントが存在しない場合のみ、新しいユーザーを作成
+    if (!docSnapshot.exists) {
+      final user = User(id: uid);
+      await userRef.doc(uid).set(user.toJson());
+    }
   }
 
   Future<String> uploadImageAndGetUrl(
