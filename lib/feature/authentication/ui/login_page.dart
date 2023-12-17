@@ -30,7 +30,7 @@ class _LoginState extends ConsumerState<LoginPage> {
                 height: 60,
                 child: SignInButton(
                   Buttons.apple,
-                  text: "Appleでサインイン",
+                  text: "Appleでログイン",
                   onPressed: () {
                     // Appleでサインインする処理
                   },
@@ -41,7 +41,7 @@ class _LoginState extends ConsumerState<LoginPage> {
                 height: 60,
                 child: SignInButton(
                   Buttons.google,
-                  text: "Googleでサインイン",
+                  text: "Googleでログイン",
                   onPressed: () {
                     ref.read(authProvider).googleSignIn();
                   },
