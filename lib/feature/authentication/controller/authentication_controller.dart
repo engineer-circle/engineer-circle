@@ -60,4 +60,19 @@ class AuthenticationController {
       _ref.read(overlayLoadingProvider.notifier).hide();
     }
   }
+
+  Future<void> logout() async {
+    _ref.read(overlayLoadingProvider.notifier).show();
+    try {
+      // TODO: Apple or Googleどちらでログインしたかでハンドリング
+      await _ref.read(authRepositoryProvider).googleLogout();
+      _ref.read(authStateProvider.notifier).unAuthenticated();
+    } on Exception catch (e) {
+      // TODO: エラーハンドリング
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
+    } finally {
+      _ref.read(overlayLoadingProvider.notifier).hide();
+    }
+  }
 }

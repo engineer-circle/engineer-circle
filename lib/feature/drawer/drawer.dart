@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:engineer_circle/feature/drawer/drawer_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,7 +73,7 @@ final List<DrawerItem> drawerItems = [
               TextButton(
                 onPressed: () async {
                   Navigator.pop(context);
-                  // TODO: ログアウト処理
+                  await ref.read(authProvider).logout();
                 },
                 child: const Text('OK'),
               ),

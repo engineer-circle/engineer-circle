@@ -11,19 +11,19 @@ final authRepositoryProvider = Provider(
 
 class AuthenticationRepository {
   AuthenticationRepository({
-    required this.firebaseAuth,
-  });
+    required FirebaseAuth firebaseAuth,
+  }) : _firebaseAuth = firebaseAuth;
 
-  final FirebaseAuth firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
 
-  static final googleLogin = GoogleSignIn();
+  static final _googleSignIn = GoogleSignIn();
 
   String? getCurrentUserUid() {
-    return firebaseAuth.currentUser?.uid;
+    return _firebaseAuth.currentUser?.uid;
   }
 
   Future<String?> googleSignIn() async {
-    GoogleSignInAccount? signinAccount = await googleLogin.signIn();
+    GoogleSignInAccount? signinAccount = await _googleSignIn.signIn();
 
     if (signinAccount == null) return null;
     GoogleSignInAuthentication auth = await signinAccount.authentication;
@@ -33,8 +33,13 @@ class AuthenticationRepository {
       accessToken: auth.accessToken,
     );
     // 認証情報をFirebaseに登録
-    User? user = (await firebaseAuth.signInWithCredential(credential)).user;
+    User? user = (await _firebaseAuth.signInWithCredential(credential)).user;
 
     return user?.uid;
+  }
+
+  Future<void> googleLogout() async {
+    _firebaseAuth.signOut();
+    _googleSignIn.disconnect();
   }
 }

@@ -3,6 +3,7 @@ import 'package:engineer_circle/feature/authentication/controller/authentication
 import 'package:engineer_circle/feature/authentication/ui/component/terms_agreement_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 @RoutePage()
 class SignUpPage extends ConsumerStatefulWidget {
@@ -25,29 +26,38 @@ class _SignUpState extends ConsumerState<SignUpPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Appleでサインインする処理
-                },
-                icon: const Icon(Icons.apple),
-                label: const Text('Sign up with Apple'),
+              SizedBox(
+                height: 60,
+                child: SignInButton(
+                  Buttons.apple,
+                  text: "Appleで登録",
+                  onPressed: () {
+                    // Appleでサインアップする処理
+                  },
+                ),
               ),
-              const SizedBox(height: 8),
-              ElevatedButton.icon(
-                onPressed: () {
-                  ref.read(authProvider).googleSignUp();
-                },
-                icon: const Icon(Icons.email),
-                label: const Text('Sign up with Google'),
+              const SizedBox(height: 16),
+              SizedBox(
+                height: 60,
+                child: SignInButton(
+                  Buttons.google,
+                  text: "Googleで登録",
+                  onPressed: () {
+                    ref.read(authProvider).googleSignUp();
+                  },
+                ),
               ),
               const SizedBox(height: 12),
-              TermsAgreementText(
-                onTapTermsOfUse: () {
-                  // TODO: 利用規約を開く
-                },
-                onTapPrivacyPolicy: () {
-                  // TODO: プラポリを開く
-                },
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TermsAgreementText(
+                  onTapTermsOfUse: () {
+                    // TODO: 利用規約を開く
+                  },
+                  onTapPrivacyPolicy: () {
+                    // TODO: プラポリを開く
+                  },
+                ),
               ),
             ],
           ),
