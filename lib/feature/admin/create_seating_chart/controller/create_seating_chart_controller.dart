@@ -21,6 +21,10 @@ class CreateSeatingChartController {
     required List<SeatGroup> seats,
     required Function onSuccess,
   }) async {
+    if (seats.isEmpty) {
+      _ref.read(snackBarProvider).showSnackBar('座席を1つ以上作成してください');
+      return;
+    }
     try {
       _ref.read(overlayLoadingProvider.notifier).show();
       await _ref
