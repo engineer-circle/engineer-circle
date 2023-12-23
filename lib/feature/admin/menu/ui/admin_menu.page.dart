@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/admin/menu/controller/admin_menu.controller.dart';
+import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -49,26 +50,13 @@ class _AdminMenuPageState extends ConsumerState<AdminMenuPage> {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return AlertDialog(
-                      content: const Text(
-                        '最新のシートを削除しますか',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.of(dialogContext).pop(),
-                          child: const Text('いいえ'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(dialogContext).pop();
-                            ref
-                                .read(adminMenuProvider)
-                                .deleteRecentSeatingChart();
-                          },
-                          child: const Text('はい'),
-                        ),
-                      ],
+                    return SimpleAlertDialog(
+                      message: '最新のシートを削除しますか',
+                      onConfirm: () {
+                        Navigator.of(dialogContext).pop();
+                        ref.read(adminMenuProvider).deleteRecentSeatingChart();
+                      },
+                      onCancel: () => Navigator.of(dialogContext).pop(),
                     );
                   },
                 );

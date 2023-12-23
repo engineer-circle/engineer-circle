@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/drawer/drawer.dart';
+import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:engineer_circle/feature/profile/ui/component/profile_content.dart';
 import 'package:engineer_circle/feature/seating_chart/controller/seating_chart_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
@@ -107,30 +108,17 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                       onSeatSelected: (seatId) {
                         showDialog(
                           context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: const Text(
-                                'この席に座りますか?',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text('いいえ'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    ref
-                                        .read(seatingChartProvider)
-                                        .updateSeatUser(
-                                          seatId,
-                                          state.docRef.id,
-                                        );
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text('はい'),
-                                ),
-                              ],
+                          builder: (dialogContext) {
+                            return SimpleAlertDialog(
+                              message: 'この席に座りますか?',
+                              onConfirm: () {
+                                Navigator.of(dialogContext).pop();
+                                ref.read(seatingChartProvider).updateSeatUser(
+                                      seatId,
+                                      state.docRef.id,
+                                    );
+                              },
+                              onCancel: () => Navigator.of(dialogContext).pop(),
                             );
                           },
                         );
