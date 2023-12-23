@@ -73,4 +73,42 @@ class CreateSeatingChartStateNotifier
 
     state = state.copyWith(seats: newSeats);
   }
+
+  void removeColumn(int selectedRow) {
+    // 選択された行の最後のSeatGroupを取得
+    final lastSeatGroup = state.seats.lastWhere(
+      (seatGroup) => seatGroup.row == selectedRow,
+    );
+
+    // 選択された行のSeatGroupの数を取得
+    int seatGroupCount =
+        state.seats.where((seatGroup) => seatGroup.row == selectedRow).length;
+
+    // 選択された行の最後のSeatGroupを削除し、必要に応じて後続のSeatGroupの行番号を調整
+    final List<SeatGroup> updatedSeats = state.seats
+        .where((seatGroup) => seatGroup != lastSeatGroup)
+        .map(
+          (seatGroup) => _adjustRowForFollowingSeatGroups(
+              seatGroup, selectedRow, seatGroupCount),
+        )
+        .toList();
+
+    state = state.copyWith(seats: updatedSeats);
+  }
+
+  /// 選択された行のすべてのSeatGroupが削除される場合、後続のSeatGroupの行番号を調整する。
+  /// 選択された行より下の行のSeatGroupの行番号をデクリメントする。
+  SeatGroup _adjustRowForFollowingSeatGroups(
+    SeatGroup seatGroup,
+    int selectedRow,
+    int seatGroupCount,
+  ) {
+    if (seatGroupCount == 1 && seatGroup.row > selectedRow) {
+      return seatGroup.copyWith(
+        groupId: '${seatGroup.row - 1}-${seatGroup.column}',
+        row: seatGroup.row - 1,
+      );
+    }
+    return seatGroup;
+  }
 }
