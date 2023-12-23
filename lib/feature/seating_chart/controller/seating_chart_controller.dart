@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
@@ -63,13 +64,18 @@ class SeatingChartController {
       await _ref
           .read(seatingChartUseCaseProvider)
           .updateSeatUser(seatId, docId);
+      // 再度読み込む
+      await init();
     } on UserIdNotFoundException catch (_) {
       // 強制ログアウト
       _ref.read(authStateProvider.notifier).unAuthenticated();
-    } on Exception catch (e) {
-      // TODO: エラーハンドリング
-      logger.e(e);
-      _ref.read(snackBarProvider).showSnackBar(e.toString());
+    } on FirebaseFunctionsException catch (e) {
+      if (e.code == 'already-exists') {
+        _ref.read(snackBarProvider).showSnackBar('既に別のユーザーが座っています');
+      } else {
+        logger.e(e);
+        _ref.read(snackBarProvider).showSnackBar('不明なエラーです');
+      }
     } finally {
       _ref.read(overlayLoadingProvider.notifier).hide();
     }
