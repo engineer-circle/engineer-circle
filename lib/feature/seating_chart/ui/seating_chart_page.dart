@@ -120,7 +120,12 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    // TODO: 席確定処理
+                                    ref
+                                        .read(seatingChartProvider)
+                                        .updateSeatUser(
+                                          seatId,
+                                          state.docRef.id,
+                                        );
                                     Navigator.of(context).pop();
                                   },
                                   child: const Text('はい'),
