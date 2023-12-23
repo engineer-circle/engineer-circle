@@ -1,3 +1,4 @@
+import 'package:engineer_circle/feature/admin/initial_setup_seat/state/component_state/seat_selection_method.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'initial_setup_seat_state.freezed.dart';
@@ -10,17 +11,4 @@ class InitialSetupSeatState with _$InitialSetupSeatState {
   }) = _InitialSetupSeatState;
 
   const InitialSetupSeatState._();
-}
-
-enum SeatSelectionMethod { free, shuffle }
-
-extension SeatSelectionMethodExtension on SeatSelectionMethod {
-  String get label {
-    switch (this) {
-      case SeatSelectionMethod.free:
-        return '自由';
-      case SeatSelectionMethod.shuffle:
-        return 'シャッフル';
-    }
-  }
 }

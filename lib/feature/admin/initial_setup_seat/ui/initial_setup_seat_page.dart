@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/admin/initial_setup_seat/state/component_state/seat_selection_method.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state_notifier.dart';
 import 'package:flutter/material.dart';
