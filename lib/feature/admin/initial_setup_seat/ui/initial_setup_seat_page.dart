@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state.dart';
+import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,107 +15,84 @@ class InitialSetupSeatPage extends ConsumerStatefulWidget {
 }
 
 class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
-  String? _selectedPreviousSetting;
-  final TextEditingController _seatNameController = TextEditingController();
-  String? _selectedSeatMethod;
-
-  @override
-  void dispose() {
-    _seatNameController.dispose();
-    super.dispose();
-  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Remoteから設定候補を取得する
-    final List<String> previousSettings = [
-      '23/10/21(初回)',
-      '23/9/21(2回目)',
-      '23/9/21(初回)'
-    ];
-
+    final state = ref.watch(initialSetupSeatStateProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('シート作成'),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                '席の決め方',
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 4),
-              DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  '席の決め方',
+                  style: TextStyle(fontSize: 16),
                 ),
-                items: ['自由', 'シャッフル']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedSeatMethod = newValue!;
-                  });
-                },
-                value: _selectedSeatMethod,
-              ),
-              const SizedBox(height: 16),
-              // TODO: シャッフル時のみ表示する
-              const Text(
-                '過去シートの選択',
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 4),
-              DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 4),
+                DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                  items: SeatSelectionMethod.values
+                      .map((SeatSelectionMethod value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(value.label),
+                    );
+                  }).toList(),
+                  onChanged: (SeatSelectionMethod? newValue) => ref
+                      .read(initialSetupSeatStateProvider.notifier)
+                      .updateSeatSelectionMethod(newValue),
+                  value: state.seatSelectionMethod,
+                  validator: (value) => value == null ? '席の決め方を選択してください' : null,
                 ),
-                items: previousSettings
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedPreviousSetting = newValue;
-                  });
-                },
-                value: _selectedPreviousSetting,
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'シート名',
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 4),
-              TextField(
-                controller: _seatNameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 16),
+                const Text(
+                  'シート名',
+                  style: TextStyle(fontSize: 16),
                 ),
-                maxLength: 20,
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                child: const Text('作成する'),
-                onPressed: () {
-                  context.router.push(
-                    CreateSeatingChartRoute(
-                        seatTitle: _seatNameController.text),
-                  );
-                },
-              ),
-            ],
+                const SizedBox(height: 4),
+                TextFormField(
+                  initialValue: state.seatName,
+                  maxLines: 1,
+                  maxLength: 20,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) => value!.isEmpty ? 'シート名を入力してください' : null,
+                  onChanged: (value) => ref
+                      .read(initialSetupSeatStateProvider.notifier)
+                      .updateSeatName(value),
+                ),
+                const SizedBox(height: 24),
+                FilledButton(
+                  child: const Text(
+                    '作成する',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      context.router.push(
+                        CreateSeatingChartRoute(
+                          seatTitle: state.seatName!,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
