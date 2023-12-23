@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/admin/initial_setup_seat/controller/initial_setup_seat_controller.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/component_state/seat_selection_method.dart';
-import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -84,11 +84,50 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      context.router.push(
-                        CreateSeatingChartRoute(
-                          seatTitle: state.seatName!,
-                        ),
-                      );
+                      switch (state.seatSelectionMethod!) {
+                        case SeatSelectionMethod.free:
+                          context.router.push(
+                            CreateSeatingChartRoute(
+                              seatTitle: state.seatName!,
+                            ),
+                          );
+                          break;
+                        case SeatSelectionMethod.shuffle:
+                          showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return AlertDialog(
+                                content: const Text(
+                                  'シャッフル方式で座席を作成します',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(dialogContext).pop(),
+                                    child: const Text('いいえ'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(dialogContext).pop();
+                                      ref
+                                          .read(initialSetupSeatProvider)
+                                          .createShuffleSeat(
+                                            seatName: state.seatName!,
+                                            onSuccess: () {
+                                              context.router.replaceAll(
+                                                [const RootRoute()],
+                                              );
+                                            },
+                                          );
+                                    },
+                                    child: const Text('はい'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                      }
                     }
                   },
                 ),
