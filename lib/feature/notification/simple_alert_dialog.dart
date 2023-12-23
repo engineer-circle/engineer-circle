@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class SimpleAlertDialog extends StatelessWidget {
   const SimpleAlertDialog({
     Key? key,
+    this.title,
     required this.message,
     required this.onConfirm,
     required this.onCancel,
@@ -10,6 +11,7 @@ class SimpleAlertDialog extends StatelessWidget {
     this.cancelButtonText = 'キャンセル',
   }) : super(key: key);
 
+  final String? title;
   final String message;
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
@@ -19,6 +21,7 @@ class SimpleAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      title: title != null ? Text(title!) : null,
       content: Text(
         message,
         style: const TextStyle(fontSize: 16),
