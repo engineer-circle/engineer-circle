@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state_notifier.dart';
 import 'package:engineer_circle/feature/seating_chart/usecase/seating_chart_usecase.dart';
 import 'package:engineer_circle/global/logger.dart';
+import 'package:engineer_circle/infrastructure/remote/firebase_exceptions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final seatingChartProvider = Provider(
@@ -43,6 +45,27 @@ class SeatingChartController {
           .read(seatingChartStateProvider.notifier)
           .initSeatingChart(seatingChart);
       onSuccess();
+    } on Exception catch (e) {
+      // TODO: エラーハンドリング
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
+    } finally {
+      _ref.read(overlayLoadingProvider.notifier).hide();
+    }
+  }
+
+  Future<void> updateSeatUser(
+    String seatId,
+    String docId,
+  ) async {
+    _ref.read(overlayLoadingProvider.notifier).show();
+    try {
+      await _ref
+          .read(seatingChartUseCaseProvider)
+          .updateSeatUser(seatId, docId);
+    } on UserIdNotFoundException catch (_) {
+      // 強制ログアウト
+      _ref.read(authStateProvider.notifier).unAuthenticated();
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);

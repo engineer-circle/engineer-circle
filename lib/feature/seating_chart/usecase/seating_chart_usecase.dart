@@ -5,24 +5,30 @@ import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_title_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/state/seating_chart_state.dart';
+import 'package:engineer_circle/infrastructure/remote/firebase_exceptions.dart';
+import 'package:engineer_circle/infrastructure/repository/authentication_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/seating_chart_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final seatingChartUseCaseProvider = Provider(
   (ref) => SeatingChartUseCase(
-      seatingChartRepository: ref.watch(seatingChartRepositoryProvider),
-      userRepository: ref.watch(userRepositoryProvider)),
+    seatingChartRepository: ref.watch(seatingChartRepositoryProvider),
+    userRepository: ref.watch(userRepositoryProvider),
+    authRepository: ref.watch(authRepositoryProvider),
+  ),
 );
 
 class SeatingChartUseCase {
   SeatingChartUseCase({
     required this.seatingChartRepository,
     required this.userRepository,
+    required this.authRepository,
   });
 
   final SeatingChartRepository seatingChartRepository;
   final UserRepository userRepository;
+  final AuthenticationRepository authRepository;
 
   Future<SeatingChartStateSuccess> getLatest() async {
     final seatingChart = await seatingChartRepository.getLatest();
@@ -32,6 +38,7 @@ class SeatingChartUseCase {
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
     return SeatingChartStateSuccess(
+      docRef: seatingChart.docRef!,
       seatGroupMatrix: seatGroupMatrix,
       currentSeatTitle: seatingChart.seatTitle,
     );
@@ -46,6 +53,7 @@ class SeatingChartUseCase {
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
     return SeatingChartStateSuccess(
+      docRef: seatingChart.docRef!,
       seatGroupMatrix: seatGroupMatrix,
       currentSeatTitle: seatingChart.seatTitle,
     );
@@ -64,6 +72,15 @@ class SeatingChartUseCase {
         title: seatingChart.seatTitle,
       );
     }).toList();
+  }
+
+  Future<void> updateSeatUser(
+    String seatId,
+    String docId,
+  ) {
+    final userId = authRepository.getCurrentUserUid();
+    if (userId == null) throw UserIdNotFoundException();
+    return seatingChartRepository.updateSeatUser(seatId, userId, docId);
   }
 
   /// 着座しているユーザーを取得する
