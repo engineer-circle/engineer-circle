@@ -59,16 +59,41 @@ class _CreateSeatingChartPageState
             padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               onTap: () {
-                ref.read(createSeatingChartProvider).createSeatingChart(
-                      title: seatState.title,
-                      seats: seatState.seats,
-                      onSuccess: () {
-                        if (!mounted) return;
-                        context.router.replaceAll(
-                          [const RootRoute()],
-                        );
-                      },
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return AlertDialog(
+                      content: const Text(
+                        '座席表を作成します',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(dialogContext).pop(),
+                          child: const Text('いいえ'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(dialogContext).pop();
+                            ref
+                                .read(createSeatingChartProvider)
+                                .createSeatingChart(
+                                  title: seatState.title,
+                                  seats: seatState.seats,
+                                  onSuccess: () {
+                                    if (!mounted) return;
+                                    context.router.replaceAll(
+                                      [const RootRoute()],
+                                    );
+                                  },
+                                );
+                          },
+                          child: const Text('はい'),
+                        ),
+                      ],
                     );
+                  },
+                );
               },
               child: const Padding(
                 padding: EdgeInsets.all(12),
