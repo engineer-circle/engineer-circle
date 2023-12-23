@@ -29,7 +29,7 @@ class CreateSeatingChartPage extends ConsumerStatefulWidget {
 class _CreateSeatingChartPageState
     extends ConsumerState<CreateSeatingChartPage> {
   final horizontalScreenPadding = 8.0;
-  final plusIconSize = 24.0;
+  final tapIconSize = 24.0;
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _CreateSeatingChartPageState
     // 画面の幅を取得
     final screenWidth = MediaQuery.of(context).size.width;
     final usableScreenWidth =
-        screenWidth - horizontalScreenPadding * 2 - plusIconSize;
+        screenWidth - horizontalScreenPadding * 2 - tapIconSize;
 
     final seatsGroupedByRow =
         groupBy(seatState.seats, (SeatGroup seat) => seat.row);
@@ -107,9 +107,9 @@ class _CreateSeatingChartPageState
                 ),
               ),
               ...buildSeatRows(
-                seatsGroupedByRow,
-                usableScreenWidth,
-                (row) => showModalBottomSheet(
+                seatsGroupedByRow: seatsGroupedByRow,
+                usableScreenWidth: usableScreenWidth,
+                onCreateSeat: (row) => showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
                     return SeatingArrangementForm(
@@ -126,6 +126,23 @@ class _CreateSeatingChartPageState
                     );
                   },
                 ),
+                onDeleteSeat: (row) {
+                  showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return SimpleAlertDialog(
+                        message: '座席を削除しますか?',
+                        onConfirm: () {
+                          Navigator.of(dialogContext).pop();
+                          ref
+                              .read(createSeatingChartStateProvider.notifier)
+                              .removeColumn(row);
+                        },
+                        onCancel: () => Navigator.of(dialogContext).pop(),
+                      );
+                    },
+                  );
+                },
               ),
               const SizedBox(height: 16),
               InkWell(
@@ -145,7 +162,7 @@ class _CreateSeatingChartPageState
                     );
                   },
                 ),
-                child: Icon(Icons.control_point, size: plusIconSize),
+                child: Icon(Icons.control_point, size: tapIconSize),
               ),
             ],
           ),
@@ -154,11 +171,12 @@ class _CreateSeatingChartPageState
     );
   }
 
-  List<Widget> buildSeatRows(
-    Map<int, List<SeatGroup>> seatsGroupedByRow,
-    double usableScreenWidth,
-    final Function(int) onCreateSeat,
-  ) {
+  List<Widget> buildSeatRows({
+    required Map<int, List<SeatGroup>> seatsGroupedByRow,
+    required double usableScreenWidth,
+    required final Function(int) onCreateSeat,
+    required final Function(int) onDeleteSeat,
+  }) {
     return seatsGroupedByRow.entries.map((group) {
       final row = group.key;
       final seatsForCurrentRow = group.value;
@@ -168,10 +186,23 @@ class _CreateSeatingChartPageState
 
       final Widget plusIcon = InkWell(
         onTap: () => onCreateSeat(row),
-        child: Icon(Icons.control_point, size: plusIconSize),
+        child: Icon(Icons.control_point, size: tapIconSize),
       );
 
-      currentRowWidgets.add(plusIcon);
+      final Widget minusIcon = InkWell(
+        onTap: () => onDeleteSeat(row),
+        child: Icon(Icons.cancel, size: tapIconSize),
+      );
+
+      currentRowWidgets.add(
+        Column(
+          children: [
+            plusIcon,
+            const SizedBox(height: 12),
+            minusIcon,
+          ],
+        ),
+      );
 
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
