@@ -105,7 +105,7 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
                               builder: (dialogContext) {
                                 return AlertDialog(
                                   content: const Text(
-                                    'シャッフル方式で座席を作成します',
+                                    '前回のシートを基にシャッフル方式で座席を作成します',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                   actions: [
