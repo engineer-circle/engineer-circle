@@ -3,6 +3,7 @@ import 'package:engineer_circle/app/router/app_router.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/controller/initial_setup_seat_controller.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/component_state/seat_selection_method.dart';
 import 'package:engineer_circle/feature/admin/initial_setup_seat/state/initial_setup_seat_state_notifier.dart';
+import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -103,34 +104,23 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
                             showDialog(
                               context: context,
                               builder: (dialogContext) {
-                                return AlertDialog(
-                                  content: const Text(
-                                    '前回のシートを基にシャッフル方式で座席を作成します',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(dialogContext).pop(),
-                                      child: const Text('いいえ'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(dialogContext).pop();
-                                        ref
-                                            .read(initialSetupSeatProvider)
-                                            .createShuffleSeat(
-                                              seatName: state.seatName!,
-                                              onSuccess: () {
-                                                context.router.replaceAll(
-                                                  [const RootRoute()],
-                                                );
-                                              },
+                                return SimpleAlertDialog(
+                                  message: '前回のシートを基にシャッフル方式で座席を作成します',
+                                  onConfirm: () {
+                                    Navigator.of(dialogContext).pop();
+                                    ref
+                                        .read(initialSetupSeatProvider)
+                                        .createShuffleSeat(
+                                          seatName: state.seatName!,
+                                          onSuccess: () {
+                                            context.router.replaceAll(
+                                              [const RootRoute()],
                                             );
-                                      },
-                                      child: const Text('はい'),
-                                    ),
-                                  ],
+                                          },
+                                        );
+                                  },
+                                  onCancel: () =>
+                                      Navigator.of(dialogContext).pop(),
                                 );
                               },
                             );

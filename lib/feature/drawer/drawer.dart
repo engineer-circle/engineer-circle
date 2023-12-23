@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/feature/admin/menu/controller/admin_menu.controller.dart';
 import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:engineer_circle/feature/drawer/drawer_item.dart';
+import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -59,25 +61,14 @@ final List<DrawerItem> drawerItems = [
     onTap: (context, ref) {
       showDialog(
         context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('ログアウト'),
-            content: const Text('ログアウトしてもよろしいですか？'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('キャンセル'),
-              ),
-              TextButton(
-                onPressed: () async {
-                  Navigator.pop(context);
-                  await ref.read(authProvider).logout();
-                },
-                child: const Text('OK'),
-              ),
-            ],
+        builder: (dialogContext) {
+          return SimpleAlertDialog(
+            message: 'ログアウトしてもよろしいですか？',
+            onConfirm: () async {
+              Navigator.of(dialogContext).pop();
+              await ref.read(authProvider).logout();
+            },
+            onCancel: () => Navigator.of(dialogContext).pop(),
           );
         },
       );

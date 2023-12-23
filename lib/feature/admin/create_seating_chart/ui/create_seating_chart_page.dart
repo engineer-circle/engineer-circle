@@ -8,6 +8,7 @@ import 'package:engineer_circle/feature/admin/create_seating_chart/state/create_
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/horizontal_admin_seating_layout.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/seating_arrangement_form.dart';
 import 'package:engineer_circle/feature/admin/create_seating_chart/ui/component/vertical_admin_seating_layout.dart';
+import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,35 +63,22 @@ class _CreateSeatingChartPageState
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return AlertDialog(
-                      content: const Text(
-                        '座席表を作成します',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.of(dialogContext).pop(),
-                          child: const Text('いいえ'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(dialogContext).pop();
-                            ref
-                                .read(createSeatingChartProvider)
-                                .createSeatingChart(
-                                  title: seatState.title,
-                                  seats: seatState.seats,
-                                  onSuccess: () {
-                                    if (!mounted) return;
-                                    context.router.replaceAll(
-                                      [const RootRoute()],
-                                    );
-                                  },
+                    return SimpleAlertDialog(
+                      message: '座席表を作成します',
+                      onConfirm: () {
+                        Navigator.of(dialogContext).pop();
+                        ref.read(createSeatingChartProvider).createSeatingChart(
+                              title: seatState.title,
+                              seats: seatState.seats,
+                              onSuccess: () {
+                                if (!mounted) return;
+                                context.router.replaceAll(
+                                  [const RootRoute()],
                                 );
-                          },
-                          child: const Text('はい'),
-                        ),
-                      ],
+                              },
+                            );
+                      },
+                      onCancel: () => Navigator.of(dialogContext).pop(),
                     );
                   },
                 );
