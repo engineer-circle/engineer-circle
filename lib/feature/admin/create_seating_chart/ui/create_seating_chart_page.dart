@@ -216,13 +216,13 @@ class _CreateSeatingChartPageState
       case SeatOrientation.horizontal:
         return HorizontalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
-          sideSeatCounts: seat.seatCount,
+          seatCount: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
       case SeatOrientation.vertical:
         return VerticalAdminSeatingLayout(
           tableName: '${seat.row}-${seat.column}',
-          sideSeatCounts: seat.seatCount,
+          seatCount: seat.seatCount,
           usableLayoutWidth: layoutWidth,
         );
     }

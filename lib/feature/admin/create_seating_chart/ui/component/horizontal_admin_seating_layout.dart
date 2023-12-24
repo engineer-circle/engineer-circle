@@ -5,12 +5,12 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
   const HorizontalAdminSeatingLayout({
     super.key,
     required this.tableName,
-    required this.sideSeatCounts,
+    required this.seatCount,
     required this.usableLayoutWidth,
   });
 
   final String tableName;
-  final int sideSeatCounts;
+  final int seatCount;
   final double usableLayoutWidth;
 
   static const double tableMaxWidth = 120;
@@ -21,6 +21,7 @@ class HorizontalAdminSeatingLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int sideSeatCounts = seatCount ~/ 2;
     final double tableWidth =
         Math.min(tableMaxWidth, usableLayoutWidth - horizontalPadding * 2);
     final double seatWidth = Math.min(

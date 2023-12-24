@@ -5,12 +5,12 @@ class VerticalAdminSeatingLayout extends StatelessWidget {
   const VerticalAdminSeatingLayout({
     super.key,
     required this.tableName,
-    required this.sideSeatCounts,
+    required this.seatCount,
     required this.usableLayoutWidth,
   });
 
   final String tableName;
-  final int sideSeatCounts;
+  final int seatCount;
   final double usableLayoutWidth;
 
   static const double seatMaxWidth = 28;
@@ -20,6 +20,7 @@ class VerticalAdminSeatingLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int sideSeatCounts = seatCount ~/ 2;
     final double seatWidth = Math.min(
       seatMaxWidth,
       (usableLayoutWidth -
