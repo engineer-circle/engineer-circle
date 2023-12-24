@@ -31,7 +31,9 @@ class CreateSeatingChartController {
           .read(adminSeatingChartUseCaseProvider)
           .createSeatingChart(title, seats);
       onSuccess();
-      _ref.read(snackBarProvider).showSnackBar('新しい座席表を作成しました');
+      _ref
+          .read(snackBarProvider)
+          .showSnackBar('新しい座席表を作成しました。リロードして画面を更新してください。');
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
