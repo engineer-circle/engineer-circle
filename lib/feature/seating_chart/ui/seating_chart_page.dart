@@ -77,72 +77,82 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
           children: [
             SingleChildScrollView(
               controller: _controllerY,
-              child: SingleChildScrollView(
-                controller: _controllerX,
-                scrollDirection: Axis.horizontal,
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return SelectSeatTitleDialog(
-                              onTitleSelected: (docRef) {
-                                ref.read(seatingChartProvider).changeSeat(
-                                      docRef: docRef,
-                                      onSuccess: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    );
-                              },
-                            );
-                          },
-                        );
-                      },
-                      child: currentTitle(state.currentSeatTitle),
-                    ),
-                    const SizedBox(height: 12),
-                    SeatingArea(
-                      seatGroupMatrix: state.seatGroupMatrix,
-                      onSeatSelected: (seatId) {
-                        showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return SimpleAlertDialog(
-                              message: 'この席に座りますか?',
-                              onConfirm: () {
-                                Navigator.of(dialogContext).pop();
-                                ref.read(seatingChartProvider).updateSeatUser(
-                                      seatId,
-                                      state.docRef.id,
-                                    );
-                              },
-                              onCancel: () => Navigator.of(dialogContext).pop(),
-                            );
-                          },
-                        );
-                      },
-                      onUserSelected: (user) {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          useSafeArea: true,
-                          builder: (BuildContext context) {
-                            return ProfileContent(
-                              profile: user,
-                              onTwitterPressed: (url) async {
-                                await ref.read(urlLauncherProvider).launch(url);
-                              },
-                              onMusubitePressed: (url) async {
-                                await ref.read(urlLauncherProvider).launch(url);
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  controller: _controllerX,
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SelectSeatTitleDialog(
+                                onTitleSelected: (docRef) {
+                                  ref.read(seatingChartProvider).changeSeat(
+                                        docRef: docRef,
+                                        onSuccess: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      );
+                                },
+                              );
+                            },
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: currentTitle(state.currentSeatTitle),
+                        ),
+                      ),
+                      SeatingArea(
+                        seatGroupMatrix: state.seatGroupMatrix,
+                        onSeatSelected: (seatId) {
+                          showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return SimpleAlertDialog(
+                                message: 'この席に座りますか?',
+                                onConfirm: () {
+                                  Navigator.of(dialogContext).pop();
+                                  ref.read(seatingChartProvider).updateSeatUser(
+                                        seatId,
+                                        state.docRef.id,
+                                      );
+                                },
+                                onCancel: () =>
+                                    Navigator.of(dialogContext).pop(),
+                              );
+                            },
+                          );
+                        },
+                        onUserSelected: (user) {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            useSafeArea: true,
+                            builder: (BuildContext context) {
+                              return ProfileContent(
+                                profile: user,
+                                onTwitterPressed: (url) async {
+                                  await ref
+                                      .read(urlLauncherProvider)
+                                      .launch(url);
+                                },
+                                onMusubitePressed: (url) async {
+                                  await ref
+                                      .read(urlLauncherProvider)
+                                      .launch(url);
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
