@@ -1,7 +1,8 @@
 name: Deploy Android app for dev
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ '*' ]
 
 jobs:
   build_android:
