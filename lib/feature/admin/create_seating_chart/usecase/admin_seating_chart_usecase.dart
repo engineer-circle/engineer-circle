@@ -28,4 +28,8 @@ class AdminSeatingChartUseCase {
     final seatingChart = SeatingChart(seatTitle: title, seatGroupList: seats);
     repository.createSeatingChart(docId, seatingChart);
   }
+
+  Future<void> createShuffleSeatingChart(String seatName) async {
+    repository.createShuffleSeatingChart(seatName);
+  }
 }

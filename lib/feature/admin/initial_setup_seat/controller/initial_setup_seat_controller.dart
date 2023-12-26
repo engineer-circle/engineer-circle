@@ -1,3 +1,4 @@
+import 'package:engineer_circle/feature/admin/create_seating_chart/usecase/admin_seating_chart_usecase.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/global/logger.dart';
@@ -20,7 +21,9 @@ class InitialSetupSeatController {
   }) async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
-      // TODO: シャッフル作成
+      await _ref
+          .read(adminSeatingChartUseCaseProvider)
+          .createShuffleSeatingChart(seatName);
       onSuccess();
       _ref.read(snackBarProvider).showSnackBar('座席表を作成しました。リロードして画面を更新してください。');
     } on Exception catch (e) {
