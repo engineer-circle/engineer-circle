@@ -27,7 +27,7 @@ jobs:
         # Flutter のバージョンを fvm_config.json から読み取る
       - name: Get Flutter version from fvm_config.json
         id: flutter_version
-        run: echo "::set-output name=version::$(jq -r '.flutterSdkVersion' facraft-frontend-app/.fvm/fvm_config.json)"
+        run: echo "version=$(jq -r '.flutterSdkVersion' facraft-frontend-app/.fvm/fvm_config.json)" >> $GITHUB_OUTPUT
 
       # 使用する Flutter のバージョンをセットアップ
       - name: install flutter
