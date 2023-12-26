@@ -21,6 +21,11 @@ jobs:
           path: /Users/runner/hostedtoolcache/flutter
           key: ${{ runner.OS }}-flutter-install-cache
 
+      - name: set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
