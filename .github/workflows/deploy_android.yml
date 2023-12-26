@@ -1,0 +1,79 @@
+name: Deploy Android app for dev
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'main'
+
+jobs:
+  build_android:
+    name: build android
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: ${{ github.event.inputs.branch }}
+    steps:
+      - name: set up repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: setup cache
+        uses: actions/cache@v1
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache
+
+      # Flutter のバージョンを fvm_config.json から読み取る
+      - name: Get Flutter version from fvm_config.json
+        id: flutter_version
+        run: echo "::set-output name=version::$(jq -r '.flutterSdkVersion' facraft-frontend-app/.fvm/fvm_config.json)"
+
+      # 使用する Flutter のバージョンをセットアップ
+      - name: install flutter
+        uses: subosito/flutter-action@v2.10.0
+        with:
+          flutter-version: ${{ steps.flutter_version.outputs.version }}
+          channel: 'stable'
+
+      - name: flutter dependencies install
+        run: flutter pub get
+
+      - name: build apk
+        run: |
+          flutter build apk --dart-define-from-file=dart_defines/dev.json
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: android
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+  deploy_android:
+    name: deploy android
+    needs: [build_android]
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: set up repository
+        uses: actions/checkout@v2
+
+      - name: Download artifact
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: android
+
+      # Deploy to Firebase
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.4
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          file: android/app-release.apk
+          groups: app_testers
