@@ -46,29 +46,17 @@ jobs:
         run: |
           flutter build apk --dart-define-from-file=dart_defines/dev.json
 
-      - name: List APK file
-        run: ls -l build/app/outputs/flutter-apk/
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4.0.0
         with:
           name: android
           path: build/app/outputs/flutter-apk/app-release.apk
 
-  deploy_android:
-    name: deploy android
-    needs: [build_android]
-    runs-on: ubuntu-latest
-    steps:
-      - name: set up repository
-        uses: actions/checkout@v4
-
       - name: Download artifact
         uses: actions/download-artifact@v4.1.0
         with:
           name: android
 
-      # Deploy to Firebase
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
         with:
