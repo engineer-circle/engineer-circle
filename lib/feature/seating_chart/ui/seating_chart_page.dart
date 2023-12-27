@@ -90,9 +90,9 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                             context: context,
                             builder: (BuildContext context) {
                               return SelectSeatTitleDialog(
-                                onTitleSelected: (docRef) {
+                                onTitleSelected: (docId) {
                                   ref.read(seatingChartProvider).changeSeat(
-                                        docRef: docRef,
+                                        docId: docId,
                                         onSuccess: () {
                                           Navigator.of(context).pop();
                                         },
@@ -119,7 +119,7 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
                                   Navigator.of(dialogContext).pop();
                                   ref.read(seatingChartProvider).updateSeatUser(
                                         seatId,
-                                        state.docRef.id,
+                                        state.docId,
                                       );
                                 },
                                 onCancel: () =>

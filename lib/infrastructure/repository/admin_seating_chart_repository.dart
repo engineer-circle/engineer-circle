@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:engineer_circle/domain/create_seating_chart.dart';
 import 'package:engineer_circle/domain/seating_chart.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase_exceptions.dart';
@@ -23,16 +24,17 @@ class AdminSeatingChartRepository {
 
   static const seatsCollectionName = 'seats';
   static const createdAtFieldName = 'createdAt';
+  static const createSeatCommand = 'createSeat';
   static const createShuffleSeatCommand = 'createShuffleSeat';
 
   Future<void> createSeatingChart(
-    String docId,
-    SeatingChart seatingChart,
+    CreateSeatingChart seatingChart,
   ) async {
-    final seatingChartRef =
-        firestore.collection(seatsCollectionName).doc(docId);
-    final newSeatingChart = seatingChart.copyWith(docRef: seatingChartRef);
-    await seatingChartRef.set(newSeatingChart.toJson());
+    await functions.httpsCallable(createSeatCommand).call(
+      <String, dynamic>{
+        'seatingChart': seatingChart.toJson(),
+      },
+    );
   }
 
   Future<void> createShuffleSeatingChart(String seatTitle) async {

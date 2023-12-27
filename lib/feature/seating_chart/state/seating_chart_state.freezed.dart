@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SeatingChartStateSuccess {
-  DocumentReference<Object?> get docRef =>
-      throw _privateConstructorUsedError; // 行と列で構成される2次元配列
+  String get docId => throw _privateConstructorUsedError; // 行と列で構成される2次元配列
   List<List<SeatGroupViewProperty>> get seatGroupMatrix =>
       throw _privateConstructorUsedError;
   String get currentSeatTitle => throw _privateConstructorUsedError;
@@ -34,7 +33,7 @@ abstract class $SeatingChartStateSuccessCopyWith<$Res> {
       _$SeatingChartStateSuccessCopyWithImpl<$Res, SeatingChartStateSuccess>;
   @useResult
   $Res call(
-      {DocumentReference<Object?> docRef,
+      {String docId,
       List<List<SeatGroupViewProperty>> seatGroupMatrix,
       String currentSeatTitle});
 }
@@ -53,15 +52,15 @@ class _$SeatingChartStateSuccessCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = null,
+    Object? docId = null,
     Object? seatGroupMatrix = null,
     Object? currentSeatTitle = null,
   }) {
     return _then(_value.copyWith(
-      docRef: null == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       seatGroupMatrix: null == seatGroupMatrix
           ? _value.seatGroupMatrix
           : seatGroupMatrix // ignore: cast_nullable_to_non_nullable
@@ -84,7 +83,7 @@ abstract class _$$SeatingChartStateSuccessImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DocumentReference<Object?> docRef,
+      {String docId,
       List<List<SeatGroupViewProperty>> seatGroupMatrix,
       String currentSeatTitle});
 }
@@ -102,15 +101,15 @@ class __$$SeatingChartStateSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = null,
+    Object? docId = null,
     Object? seatGroupMatrix = null,
     Object? currentSeatTitle = null,
   }) {
     return _then(_$SeatingChartStateSuccessImpl(
-      docRef: null == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       seatGroupMatrix: null == seatGroupMatrix
           ? _value._seatGroupMatrix
           : seatGroupMatrix // ignore: cast_nullable_to_non_nullable
@@ -127,13 +126,13 @@ class __$$SeatingChartStateSuccessImplCopyWithImpl<$Res>
 
 class _$SeatingChartStateSuccessImpl implements _SeatingChartStateSuccess {
   const _$SeatingChartStateSuccessImpl(
-      {required this.docRef,
+      {required this.docId,
       required final List<List<SeatGroupViewProperty>> seatGroupMatrix,
       required this.currentSeatTitle})
       : _seatGroupMatrix = seatGroupMatrix;
 
   @override
-  final DocumentReference<Object?> docRef;
+  final String docId;
 // 行と列で構成される2次元配列
   final List<List<SeatGroupViewProperty>> _seatGroupMatrix;
 // 行と列で構成される2次元配列
@@ -149,7 +148,7 @@ class _$SeatingChartStateSuccessImpl implements _SeatingChartStateSuccess {
 
   @override
   String toString() {
-    return 'SeatingChartStateSuccess(docRef: $docRef, seatGroupMatrix: $seatGroupMatrix, currentSeatTitle: $currentSeatTitle)';
+    return 'SeatingChartStateSuccess(docId: $docId, seatGroupMatrix: $seatGroupMatrix, currentSeatTitle: $currentSeatTitle)';
   }
 
   @override
@@ -157,7 +156,7 @@ class _$SeatingChartStateSuccessImpl implements _SeatingChartStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SeatingChartStateSuccessImpl &&
-            (identical(other.docRef, docRef) || other.docRef == docRef) &&
+            (identical(other.docId, docId) || other.docId == docId) &&
             const DeepCollectionEquality()
                 .equals(other._seatGroupMatrix, _seatGroupMatrix) &&
             (identical(other.currentSeatTitle, currentSeatTitle) ||
@@ -165,7 +164,7 @@ class _$SeatingChartStateSuccessImpl implements _SeatingChartStateSuccess {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, docRef,
+  int get hashCode => Object.hash(runtimeType, docId,
       const DeepCollectionEquality().hash(_seatGroupMatrix), currentSeatTitle);
 
   @JsonKey(ignore: true)
@@ -178,12 +177,12 @@ class _$SeatingChartStateSuccessImpl implements _SeatingChartStateSuccess {
 
 abstract class _SeatingChartStateSuccess implements SeatingChartStateSuccess {
   const factory _SeatingChartStateSuccess(
-      {required final DocumentReference<Object?> docRef,
+      {required final String docId,
       required final List<List<SeatGroupViewProperty>> seatGroupMatrix,
       required final String currentSeatTitle}) = _$SeatingChartStateSuccessImpl;
 
   @override
-  DocumentReference<Object?> get docRef;
+  String get docId;
   @override // 行と列で構成される2次元配列
   List<List<SeatGroupViewProperty>> get seatGroupMatrix;
   @override

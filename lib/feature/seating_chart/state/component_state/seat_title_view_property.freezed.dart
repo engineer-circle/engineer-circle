@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SeatTitleViewProperty {
-  DocumentReference<Object?> get docRef => throw _privateConstructorUsedError;
+  String get docId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $SeatTitleViewPropertyCopyWith<$Res> {
           $Res Function(SeatTitleViewProperty) then) =
       _$SeatTitleViewPropertyCopyWithImpl<$Res, SeatTitleViewProperty>;
   @useResult
-  $Res call({DocumentReference<Object?> docRef, String title});
+  $Res call({String docId, String title});
 }
 
 /// @nodoc
@@ -47,14 +47,14 @@ class _$SeatTitleViewPropertyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = null,
+    Object? docId = null,
     Object? title = null,
   }) {
     return _then(_value.copyWith(
-      docRef: null == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,7 @@ abstract class _$$SeatTitleViewPropertyImplCopyWith<$Res>
       __$$SeatTitleViewPropertyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DocumentReference<Object?> docRef, String title});
+  $Res call({String docId, String title});
 }
 
 /// @nodoc
@@ -87,14 +87,14 @@ class __$$SeatTitleViewPropertyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = null,
+    Object? docId = null,
     Object? title = null,
   }) {
     return _then(_$SeatTitleViewPropertyImpl(
-      docRef: null == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -106,17 +106,16 @@ class __$$SeatTitleViewPropertyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SeatTitleViewPropertyImpl implements _SeatTitleViewProperty {
-  const _$SeatTitleViewPropertyImpl(
-      {required this.docRef, required this.title});
+  const _$SeatTitleViewPropertyImpl({required this.docId, required this.title});
 
   @override
-  final DocumentReference<Object?> docRef;
+  final String docId;
   @override
   final String title;
 
   @override
   String toString() {
-    return 'SeatTitleViewProperty(docRef: $docRef, title: $title)';
+    return 'SeatTitleViewProperty(docId: $docId, title: $title)';
   }
 
   @override
@@ -124,12 +123,12 @@ class _$SeatTitleViewPropertyImpl implements _SeatTitleViewProperty {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SeatTitleViewPropertyImpl &&
-            (identical(other.docRef, docRef) || other.docRef == docRef) &&
+            (identical(other.docId, docId) || other.docId == docId) &&
             (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, docRef, title);
+  int get hashCode => Object.hash(runtimeType, docId, title);
 
   @JsonKey(ignore: true)
   @override
@@ -141,11 +140,11 @@ class _$SeatTitleViewPropertyImpl implements _SeatTitleViewProperty {
 
 abstract class _SeatTitleViewProperty implements SeatTitleViewProperty {
   const factory _SeatTitleViewProperty(
-      {required final DocumentReference<Object?> docRef,
+      {required final String docId,
       required final String title}) = _$SeatTitleViewPropertyImpl;
 
   @override
-  DocumentReference<Object?> get docRef;
+  String get docId;
   @override
   String get title;
   @override
