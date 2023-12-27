@@ -55,10 +55,12 @@ class SeatingChartRepository {
   }
 
   // TODO: キャッシュがあればキャッシュから取得するようにしたい
-  Future<SeatingChart> getSeatingChart(DocumentReference docRef) async {
-    final snapshot = await docRef.get();
+  Future<SeatingChart> getSeatingChart(String docId) async {
+    final seatingChartRef =
+        firestore.collection(seatsCollectionName).doc(docId);
+    final snapshot = await seatingChartRef.get();
     if (!snapshot.exists) {
-      throw Exception('No seating chart found. docRef: $docRef');
+      throw Exception('No seating chart found. docId: $docId');
     }
 
     return SeatingChart.fromJson(snapshot.data() as Map<String, dynamic>);

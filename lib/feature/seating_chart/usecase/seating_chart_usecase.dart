@@ -38,22 +38,21 @@ class SeatingChartUseCase {
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
     return SeatingChartStateSuccess(
-      docRef: seatingChart.docRef!,
+      docId: seatingChart.docId,
       seatGroupMatrix: seatGroupMatrix,
       currentSeatTitle: seatingChart.seatTitle,
     );
   }
 
-  Future<SeatingChartStateSuccess> getSeatingChart(
-      DocumentReference docRef) async {
-    final seatingChart = await seatingChartRepository.getSeatingChart(docRef);
+  Future<SeatingChartStateSuccess> getSeatingChart(String docId) async {
+    final seatingChart = await seatingChartRepository.getSeatingChart(docId);
 
     final users = await _getUsers(seatingChart.seatGroupList);
     final seatGroupMatrix =
         _createSeatGroupMatrix(seatingChart.seatGroupList, users);
 
     return SeatingChartStateSuccess(
-      docRef: seatingChart.docRef!,
+      docId: seatingChart.docId,
       seatGroupMatrix: seatGroupMatrix,
       currentSeatTitle: seatingChart.seatTitle,
     );
@@ -61,14 +60,9 @@ class SeatingChartUseCase {
 
   Future<List<SeatTitleViewProperty>> getTitles() async {
     final seatingCharts = await seatingChartRepository.getSeatingCharts();
-
-    // DocumentReferenceがnullのものを除外（データ不整合が起きない限りnullになることはない）
-    final validSeatingCharts =
-        seatingCharts.where((seatingChart) => seatingChart.docRef != null);
-
-    return validSeatingCharts.map((seatingChart) {
+    return seatingCharts.map((seatingChart) {
       return SeatTitleViewProperty(
-        docRef: seatingChart.docRef!,
+        docId: seatingChart.docId,
         title: seatingChart.seatTitle,
       );
     }).toList();

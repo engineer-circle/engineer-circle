@@ -20,8 +20,8 @@ SeatingChart _$SeatingChartFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SeatingChart {
-  @DocumentReferenceConverter()
-  DocumentReference<Object?>? get docRef => throw _privateConstructorUsedError;
+  /// ドキュメントId
+  String get docId => throw _privateConstructorUsedError;
 
   /// シート名
   String get seatTitle => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $SeatingChartCopyWith<$Res> {
       _$SeatingChartCopyWithImpl<$Res, SeatingChart>;
   @useResult
   $Res call(
-      {@DocumentReferenceConverter() DocumentReference<Object?>? docRef,
+      {String docId,
       String seatTitle,
       List<SeatGroup> seatGroupList,
       @unionTimestampConverter UnionTimestamp createdAt});
@@ -67,16 +67,16 @@ class _$SeatingChartCopyWithImpl<$Res, $Val extends SeatingChart>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = freezed,
+    Object? docId = null,
     Object? seatTitle = null,
     Object? seatGroupList = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      docRef: freezed == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>?,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       seatTitle: null == seatTitle
           ? _value.seatTitle
           : seatTitle // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$SeatingChartImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@DocumentReferenceConverter() DocumentReference<Object?>? docRef,
+      {String docId,
       String seatTitle,
       List<SeatGroup> seatGroupList,
       @unionTimestampConverter UnionTimestamp createdAt});
@@ -130,16 +130,16 @@ class __$$SeatingChartImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? docRef = freezed,
+    Object? docId = null,
     Object? seatTitle = null,
     Object? seatGroupList = null,
     Object? createdAt = null,
   }) {
     return _then(_$SeatingChartImpl(
-      docRef: freezed == docRef
-          ? _value.docRef
-          : docRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>?,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
       seatTitle: null == seatTitle
           ? _value.seatTitle
           : seatTitle // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class __$$SeatingChartImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$SeatingChartImpl extends _SeatingChart {
   const _$SeatingChartImpl(
-      {@DocumentReferenceConverter() this.docRef,
+      {required this.docId,
       required this.seatTitle,
       required final List<SeatGroup> seatGroupList,
       @unionTimestampConverter
@@ -172,9 +172,9 @@ class _$SeatingChartImpl extends _SeatingChart {
   factory _$SeatingChartImpl.fromJson(Map<String, dynamic> json) =>
       _$$SeatingChartImplFromJson(json);
 
+  /// ドキュメントId
   @override
-  @DocumentReferenceConverter()
-  final DocumentReference<Object?>? docRef;
+  final String docId;
 
   /// シート名
   @override
@@ -199,7 +199,7 @@ class _$SeatingChartImpl extends _SeatingChart {
 
   @override
   String toString() {
-    return 'SeatingChart(docRef: $docRef, seatTitle: $seatTitle, seatGroupList: $seatGroupList, createdAt: $createdAt)';
+    return 'SeatingChart(docId: $docId, seatTitle: $seatTitle, seatGroupList: $seatGroupList, createdAt: $createdAt)';
   }
 
   @override
@@ -207,7 +207,7 @@ class _$SeatingChartImpl extends _SeatingChart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SeatingChartImpl &&
-            (identical(other.docRef, docRef) || other.docRef == docRef) &&
+            (identical(other.docId, docId) || other.docId == docId) &&
             (identical(other.seatTitle, seatTitle) ||
                 other.seatTitle == seatTitle) &&
             const DeepCollectionEquality()
@@ -218,7 +218,7 @@ class _$SeatingChartImpl extends _SeatingChart {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, docRef, seatTitle,
+  int get hashCode => Object.hash(runtimeType, docId, seatTitle,
       const DeepCollectionEquality().hash(_seatGroupList), createdAt);
 
   @JsonKey(ignore: true)
@@ -237,19 +237,20 @@ class _$SeatingChartImpl extends _SeatingChart {
 
 abstract class _SeatingChart extends SeatingChart {
   const factory _SeatingChart(
-      {@DocumentReferenceConverter() final DocumentReference<Object?>? docRef,
-      required final String seatTitle,
-      required final List<SeatGroup> seatGroupList,
-      @unionTimestampConverter
-      final UnionTimestamp createdAt}) = _$SeatingChartImpl;
+          {required final String docId,
+          required final String seatTitle,
+          required final List<SeatGroup> seatGroupList,
+          @unionTimestampConverter final UnionTimestamp createdAt}) =
+      _$SeatingChartImpl;
   const _SeatingChart._() : super._();
 
   factory _SeatingChart.fromJson(Map<String, dynamic> json) =
       _$SeatingChartImpl.fromJson;
 
   @override
-  @DocumentReferenceConverter()
-  DocumentReference<Object?>? get docRef;
+
+  /// ドキュメントId
+  String get docId;
   @override
 
   /// シート名

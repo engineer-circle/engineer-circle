@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
@@ -35,13 +34,13 @@ class SeatingChartController {
   }
 
   Future<void> changeSeat({
-    required DocumentReference docRef,
+    required String docId,
     required Function onSuccess,
   }) async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
       final seatingChart =
-          await _ref.read(seatingChartUseCaseProvider).getSeatingChart(docRef);
+          await _ref.read(seatingChartUseCaseProvider).getSeatingChart(docId);
       _ref
           .read(seatingChartStateProvider.notifier)
           .initSeatingChart(seatingChart);
