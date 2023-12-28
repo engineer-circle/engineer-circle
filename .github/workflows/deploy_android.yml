@@ -44,7 +44,7 @@ jobs:
 
       - name: build apk
         run: |
-          flutter build apk --dart-define-from-file=dart_defines/dev.json
+          flutter build apk --debug --dart-define-from-file=dart_defines/dev.json
 
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
