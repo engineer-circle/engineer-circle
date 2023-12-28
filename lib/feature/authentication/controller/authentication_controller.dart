@@ -4,7 +4,6 @@ import 'package:engineer_circle/feature/authentication/state/authentication_stat
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
-import 'package:engineer_circle/global/config/environment.dart';
 import 'package:engineer_circle/global/logger.dart';
 import 'package:engineer_circle/infrastructure/repository/authentication_repository.dart';
 import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
@@ -41,9 +40,7 @@ class AuthenticationController {
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
-      _ref
-          .read(snackBarProvider)
-          .showSnackBar("isDev: $isDev, isProd: $isProd, ${e.toString()}");
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
     } finally {
       _ref.read(overlayLoadingProvider.notifier).hide();
     }
