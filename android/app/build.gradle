@@ -90,8 +90,14 @@ task selectGoogleServicesJson(type: Copy) {
 
 // 新しいタスクが追加されるたびに実行されるスクリプト
 tasks.whenTaskAdded { task ->
-    // google-servicesプラグインによって自動的に生成されるタスクが追加された場合、selectGoogleServicesJsonに依存させる
-    if (task.name == 'processDebugGoogleServices' || task.name == 'processReleaseGoogleServices') {
+    if (task.name in [
+        'processDebugGoogleServices', 'compileFlutterBuildDebug', 'mergeDebugAssets',
+        'mergeDebugShaders', 'extractDeepLinksDebug', 'mergeDebugJniLibFolders',
+
+        'processReleaseGoogleServices', 'compileFlutterBuildRelease', 'mergeReleaseAssets',
+        'mergeReleaseShaders','extractDeepLinksRelease', 'mergeReleaseJniLibFolders',
+    ]) {
+        // 実行をselectGoogleServicesJsonに依存させる
         task.dependsOn selectGoogleServicesJson
     }
 }
