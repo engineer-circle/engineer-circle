@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "226820269023-kfo0k55ap59vsi5m0bnm762nquomm8bp.apps.googleusercontent.com",
+          "client_id": "226820269023-m4i4aecr5v7bmqck0e91qp18pb3nqumv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.engineercircle.engineer_circle",
-            "certificate_hash": "8e3e01f014654265f1f1dc7473142feebcc485e7"
+            "certificate_hash": "9e21791af63f5a405573439db5840aaaa33c0de8"
           }
         },
         {
