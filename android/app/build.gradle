@@ -33,7 +33,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.engineercircle.engineer_circle"
     compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -89,7 +89,17 @@ task selectGoogleServicesJson(type: Copy) {
 }
 
 // 新しいタスクが追加されるたびに実行されるスクリプト
-tasks.whenTaskAdded { task ->
+tasks.configureEach { task ->
+    if (task.name == 'mapDebugSourceSetPaths') {
+        task.dependsOn processDebugGoogleServices
+    }
+
+    if (task.name in [
+        'mapReleaseSourceSetPaths', 'mergeReleaseResources',
+    ]) {
+        task.dependsOn processReleaseGoogleServices
+    }
+
     if (task.name in [
         'processDebugGoogleServices', 'compileFlutterBuildDebug', 'mergeDebugAssets',
         'mergeDebugShaders', 'extractDeepLinksDebug', 'mergeDebugJniLibFolders',
