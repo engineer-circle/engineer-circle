@@ -43,6 +43,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/google-services.json
+key.jks
 
 # iOS
 ios/GoogleService-Info.plist

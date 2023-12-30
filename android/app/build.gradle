@@ -23,18 +23,25 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+// release用のkey.propertiesを読み込む
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace "com.engineercircle.engineer_circle"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 33
+    ndkVersion "25.1.8937393"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     sourceSets {
@@ -53,9 +60,25 @@ android {
         resValue "string", "app_name", appName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            signingConfig signingConfigs.debug
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            debuggable false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
@@ -64,7 +87,9 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.google.android.play:core:1.10.3'
+}
 
 // dart_definesで指定した環境に応じたgoogle-services.jsonをルートディレクトリにコピーするスクリプト
 task selectGoogleServicesJson(type: Copy) {
@@ -73,9 +98,25 @@ task selectGoogleServicesJson(type: Copy) {
 }
 
 // 新しいタスクが追加されるたびに実行されるスクリプト
-tasks.whenTaskAdded { task ->
-    // google-servicesプラグインによって自動的に生成されるタスクが追加された場合、selectGoogleServicesJsonに依存させる
-    if (task.name == 'processDebugGoogleServices' || task.name == 'processReleaseGoogleServices') {
+tasks.configureEach { task ->
+    if (task.name == 'mapDebugSourceSetPaths') {
+        task.dependsOn processDebugGoogleServices
+    }
+
+    if (task.name in [
+        'mapReleaseSourceSetPaths', 'mergeReleaseResources',
+    ]) {
+        task.dependsOn processReleaseGoogleServices
+    }
+
+    if (task.name in [
+        'processDebugGoogleServices', 'compileFlutterBuildDebug', 'mergeDebugAssets',
+        'mergeDebugShaders', 'extractDeepLinksDebug', 'mergeDebugJniLibFolders',
+
+        'processReleaseGoogleServices', 'compileFlutterBuildRelease', 'mergeReleaseAssets',
+        'mergeReleaseShaders','extractDeepLinksRelease', 'mergeReleaseJniLibFolders',
+    ]) {
+        // 実行をselectGoogleServicesJsonに依存させる
         task.dependsOn selectGoogleServicesJson
     }
 }
