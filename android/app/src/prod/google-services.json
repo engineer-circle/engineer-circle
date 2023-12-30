@@ -12,7 +12,20 @@
           "package_name": "com.engineercircle.engineer_circle"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "226820269023-kfo0k55ap59vsi5m0bnm762nquomm8bp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engineercircle.engineer_circle",
+            "certificate_hash": "8e3e01f014654265f1f1dc7473142feebcc485e7"
+          }
+        },
+        {
+          "client_id": "226820269023-hlaoulk7q3h5l652etv3l2cf8q3la8rg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA72sQzNzr8JxiLD-i2sdrvy6dtp73Fa_A"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226820269023-hlaoulk7q3h5l652etv3l2cf8q3la8rg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "226820269023-c3q13d908q1v1p664khe9rjgttpa43n9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.engineercircle.engineerCircle"
+              }
+            }
+          ]
         }
       }
     }
