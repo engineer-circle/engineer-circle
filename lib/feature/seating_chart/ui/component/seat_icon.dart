@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:engineer_circle/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -77,8 +78,12 @@ class SeatIcon extends StatelessWidget {
     return CircleAvatar(
       radius: iconSize / 2,
       child: ClipOval(
-        child: Image.network(
-          avatarUrl,
+        child: CachedNetworkImage(
+          imageUrl: avatarUrl,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, dynamic error) => const Icon(Icons.error),
           fit: BoxFit.cover,
           width: iconSize,
           height: iconSize,

@@ -10,15 +10,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final userRepositoryProvider = Provider(
   (ref) => UserRepository(
     firestore: ref.watch(firebaseFirestoreProvider),
+    storage: ref.watch(firebaseStorageProvider),
   ),
 );
 
 class UserRepository {
   UserRepository({
     required this.firestore,
+    required this.storage,
   });
 
   final FirebaseFirestore firestore;
+  final FirebaseStorage storage;
 
   static const usersCollectionName = 'users';
   static const userIdFieldName = 'id';
@@ -52,11 +55,8 @@ class UserRepository {
     File file,
   ) async {
     final String fileName = "$uid.jpg";
-    final storageRef = FirebaseStorage.instance
-        .ref()
-        .child(usersCollectionName)
-        .child(uid)
-        .child(fileName);
+    final storageRef =
+        storage.ref().child(usersCollectionName).child(uid).child(fileName);
     // users/uid/ファイル名 にアップロード
     await storageRef.putFile(file);
     // users/uid/ファイル名 のURLを取得
