@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "34416412021-8umeg25aeg101id2mg983enq8su8thao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engineercircle.engineer_circle.dev",
+            "certificate_hash": "9e21791af63f5a405573439db5840aaaa33c0de8"
+          }
+        },
+        {
           "client_id": "34416412021-ore942p34qdrsrulmgl820gu4l7prqle.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -39,10 +47,10 @@
               "client_type": 3
             },
             {
-              "client_id": "34416412021-ol0ob94kvlc0obvhnfcujl71hbbvarkj.apps.googleusercontent.com",
+              "client_id": "34416412021-m37qi0l4reahm5qore3rsvajjikli5pm.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.engineercircle.engineerCircle"
+                "bundle_id": "com.engineercircle.engineerCircle.dev"
               }
             }
           ]

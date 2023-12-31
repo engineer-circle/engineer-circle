@@ -13,24 +13,6 @@
       ]
     },
     {
-      "name": "ステージング環境デバッグビルド",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "debug",
-      "args": [
-          "--dart-define-from-file=dart_defines/stg.json"
-      ]
-    },
-    {
-      "name": "本番環境デバッグビルド",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "debug",
-      "args": [
-        "--dart-define-from-file=dart_defines/prod.json"
-      ]
-    },
-    {
       "name": "本番環境リリースビルド",
       "request": "launch",
       "type": "dart",
