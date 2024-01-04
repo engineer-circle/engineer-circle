@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:engineer_circle/feature/authentication/state/authentication_state.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
+import 'package:engineer_circle/feature/authentication/usecase/authentication_usecase.dart';
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/notification/controller/snack_bar_controller.dart';
 import 'package:engineer_circle/global/logger.dart';
+import 'package:engineer_circle/infrastructure/remote/firebase_exceptions.dart';
 import 'package:engineer_circle/infrastructure/repository/authentication_repository.dart';
-import 'package:engineer_circle/infrastructure/repository/user_repository.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authProvider = Provider((ref) => AuthenticationController(ref: ref));
@@ -18,25 +20,34 @@ class AuthenticationController {
 
   final Ref _ref;
 
-  void update() async {
-    final uid = _ref.read(authRepositoryProvider).getCurrentUserUid();
-    final authState = AuthenticationState.from(uid);
-    _ref.read(authStateProvider.notifier).updateState(authState);
+  static const String networkErrorCode = 'network_error';
+
+  Future<void> update() async {
+    try {
+      final authState =
+          await _ref.read(authUseCaseProvider).checkAuthentication();
+      _ref.read(authStateProvider.notifier).updateState(authState);
+    } on Exception catch (e) {
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
+      _ref.read(authStateProvider.notifier).updateState(UnAuthenticated());
+    }
   }
 
   Future<void> googleSignIn() async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
-      // 認証
-      final uid = await _ref.read(authRepositoryProvider).googleSignIn();
-      if (uid == null) {
-        _ref.read(snackBarProvider).showSnackBar('認証に失敗しました');
+      final authState = await _ref.read(authUseCaseProvider).googleSignIn();
+      _ref.read(authStateProvider.notifier).authenticated(authState);
+    } on UserIdNotFoundException catch (_) {
+      _ref.read(snackBarProvider).showSnackBar('認証に失敗しました');
+    } on PlatformException catch (e) {
+      if (e.code == networkErrorCode) {
+        _ref.read(snackBarProvider).showSnackBar('通信エラーです');
         return;
       }
-      // 新規の場合はuidを登録
-      await _ref.read(userRepositoryProvider).createUserIfNotExists(uid);
-      // 認証済状態に更新
-      _ref.read(authStateProvider.notifier).authenticated();
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.code);
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
@@ -52,6 +63,13 @@ class AuthenticationController {
       // TODO: Apple or Googleどちらでログインしたかでハンドリング
       await _ref.read(authRepositoryProvider).googleLogout();
       _ref.read(authStateProvider.notifier).unAuthenticated();
+    } on PlatformException catch (e) {
+      if (e.code == networkErrorCode) {
+        _ref.read(snackBarProvider).showSnackBar('通信エラーです');
+        return;
+      }
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.code);
     } on Exception catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);

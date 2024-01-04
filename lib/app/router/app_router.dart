@@ -91,7 +91,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
     logger.i('onNavigation(): $routeName');
 
     switch (ref.watch(authStateProvider)) {
-      case AuthenticationState.unAuthenticated:
+      case UnAuthenticated _:
         if (_isUnauthenticatedRoute(routeName)) {
           // 未ログインなのでrouteNameをそのまま表示
           resolver.next();
@@ -100,7 +100,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         logger.i('未ログインなので認証画面にリダイレクト');
         router.replace(const AuthenticationRootRoute());
 
-      case AuthenticationState.authenticated:
+      case Authenticated _:
         if (_isUnauthenticatedRoute(routeName)) {
           logger.i('認証済みなのでホーム画面にリダイレクト');
           router.replace(const RootRoute());
@@ -109,7 +109,7 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
         // 認証済みなのでrouteNameをそのまま表示
         resolver.next();
 
-      case AuthenticationState.checking:
+      case AuthenticationChecking _:
       // App()で状態を取得するまで待っているので、ここに流れることはない
     }
   }

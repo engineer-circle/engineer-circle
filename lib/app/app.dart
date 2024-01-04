@@ -37,7 +37,7 @@ class _AppState extends ConsumerState<App> {
       debugShowCheckedModeBanner: false, // デバッグバナーを非表示
       builder: (context, child) {
         switch (ref.watch(authStateProvider)) {
-          case AuthenticationState.checking:
+          case AuthenticationChecking _:
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
