@@ -30,7 +30,7 @@ class AuthenticationUseCase {
   Future<AuthenticationState> checkAuthentication() async {
     final uid = _authRepository.getCurrentUserUid();
     if (uid != null) {
-      final isAdmin = await _adminRepository.checkUserRole();
+      final isAdmin = await _adminRepository.checkAdmin();
       final role = isAdmin ? UserRole.admin : UserRole.normal;
       return Authenticated(role: role);
     } else {
@@ -49,7 +49,7 @@ class AuthenticationUseCase {
     await _userRepository.createUserIfNotExists(uid);
 
     // 管理者権限をチェック
-    final isAdmin = await _adminRepository.checkUserRole();
+    final isAdmin = await _adminRepository.checkAdmin();
     final role = isAdmin ? UserRole.admin : UserRole.normal;
 
     // 認証済みとして返す

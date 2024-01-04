@@ -25,7 +25,7 @@ class AdminSeatingChartRepository {
   static const createShuffleSeatCommand = 'createShuffleSeat';
   static const deleteLatestSeatCommand = 'deleteLatestSeat';
 
-  Future<bool> checkUserRole() async {
+  Future<bool> checkAdmin() async {
     final user = _firebaseAuth.currentUser;
     if (user != null) {
       final idTokenResult = await user.getIdTokenResult();
