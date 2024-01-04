@@ -6,17 +6,17 @@ final authStateProvider =
         (ref) => AuthenticationStateNotifier());
 
 class AuthenticationStateNotifier extends StateNotifier<AuthenticationState> {
-  AuthenticationStateNotifier() : super(AuthenticationState.checking);
+  AuthenticationStateNotifier() : super(AuthenticationChecking());
 
   void updateState(AuthenticationState state) async {
     this.state = state;
   }
 
   void unAuthenticated() async {
-    state = AuthenticationState.unAuthenticated;
+    state = UnAuthenticated();
   }
 
-  void authenticated() async {
-    state = AuthenticationState.authenticated;
+  void authenticated(Authenticated authState) async {
+    state = authState;
   }
 }
