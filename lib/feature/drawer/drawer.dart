@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/app/router/app_router.dart';
-import 'package:engineer_circle/feature/admin/menu/controller/admin_menu.controller.dart';
 import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state.dart';
+import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/drawer/drawer_item.dart';
 import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ class AppDrawer extends ConsumerStatefulWidget {
 class _MyDrawerState extends ConsumerState<AppDrawer> {
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authStateProvider);
+    final itemsToShow = getItemsToShow(authState.isAdmin);
+
     return Drawer(
       child: ListView(
         children: [
@@ -26,18 +30,26 @@ class _MyDrawerState extends ConsumerState<AppDrawer> {
               child: Text('メニュー'),
             ),
           ),
-          for (final item in drawerItems)
-            ListTile(
+          ...itemsToShow.map(
+            (item) => ListTile(
               leading: Icon(item.icon),
               title: Text(item.title),
               onTap: () {
                 item.onTap(context, ref);
               },
             ),
+          )
         ],
       ),
     );
   }
+}
+
+List<DrawerItem> getItemsToShow(bool isAdmin) {
+  return isAdmin
+      ? drawerItems
+      // 非管理者の場合は管理者画面を除外
+      : drawerItems.where((item) => item.title != managerScreenName).toList();
 }
 
 final List<DrawerItem> drawerItems = [
@@ -75,7 +87,7 @@ final List<DrawerItem> drawerItems = [
     },
   ),
   DrawerItem(
-      title: '管理者画面',
+      title: managerScreenName,
       icon: Icons.admin_panel_settings,
       onTap: (context, ref) {
         Navigator.pop(context);
@@ -84,3 +96,5 @@ final List<DrawerItem> drawerItems = [
         );
       }),
 ];
+
+const String managerScreenName = '管理者画面';
