@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:engineer_circle/domain/seating_chart.dart';
-import 'package:engineer_circle/global/logger.dart';
 import 'package:engineer_circle/infrastructure/remote/firebase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

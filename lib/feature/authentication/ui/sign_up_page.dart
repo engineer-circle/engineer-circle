@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:engineer_circle/feature/authentication/ui/component/terms_agreement_text.dart';
+import 'package:engineer_circle/global/config/urls.dart';
+import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sign_in_button/sign_in_button.dart';
@@ -51,11 +53,15 @@ class _SignUpState extends ConsumerState<SignUpPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TermsAgreementText(
-                  onTapTermsOfUse: () {
-                    // TODO: 利用規約を開く
+                  onTapTermsOfUse: () async {
+                    await ref
+                        .read(urlLauncherProvider)
+                        .launch(termOfServiceUrl);
                   },
-                  onTapPrivacyPolicy: () {
-                    // TODO: プラポリを開く
+                  onTapPrivacyPolicy: () async {
+                    await ref
+                        .read(urlLauncherProvider)
+                        .launch(privacyPolicyUrl);
                   },
                 ),
               ),
