@@ -5,6 +5,7 @@ import 'package:engineer_circle/feature/authentication/state/authentication_stat
 import 'package:engineer_circle/feature/loading/state/overlay_loading_state_notifier.dart';
 import 'package:engineer_circle/feature/loading/ui/overlay_loading.dart';
 import 'package:engineer_circle/feature/notification/state/scaffold_message_key.dart';
+import 'package:engineer_circle/gen/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,6 +32,7 @@ class _AppState extends ConsumerState<App> {
     return MaterialApp.router(
       theme: ThemeData(
         useMaterial3: true,
+        fontFamily: FontFamily.notoSansJP,
       ),
       routerConfig: router.config(),
       scaffoldMessengerKey: ref.watch(scaffoldMessageKeyProvider),
