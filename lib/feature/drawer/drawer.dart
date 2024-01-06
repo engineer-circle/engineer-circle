@@ -5,6 +5,8 @@ import 'package:engineer_circle/feature/authentication/state/authentication_stat
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
 import 'package:engineer_circle/feature/drawer/drawer_item.dart';
 import 'package:engineer_circle/feature/notification/simple_alert_dialog.dart';
+import 'package:engineer_circle/global/config/urls.dart';
+import 'package:engineer_circle/global/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -57,14 +59,14 @@ final List<DrawerItem> drawerItems = [
     title: 'プライバシーポリシー',
     icon: Icons.privacy_tip,
     onTap: (context, ref) async {
-      // TODO
+      await ref.read(urlLauncherProvider).launch(privacyPolicyUrl);
     },
   ),
   DrawerItem(
     title: 'サービス利用規約',
     icon: Icons.rule,
     onTap: (context, ref) async {
-      // TODO
+      await ref.read(urlLauncherProvider).launch(termOfServiceUrl);
     },
   ),
   DrawerItem(
