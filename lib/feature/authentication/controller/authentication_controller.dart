@@ -27,7 +27,7 @@ class AuthenticationController {
       final authState =
           await _ref.read(authUseCaseProvider).checkAuthentication();
       _ref.read(authStateProvider.notifier).updateState(authState);
-    } on Exception catch (e) {
+    } catch (e) {
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());
       _ref.read(authStateProvider.notifier).updateState(UnAuthenticated());
@@ -48,7 +48,7 @@ class AuthenticationController {
       }
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.code);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());
@@ -70,7 +70,7 @@ class AuthenticationController {
       }
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.code);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());

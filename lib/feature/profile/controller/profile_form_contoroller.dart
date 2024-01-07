@@ -65,7 +65,7 @@ class ProfileFormController {
       await _ref.read(userRepositoryProvider).updateProfile(uid, user);
       onSuccess();
       _ref.read(snackBarProvider).showSnackBar('ユーザー情報を更新しました');
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());

@@ -26,7 +26,7 @@ class SeatingChartController {
       _ref
           .read(seatingChartStateProvider.notifier)
           .initSeatingChart(seatingChart);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(seatingChartStateProvider.notifier).failure();
@@ -41,7 +41,7 @@ class SeatingChartController {
       _ref
           .read(seatingChartStateProvider.notifier)
           .initSeatingChart(seatingChart);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
     } finally {
@@ -61,7 +61,7 @@ class SeatingChartController {
           .read(seatingChartStateProvider.notifier)
           .initSeatingChart(seatingChart);
       onSuccess();
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());
@@ -91,6 +91,10 @@ class SeatingChartController {
         logger.e(e);
         _ref.read(snackBarProvider).showSnackBar('不明なエラーです');
       }
+    } catch (e) {
+      // TODO: エラーハンドリング
+      logger.e(e);
+      _ref.read(snackBarProvider).showSnackBar(e.toString());
     } finally {
       _ref.read(overlayLoadingProvider.notifier).hide();
     }

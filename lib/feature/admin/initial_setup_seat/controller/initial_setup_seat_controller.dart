@@ -26,7 +26,7 @@ class InitialSetupSeatController {
           .createShuffleSeatingChart(seatName);
       onSuccess();
       _ref.read(snackBarProvider).showSnackBar('座席表を作成しました。リロードして画面を更新してください。');
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(snackBarProvider).showSnackBar(e.toString());

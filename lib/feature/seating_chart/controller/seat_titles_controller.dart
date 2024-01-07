@@ -18,7 +18,7 @@ class SeatTitlesController {
     try {
       final titles = await _ref.read(seatingChartUseCaseProvider).getTitles();
       _ref.read(seatTitlesStateProvider.notifier).updateTitlesSuccess(titles);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       _ref.read(seatTitlesStateProvider.notifier).updateTitlesFailure();
       logger.e(e);
