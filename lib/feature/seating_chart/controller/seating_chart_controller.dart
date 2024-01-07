@@ -33,6 +33,22 @@ class SeatingChartController {
     }
   }
 
+  Future<void> refresh() async {
+    _ref.read(overlayLoadingProvider.notifier).show();
+    try {
+      final seatingChart =
+          await _ref.read(seatingChartUseCaseProvider).getLatest();
+      _ref
+          .read(seatingChartStateProvider.notifier)
+          .initSeatingChart(seatingChart);
+    } on Exception catch (e) {
+      // TODO: エラーハンドリング
+      logger.e(e);
+    } finally {
+      _ref.read(overlayLoadingProvider.notifier).hide();
+    }
+  }
+
   Future<void> changeSeat({
     required String docId,
     required Function onSuccess,
@@ -64,7 +80,7 @@ class SeatingChartController {
           .read(seatingChartUseCaseProvider)
           .updateSeatUser(seatId, docId);
       // 再度読み込む
-      await init();
+      await refresh();
     } on UserIdNotFoundException catch (_) {
       // 強制ログアウト
       _ref.read(authStateProvider.notifier).unAuthenticated();
