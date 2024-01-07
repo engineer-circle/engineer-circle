@@ -31,7 +31,7 @@ class ProfileController {
         throw Exception('User is null');
       }
       _ref.read(profileStateProvider.notifier).initProfile(user);
-    } on Exception catch (e) {
+    } catch (e) {
       // TODO: エラーハンドリング
       logger.e(e);
       _ref.read(profileStateProvider.notifier).failure();
