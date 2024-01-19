@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:roggle/roggle.dart';
 
-const _loggerName = '[eCircle]';
+const _loggerName = '[EngageM8]';
 
 final logger = Roggle(
   printer: SinglePrettyPrinter(
