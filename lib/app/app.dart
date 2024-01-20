@@ -1,4 +1,5 @@
 import 'package:engineer_circle/app/router/app_router.dart';
+import 'package:engineer_circle/app/theme/color_schemes.g.dart';
 import 'package:engineer_circle/feature/authentication/controller/authentication_controller.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state.dart';
 import 'package:engineer_circle/feature/authentication/state/authentication_state_notifier.dart';
@@ -32,6 +33,7 @@ class _AppState extends ConsumerState<App> {
     return MaterialApp.router(
       theme: ThemeData(
         useMaterial3: true,
+        colorScheme: lightColorScheme,
         fontFamily: FontFamily.notoSansJP,
       ),
       routerConfig: router.config(),
