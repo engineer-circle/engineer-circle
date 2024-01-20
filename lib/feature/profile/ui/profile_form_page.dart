@@ -133,7 +133,10 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
                 items: CareerOption.values.map((CareerOption value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text(value.displayName),
+                    child: Text(
+                      value.displayName,
+                      style: const TextStyle(fontWeight: FontWeight.normal),
+                    ),
                   );
                 }).toList(),
                 onChanged: (CareerOption? newValue) => ref

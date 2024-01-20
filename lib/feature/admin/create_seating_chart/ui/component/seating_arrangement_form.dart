@@ -42,7 +42,10 @@ class _SeatingArrangementFormState extends State<SeatingArrangementForm> {
             items: SeatOrientation.values.map((SeatOrientation value) {
               return DropdownMenuItem<SeatOrientation>(
                 value: value,
-                child: Text(value.label),
+                child: Text(
+                  value.label,
+                  style: const TextStyle(fontWeight: FontWeight.normal),
+                ),
               );
             }).toList(),
             onChanged: (newValue) {
@@ -65,7 +68,10 @@ class _SeatingArrangementFormState extends State<SeatingArrangementForm> {
             items: seatCounts.map((int value) {
               return DropdownMenuItem<int>(
                 value: value,
-                child: Text(value.toString()),
+                child: Text(
+                  value.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.normal),
+                ),
               );
             }).toList(),
             onChanged: (newValue) {
