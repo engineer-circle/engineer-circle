@@ -20,12 +20,28 @@ class AdminSeatingChartUseCase {
     String title,
     List<SeatGroup> seats,
   ) async {
-    final seatingChart =
-        CreateSeatingChart(seatTitle: title, seatGroupList: seats);
+    final seatingChart = CreateSeatingChart(
+        seatTitle: title, seatGroupList: _sortSeatGroups(seats));
     repository.createSeatingChart(seatingChart);
   }
 
   Future<void> createShuffleSeatingChart(String seatName) async {
     repository.createShuffleSeatingChart(seatName);
+  }
+
+  List<SeatGroup> _sortSeatGroups(List<SeatGroup> seatGroups) {
+    final mutableSeatGroups = List<SeatGroup>.from(seatGroups);
+    mutableSeatGroups.sort((a, b) {
+      // 先にrowで比較
+      final rowComparison = a.row.compareTo(b.row);
+      if (rowComparison != 0) {
+        return rowComparison;
+      }
+
+      // rowが同じ場合はcolumnで比較
+      return a.column.compareTo(b.column);
+    });
+
+    return mutableSeatGroups;
   }
 }

@@ -20,11 +20,8 @@ class SeatingArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Front',
-          style: TextStyle(fontSize: 20),
-        ),
         const SizedBox(height: 8),
         ...seatGroupMatrix.map<Widget>(
           (rowSeatGroup) {
