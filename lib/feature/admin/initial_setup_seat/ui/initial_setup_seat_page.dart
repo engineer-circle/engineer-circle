@@ -52,7 +52,10 @@ class _InitialSetupSeatPageState extends ConsumerState<InitialSetupSeatPage> {
                         .map((SeatSelectionMethod value) {
                       return DropdownMenuItem(
                         value: value,
-                        child: Text(value.label),
+                        child: Text(
+                          value.label,
+                          style: const TextStyle(fontWeight: FontWeight.normal),
+                        ),
                       );
                     }).toList(),
                     onChanged: (SeatSelectionMethod? newValue) => ref

@@ -1,3 +1,4 @@
+import 'package:engineer_circle/app/theme/color_schemes.g.dart';
 import 'package:engineer_circle/domain/user.dart';
 import 'package:engineer_circle/feature/seating_chart/state/component_state/seat_group_view_property.dart';
 import 'package:engineer_circle/feature/seating_chart/ui/component/seat_icon.dart';
@@ -87,9 +88,22 @@ class HorizontalSeatingLayout extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,
       ),
-      color: Colors.grey[300],
+      decoration: BoxDecoration(
+        color: tableColor.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(
+          color: tableColor.withOpacity(0.7),
+          width: 1,
+        ),
+      ),
       child: Center(
-        child: Text('テーブル$tableId'),
+        child: Text(
+          'T$tableId',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

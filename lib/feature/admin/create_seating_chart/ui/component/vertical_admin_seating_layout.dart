@@ -1,3 +1,4 @@
+import 'package:engineer_circle/app/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
 
@@ -68,9 +69,22 @@ class VerticalAdminSeatingLayout extends StatelessWidget {
       width: tableWidth,
       height: height,
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      color: Colors.grey[300],
+      decoration: BoxDecoration(
+        color: tableColor.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(
+          color: tableColor.withOpacity(0.7),
+          width: 1,
+        ),
+      ),
       child: Center(
-        child: Text(tableName),
+        child: Text(
+          tableName,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

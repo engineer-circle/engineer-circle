@@ -116,7 +116,14 @@ class ProfileContent extends StatelessWidget {
                 children: profile.skills
                     .map(
                       (skill) => Chip(
-                        label: Text(skill),
+                        label: Text(
+                          skill,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     )
                     .toList(),
@@ -125,17 +132,27 @@ class ProfileContent extends StatelessWidget {
             const Divider(),
             ListTile(
               title: const Text('キャリア'),
-              subtitle: Text(
-                profile.career != null ? profile.career!.displayName : "",
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  profile.career != null ? profile.career!.displayName : "",
+                  style: const TextStyle(
+                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             const Divider(),
             ListTile(
               title: const Text('自己紹介'),
-              subtitle: Text(
-                profile.selfIntroduction != null
-                    ? profile.selfIntroduction!
-                    : "",
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  profile.selfIntroduction != null
+                      ? profile.selfIntroduction!
+                      : "",
+                  style: const TextStyle(
+                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],

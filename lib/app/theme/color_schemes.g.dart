@@ -67,3 +67,5 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF46464F),
   scrim: Color(0xFF000000),
 );
+
+const tableColor = Color(0xFF9B450A);
