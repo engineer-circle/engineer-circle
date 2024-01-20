@@ -116,7 +116,14 @@ class ProfileContent extends StatelessWidget {
                 children: profile.skills
                     .map(
                       (skill) => Chip(
-                        label: Text(skill),
+                        label: Text(
+                          skill,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     )
                     .toList(),
