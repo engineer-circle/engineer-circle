@@ -32,7 +32,6 @@ class _ProfileState extends ConsumerState<ProfilePage> {
     final state = ref.watch(profileStateProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('プロフィール'),
           actions: state is ProfileStateSuccess && state.isRegisteredProfile
               ? [
                   Padding(

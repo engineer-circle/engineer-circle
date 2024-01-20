@@ -40,7 +40,6 @@ class _SeatingChartPageState extends ConsumerState<SeatingChartPage> {
     final state = ref.watch(seatingChartStateProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ホーム'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),

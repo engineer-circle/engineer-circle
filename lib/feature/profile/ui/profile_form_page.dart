@@ -55,7 +55,7 @@ class _ProfileFormPageState extends ConsumerState<ProfileFormPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('プロフィール')),
+        appBar: AppBar(),
         body: _body(state),
       ),
     );
