@@ -20,7 +20,7 @@ class VerticalSeatingLayout extends StatelessWidget {
 
   final double iconSize = 40;
   final double seatPadding = 8;
-  final double nameTextHeight = 16;
+  final double nameTextHeight = 18;
 
   @override
   Widget build(BuildContext context) {
