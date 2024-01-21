@@ -60,8 +60,7 @@ class AuthenticationController {
   Future<void> logout() async {
     _ref.read(overlayLoadingProvider.notifier).show();
     try {
-      // TODO: Apple or Googleどちらでログインしたかでハンドリング
-      await _ref.read(authRepositoryProvider).googleLogout();
+      await _ref.read(authUseCaseProvider).logout();
       _ref.read(authStateProvider.notifier).unAuthenticated();
     } on PlatformException catch (e) {
       if (e.code == networkErrorCode) {
